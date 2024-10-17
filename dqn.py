@@ -44,8 +44,10 @@ index_to_label = {
 }
 
 
+BOSS_MODEL = 'E:/Black-Myth-Wukong-AI/models_res/boss_model.pkl'
+AGENT_MODEL = 'E:/Black-Myth-Wukong-AI/models/wukong_0904_1_0.pth'
 
-
+# 这才是整个程序的主入口
 def dqn_learning(env,
                  optimizer_spec,
                  exploration=LinearSchedule(1000, 0.1), 
@@ -68,11 +70,12 @@ def dqn_learning(env,
 
     num_actions = env.action_dim
     # 初始boss模型
-    model_resnet_boss = ResNet50_boss(num_classes=10) # 刀郎或其他boss的模型
-    model_resnet_boss.load_state_dict(torch.load(
-        'D:/dqn_wukong/RL-ARPG-Agent-1/boss_model_baiyi.pkl'))
+    print("before loading boss model-B2")
+    model_resnet_boss = ResNet50_boss(num_classes=10) # 用了一个10分类的预训练模型，估计是识别广智的招式，那么就不通用。
+    model_resnet_boss.load_state_dict(torch.load(BOSS_MODEL, weights_only=True))
     model_resnet_boss.to(device)
     model_resnet_boss.eval()
+    print("after loading boss model-B2")
     
     # 初始自身模型
     # model_resnet_malo = ResNet50_boss(num_classes=2) # 用于判断自身是否倒地
@@ -83,7 +86,7 @@ def dqn_learning(env,
 
 
     # 控制冻结和更新的参数
-    for param in model_resnet_boss.parameters():
+    for param in model_resnet_boss.parameters(): # 直接冻结了，没有更新
         param.requires_grad = False
         
     # Q网络初始化
@@ -92,10 +95,10 @@ def dqn_learning(env,
 
     # load checkpoint
     if checkpoint != 0:
-        checkpoint_path = "models/wukong_0825_2_1200.pth"
-        Q.load_state_dict(torch.load(checkpoint_path))
-        Q_target.load_state_dict(torch.load(checkpoint_path))
-        print('load model success')
+        # checkpoint_path = "models/wukong_0825_2_1200.pth"
+        Q.load_state_dict(torch.load(AGENT_MODEL, weights_only=True))
+        Q_target.load_state_dict(torch.load(AGENT_MODEL, weights_only=True))
+        print('load agent model success -- B2')
 
     # initialize optimizer
     optimizer = optimizer_spec.constructor(

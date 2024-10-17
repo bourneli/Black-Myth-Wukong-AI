@@ -200,6 +200,7 @@ class Wukong(object):
         self.boss_blood = next_boss_blood
         self.self_stamina = next_self_stamina
         self.boss_stamina = next_boss_stamina
+        print("reward: self blood=%s, boss blood=%s" % (self.self_blood, self.boss_blood))
         return (obs, reward, done, stop, emergence_break)
 
     def pause_game(self, paused): # 用于训练中暂停
@@ -214,7 +215,7 @@ class Wukong(object):
                 print('pause game')
                 time.sleep(1)
         if paused:
-            print('paused')
+            print('paused--B2')
             while True:
                 keys = key_check()
                 if 'T' in keys:
