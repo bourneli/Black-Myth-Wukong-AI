@@ -44,8 +44,8 @@ index_to_label = {
 }
 
 
-BOSS_MODEL = 'E:/Black-Myth-Wukong-AI/models_res/boss_model.pkl'
-AGENT_MODEL = 'E:/Black-Myth-Wukong-AI/models/wukong_0904_1_0.pth'
+BOSS_MODEL = 'E:/rl_learning/Black-Myth-Wukong-AI/models_res/boss_model.pkl'
+AGENT_MODEL = 'E:/rl_learning/Black-Myth-Wukong-AI/models/wukong_0904_1_0.pth'
 
 # 这才是整个程序的主入口
 def dqn_learning(env,
@@ -159,11 +159,13 @@ def dqn_learning(env,
         
         output_boss, intermediate_results_boss = model_resnet_boss(obs)
         max_values_boss, indices_boss = torch.max(output_boss, dim=1)
-        print("当前帧判断的boss状态:", index_to_label[indices_boss.item()])
+        print("预估Boss状态:", index_to_label[indices_boss.item()])
         if indices_boss.item() != 6 and indices_boss.item() != 8:
             boss_attack = True
+            print("Boss攻击--->")
         else:
             boss_attack = False
+            print("Boss防守<<<<")
             
         # before learning starts, choose actions randomly
         if t < learning_starts:
@@ -188,7 +190,8 @@ def dqn_learning(env,
         self_power_hsv = cv2.cvtColor(self_power_img, cv2.COLOR_BGR2HSV)
         self_power = env.self_power_count(self_power_hsv)  # >50一段 >100第二段
         
-        self_endurance_window = (186,987,311,995) # 耐力条
+        #self_endurance_window = (186,987,311,995) # 耐力条
+        self_endurance_window = (181,979, 305, 985)
         self_endurance_img = grab_screen(self_endurance_window)
         endurance_gray = cv2.cvtColor(self_endurance_img,cv2.COLOR_BGR2GRAY)
         self_endurance = env.self_endurance_count(endurance_gray) # 为0是满或空 中间是准确的

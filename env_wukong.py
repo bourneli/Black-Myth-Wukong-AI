@@ -17,11 +17,19 @@ class Wukong(object):
         self.height = observation_h
         self.death_cnt = 0
         self.action_dim = action_dim
-        self.obs_window = (336,135,1395,795)
-        self.boss_blood_window = (597, 894, 1104, 906)
-        self.self_blood_window = (186, 956, 339, 963)
+        
+        #self.obs_window = (336,135,1395,795)
+        self.obs_window = (0,0,1677,1087)
+        
+        #self.boss_blood_window = (597, 894, 1104, 906)
+        self.boss_blood_window = (668, 888, 1018, 900)
+
+        #self.self_blood_window = (186, 956, 339, 963)
+        self.self_blood_window = (181, 948, 319,959)
+
         self.boss_stamina_window = (345, 78, 690, 81)  # 如果后期有格挡条的boss可以用，刀郎没有
-        self.self_stamina_window = (1473, 938, 1510, 1008)  # 棍势条
+        #self.self_stamina_window = (1473, 938, 1510, 1008)  # 棍势条
+        self.self_stamina_window = (1482, 926, 1521, 997)
         self.boss_blood = 0
         self.self_blood = 0
         self.boss_stamina = 0
