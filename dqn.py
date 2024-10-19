@@ -164,10 +164,8 @@ def dqn_learning(env,
             logging.info("偷一棍")
             directkeys.hard_attack_long() # 黑神话特色偷一刀
             initial_steal = False
-        obs = torch.from_numpy(observations).unsqueeze(
-            0).type(dtype)  
+        obs = torch.from_numpy(observations).unsqueeze(0).type(dtype)  
         obs = obs[:, :3, 20:180, 5:165]  
-        
         boss_attack, intermediate_results_boss = observe_boss(model_resnet_boss, obs)
             
         # before learning starts, choose actions randomly
@@ -257,8 +255,7 @@ def dqn_learning(env,
         '''----------------约束结束----------------------'''
         # state_list.append(indices_boss.item()) # 维护boss状态
         # print(state_list)
-        obs, reward, done, stop, emergence_break = env.step(
-            action, boss_attack)
+        obs, reward, done, stop, emergence_break = env.step(action, boss_attack)
         if action == 4:  # 把重棍处理成三连棍
             action = 2
         elif action == 5: # 把歇脚回气力处理成轻棍
@@ -283,7 +280,7 @@ def dqn_learning(env,
             episode_rewards.append(episode_reward)
             writer.add_scalar("reward_episode", episode_reward, episode_cnt)
             episode_cnt += 1
-            logging.info("current episode reward %d" % episode_reward)
+            logging.debug("current episode reward %d" % episode_reward)
             episode_reward = 0
         last_obs = obs
         env.pause_game(False)
@@ -380,12 +377,12 @@ def dqn_learning(env,
             best_mean_episode_reward = max(
                 best_mean_episode_reward, mean_episode_reward)
         if t % LOG_EVERY_N_STEPS == 0:
-            logging.info("-----------------Stats----------------")
-            logging.info("Timestep %d" % t)
-            logging.info("learning started: %d" % (t > learning_starts))
-            logging.info("mean reward (10 episodes) %f" % mean_episode_reward)
-            logging.info("best mean reward %f" % best_mean_episode_reward)
-            logging.info("episodes %d" % len(episode_rewards))
-            logging.info("exploration %f" % exploration.value(t))
-            logging.info("learning_rate %f" % optimizer_spec.kwargs['lr'])
-            logging.info("--------------------------------------")
+            logging.debug("-----------------Stats----------------")
+            logging.debug("Timestep %d" % t)
+            logging.debug("learning started: %d" % (t > learning_starts))
+            logging.debug("mean reward (10 episodes) %f" % mean_episode_reward)
+            logging.debug("best mean reward %f" % best_mean_episode_reward)
+            logging.debug("episodes %d" % len(episode_rewards))
+            logging.debug("exploration %f" % exploration.value(t))
+            logging.debug("learning_rate %f" % optimizer_spec.kwargs['lr'])
+            logging.debug("--------------------------------------")
