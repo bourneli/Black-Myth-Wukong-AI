@@ -3,6 +3,8 @@ import argparse
 from dqn import dqn_learning, OptimizerSpec
 from utils.schedules import LinearSchedule
 from env_wukong import Wukong
+import logging
+
 
 BATCH_SIZE = 2
 REPLAY_BUFFER_SIZE = 1000 
@@ -17,29 +19,11 @@ EXPLORATION_SCHEDULE = LinearSchedule(800, 0.05)
 LEARNING_STARTS = 0 
 CHECKPOINT = 0
 
-# def Wukong_learn(env, double_dqn,checkpoint):
-
-#     optimizer = OptimizerSpec(
-#         constructor=optim.RMSprop,
-#         kwargs=dict(lr=LEARNING_RATE, alpha=ALPHA, eps=EPS)
-#     )
-#     dqn_learning(
-#         env=env,
-#         optimizer_spec=optimizer,
-#         exploration=EXPLORATION_SCHEDULE,
-#         stopping_criterion=None,
-#         replay_buffer_size=REPLAY_BUFFER_SIZE,
-#         batch_size=BATCH_SIZE,
-#         gamma=GAMMA,
-#         learning_starts=LEARNING_STARTS,
-#         learning_freq=LEARNING_FREQ,
-#         frame_history_len=FRAME_HISTORY_LEN,
-#         target_update_freq=TARGET_UPDATE_FREQ,
-#         double_dqn=double_dqn,
-#         checkpoint = checkpoint
-#         )
 
 def main():
+    logger = logging.getLogger(__name__)
+    logger.info(">>>>>>>>>>>>>>>>>>>>>>>>Trainning Tian Min Ren<<<<<<<<<<<<<<<<<<<<<<<<")
+
     parser = argparse.ArgumentParser(description='RL agents for Wukong')
     parser.add_argument("--gpu", type=int, default=0, help="ID of GPU to be used")
     parser.add_argument("--double-dqn", type=int, default=1, help="double dqn - 0 = No, 1 = Yes")
@@ -47,7 +31,7 @@ def main():
     args = parser.parse_args()
 
     # Run training
-    print("prepare params ---b2")
+    logger.debug("prepare params ---b2")
     use_double_dqn = (args.double_dqn == 1)
     use_checkpoint = args.checkpoint
     env = Wukong(observation_w=175, observation_h=200, action_dim=4)
@@ -56,7 +40,7 @@ def main():
         kwargs=dict(lr=LEARNING_RATE, alpha=ALPHA, eps=EPS)
     )
 
-    print("begin training -- b2")
+    logger.debug("begin training -- b2")
     dqn_learning(
         env=env,
         optimizer_spec=optimizer,
@@ -74,4 +58,8 @@ def main():
     )
 
 if __name__ == '__main__':
+    # 配置日志记录
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                        handlers=[logging.FileHandler('./logs/app.log', 'a', 'utf-8'), logging.StreamHandler()])
     main()

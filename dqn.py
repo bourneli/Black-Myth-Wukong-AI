@@ -16,36 +16,59 @@ from collections import namedtuple
 from nets.ResNet_boss_model import ResNet50_boss
 from screen_key_grab.grabscreen import grab_screen
 from torch.utils.tensorboard import SummaryWriter
-
-
-OptimizerSpec = namedtuple("OptimizerSpec", ["constructor", "kwargs"])
-
-# 此处指定在cpu上跑
-dtype = torch.FloatTensor
-dlongtype = torch.LongTensor
-device = "cpu"
-paused = True
-writer = SummaryWriter()
-# # Set the logger
-# logger = Logger('./logs')
-
-# 状态对应--刀郎
-index_to_label = {
-    0: '冲刺砍',
-    1: '旋转飞',
-    2: '扔刀',
-    3: '飞雷神',
-    4: '锄地',
-    5: '锄地起飞',
-    6: '受到攻击',
-    7: '普攻',
-    8: '观察',
-    9: '大荒星陨'
-}
+import logging
 
 
 BOSS_MODEL = 'E:/rl_learning/Black-Myth-Wukong-AI/models_res/boss_model.pkl'
 AGENT_MODEL = 'E:/rl_learning/Black-Myth-Wukong-AI/models/wukong_0904_1_0.pth'
+
+# 用于记录日志
+logger = logging.getLogger(__name__)
+
+OptimizerSpec = namedtuple("OptimizerSpec", ["constructor", "kwargs"])
+
+device =  torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# 默认支持cpu
+dtype = torch.FloatTensor
+dlongtype = torch.LongTensor
+# 检测出GPU
+if device.type == 'cuda':
+    dtype = torch.cuda.FloatTensor
+    dlongtype = torch.cuda.LongTensor
+
+
+paused = True
+writer = SummaryWriter()
+
+
+# 根据画面，观察boss的行为，并做出判断
+def oberve_boss(model_resnet_boss, obs):
+    # 状态对应--广智
+    BOSS_ACTION_MAP = {
+        0: '冲刺砍',
+        1: '旋转飞',
+        2: '扔刀',
+        3: '飞雷神',
+        4: '锄地',
+        5: '锄地起飞',
+        6: '受到攻击',
+        7: '普攻',
+        8: '观察',
+        9: '大荒星陨'
+    }
+
+    output_boss, intermediate_results_boss = model_resnet_boss(obs)
+    max_values_boss, indices_boss = torch.max(output_boss, dim=1)
+    print("预估Boss状态:", BOSS_ACTION_MAP[indices_boss.item()])
+    if indices_boss.item() != 6 and indices_boss.item() != 8:
+        boss_attack = True
+        print("Boss攻击--->")
+    else:
+        boss_attack = False
+        print("Boss防守<<<<")
+    return boss_attack,intermediate_results_boss
+
+
 
 # 这才是整个程序的主入口
 def dqn_learning(env,
@@ -61,7 +84,14 @@ def dqn_learning(env,
                  target_update_freq=10,
                  double_dqn=False,
                  checkpoint=0):
-
+    
+    logger.info("Running device is [%s]" % device)
+    logger.info("Boss Model Path: %s" % BOSS_MODEL)
+    if checkpoint==1:
+        logger.info("User Previous Agent Model: Yes")
+        logger.info("Agent Model Path: %s" % AGENT_MODEL)
+    else:
+        logger.info("User Previous Agent Model: No")
     ################
     #  BUILD MODEL #
     ################
@@ -70,12 +100,12 @@ def dqn_learning(env,
 
     num_actions = env.action_dim
     # 初始boss模型
-    print("before loading boss model-B2")
+    logging.debug("before loading boss model-B2")
     model_resnet_boss = ResNet50_boss(num_classes=10) # 用了一个10分类的预训练模型，估计是识别广智的招式，那么就不通用。
     model_resnet_boss.load_state_dict(torch.load(BOSS_MODEL, weights_only=True))
     model_resnet_boss.to(device)
     model_resnet_boss.eval()
-    print("after loading boss model-B2")
+    logging.debug("after loading boss model-B2")
     
     # 初始自身模型
     # model_resnet_malo = ResNet50_boss(num_classes=2) # 用于判断自身是否倒地
@@ -98,7 +128,7 @@ def dqn_learning(env,
         # checkpoint_path = "models/wukong_0825_2_1200.pth"
         Q.load_state_dict(torch.load(AGENT_MODEL, weights_only=True))
         Q_target.load_state_dict(torch.load(AGENT_MODEL, weights_only=True))
-        print('load agent model success -- B2')
+        logging.debug('load agent model success -- B2')
 
     # initialize optimizer
     optimizer = optimizer_spec.constructor(
@@ -157,15 +187,7 @@ def dqn_learning(env,
         # plt.colorbar()
         # plt.show()
         
-        output_boss, intermediate_results_boss = model_resnet_boss(obs)
-        max_values_boss, indices_boss = torch.max(output_boss, dim=1)
-        print("预估Boss状态:", index_to_label[indices_boss.item()])
-        if indices_boss.item() != 6 and indices_boss.item() != 8:
-            boss_attack = True
-            print("Boss攻击--->")
-        else:
-            boss_attack = False
-            print("Boss防守<<<<")
+        boss_attack, intermediate_results_boss = oberve_boss(model_resnet_boss, obs)
             
         # before learning starts, choose actions randomly
         if t < learning_starts:
@@ -386,3 +408,4 @@ def dqn_learning(env,
             print("exploration %f" % exploration.value(t))
             print("learning_rate %f" % optimizer_spec.kwargs['lr'])
             sys.stdout.flush()
+

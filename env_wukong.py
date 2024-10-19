@@ -7,6 +7,9 @@ import numpy as np
 from screen_key_grab.grabscreen import grab_screen
 from screen_key_grab.getkeys import key_check
 from utils.restart import restart
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Wukong(object):
     def __init__(self, observation_w, observation_h, action_dim):
@@ -216,20 +219,20 @@ class Wukong(object):
         if 'T' in keys:
             if paused:
                 paused = False
-                print('start game')
+                logging.debug('start game')
                 time.sleep(1)
             else:
                 paused = True
-                print('pause game')
+                logging.debug('pause game')
                 time.sleep(1)
         if paused:
-            print('paused--B2')
+            logging.debug('paused--B2')
             while True:
                 keys = key_check()
                 if 'T' in keys:
                     if paused:
                         paused = False
-                        print('start game')
+                        logging.debug('start game')
                         time.sleep(1)
                         break
                     else:
