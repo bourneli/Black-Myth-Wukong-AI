@@ -1,9 +1,13 @@
 import time
 import pyautogui
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 def restart(initial = False):
     if initial == False:
-        print("死,restart")
-        print("开始新一轮")
+        logger.debug("死,开始新一轮")
         time.sleep(3)
         # 以下用风灵月影满血以增加训练效率
         pyautogui.keyDown('num2')

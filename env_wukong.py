@@ -102,10 +102,9 @@ class Wukong(object):
     def get_reward(self, boss_blood, next_boss_blood, self_blood, next_self_blood,
                    boss_stamina, next_boss_stamina, self_stamina, next_self_stamina,
                    stop, emergence_break, action, boss_attack):
-        print(next_self_blood, boss_blood)
+        logger.debug( "Self Blood: %d，Boss Blood: %d"  % (next_self_blood, boss_blood))
         if next_self_blood < 400:     # self dead 用hsv识别则量值大约在400，用canny大约在40
-            print("dead")
-            # print("快死了，当前血量：",self_blood,"马上血量：",next_self_blood)
+            logger.debug("快死了，当前血量：%s, 下一个血量：%s" % (self_blood,next_self_blood))
             reward = -6
             done = 1
             stop = 0
@@ -142,43 +141,45 @@ class Wukong(object):
             self_stamina_reward = 0
             if next_self_blood - self_blood < -5:
                 self_blood_reward = (next_self_blood - self_blood) // 10
-                print("掉血惩罚")
+                logging.debug("掉血惩罚:%s" % self_blood_reward)
                 time.sleep(0.05)
                 # 防止连续取帧时一直计算掉血
             if next_boss_blood - boss_blood <= -18:
-                print("打掉boss血而奖励")
                 boss_blood_reward = (boss_blood - next_boss_blood) // 5
                 boss_blood_reward = min(boss_blood_reward, 20)
+                logging.debug("打掉boss血而奖励:%s" % boss_blood_reward)
 
             if (action == 1 or action == 3) and boss_attack == True and next_self_stamina - self_stamina >= 7 and next_self_blood-self_blood == 0:
-                print("完美闪避奖励")
                 self_stamina_reward += 2
+                logging.debug("完美闪避奖励: %s" % self_stamina_reward)
             elif (action == 1 or action == 3) and boss_attack == True and next_self_blood-self_blood == 0:
-                print("成功闪避")
                 self_stamina_reward += 0.5
+                logging.debug("成功闪避奖励：%s" % self_stamina_reward)
+
             reward = reward + self_blood_reward * 0.8 + \
                 boss_blood_reward * 1.2 + self_stamina_reward * 1.0
+            logging.debug("整体奖励：%s" % reward)
             done = 0
             emergence_break = 0
             return reward, done, stop, emergence_break
 
     def step(self, action, boss_attack):
         if (action == 0):
-            print("一连")
+            logging.info("一连")
         elif (action == 1):
-            print("左闪避")
+            logging.info("左闪避")
         elif (action == 2):
-            print("三连")
+            logging.info("三连")
         elif action == 3:
-            print("右闪避")
+            logging.info("右闪避")
         elif action == 4:
-            print("重棍")
+            logging.info("重棍")
         elif action == 5:
-            print("气力不足，歇脚一歇")
+            logging.info("气力不足，歇脚一歇")
         elif action == 6:
-            print("定！五连绝世！")
+            logging.info("定！五连绝世！")
         elif action == 7:
-            print("轻棍+识破")
+            logging.info("轻棍+识破")
         self.take_action(action)
 
         obs_screen = grab_screen(self.obs_window)
@@ -211,7 +212,7 @@ class Wukong(object):
         self.boss_blood = next_boss_blood
         self.self_stamina = next_self_stamina
         self.boss_stamina = next_boss_stamina
-        print("reward: self blood=%s, boss blood=%s" % (self.self_blood, self.boss_blood))
+        logging.debug("reward: self blood=%s, boss blood=%s" % (self.self_blood, self.boss_blood))
         return (obs, reward, done, stop, emergence_break)
 
     def pause_game(self, paused): # 用于训练中暂停

@@ -42,7 +42,7 @@ writer = SummaryWriter()
 
 
 # 根据画面，观察boss的行为，并做出判断
-def oberve_boss(model_resnet_boss, obs):
+def observe_boss(model_resnet_boss, obs):
     # 状态对应--广智
     BOSS_ACTION_MAP = {
         0: '冲刺砍',
@@ -59,13 +59,14 @@ def oberve_boss(model_resnet_boss, obs):
 
     output_boss, intermediate_results_boss = model_resnet_boss(obs)
     max_values_boss, indices_boss = torch.max(output_boss, dim=1)
-    print("预估Boss状态:", BOSS_ACTION_MAP[indices_boss.item()])
+    logger.debug("max_values_boss: %s" % max_values_boss)
+    logger.debug("预估Boss状态: %s" % BOSS_ACTION_MAP[indices_boss.item()])
     if indices_boss.item() != 6 and indices_boss.item() != 8:
         boss_attack = True
-        print("Boss攻击--->")
+        logger.debug("Boss攻击--->")
     else:
         boss_attack = False
-        print("Boss防守<<<<")
+        logger.debug("Boss防守<<<<")
     return boss_attack,intermediate_results_boss
 
 
@@ -106,14 +107,6 @@ def dqn_learning(env,
     model_resnet_boss.to(device)
     model_resnet_boss.eval()
     logging.debug("after loading boss model-B2")
-    
-    # 初始自身模型
-    # model_resnet_malo = ResNet50_boss(num_classes=2) # 用于判断自身是否倒地
-    # model_resnet_malo.load_state_dict(torch.load(
-    #     'D:/dqn_wukong/RL-ARPG-Agent-1/malo_model.pkl'))
-    # model_resnet_malo.to(device)
-    # model_resnet_malo.eval()
-
 
     # 控制冻结和更新的参数
     for param in model_resnet_boss.parameters(): # 直接冻结了，没有更新
@@ -125,7 +118,6 @@ def dqn_learning(env,
 
     # load checkpoint
     if checkpoint != 0:
-        # checkpoint_path = "models/wukong_0825_2_1200.pth"
         Q.load_state_dict(torch.load(AGENT_MODEL, weights_only=True))
         Q_target.load_state_dict(torch.load(AGENT_MODEL, weights_only=True))
         logging.debug('load agent model success -- B2')
@@ -136,12 +128,12 @@ def dqn_learning(env,
 
     # create replay buffer
     replay_buffer = ReplayBuffer(replay_buffer_size, frame_history_len)
+    logging.debug("Finish all initializaiton")
 
 
     ###########
     # RUN ENV #
     ###########
-
     num_param_updates = 0
     mean_episode_reward = -float('nan')
     best_mean_episode_reward = -float('inf')
@@ -169,25 +161,14 @@ def dqn_learning(env,
         observations = replay_buffer.encode_recent_observation()
         # print(observations.shape)
         if initial_steal:
-            print("偷一棍")
+            logging.info("偷一棍")
             directkeys.hard_attack_long() # 黑神话特色偷一刀
             initial_steal = False
         obs = torch.from_numpy(observations).unsqueeze(
             0).type(dtype)  
         obs = obs[:, :3, 20:180, 5:165]  
         
-        # # 用于查看截取的图像是否正确
-        # obs = obs.flip(dims = (1,))
-        # array2 = obs.squeeze() 
-        # array2 = array2.permute(1,2,0) 
-        # array2 = array2.cpu().numpy()
-        # array2 = array2 - array2.min()
-        # array2 = array2 / array2.max()
-        # plt.imshow(array2)
-        # plt.colorbar()
-        # plt.show()
-        
-        boss_attack, intermediate_results_boss = oberve_boss(model_resnet_boss, obs)
+        boss_attack, intermediate_results_boss = observe_boss(model_resnet_boss, obs)
             
         # before learning starts, choose actions randomly
         if t < learning_starts:
@@ -302,7 +283,7 @@ def dqn_learning(env,
             episode_rewards.append(episode_reward)
             writer.add_scalar("reward_episode", episode_reward, episode_cnt)
             episode_cnt += 1
-            print("current episode reward %d" % episode_reward)
+            logging.info("current episode reward %d" % episode_reward)
             episode_reward = 0
         last_obs = obs
         env.pause_game(False)
@@ -378,12 +359,12 @@ def dqn_learning(env,
             writer.add_scalar("loss_dqn", loss.item(), loss_cnt)
             loss_cnt += 1
             num_param_updates += 1
-            print('optimization took {} seconds'.format(
+            logging.debug('optimization took {} seconds'.format(
                 time.time()-time_before_optimization))
             # update target Q network weights with current Q network weights
             if num_param_updates % target_update_freq == 0:
                 Q_target.load_state_dict(Q.state_dict())
-            print('loop took {} seconds'.format(time.time()-last_time))
+            logging.debug('loop took {} seconds'.format(time.time()-last_time))
             env.pause_game(False)
         # 4. Log progress
         if t % SAVE_MODEL_EVERY_N_STEPS == 0:
@@ -399,13 +380,12 @@ def dqn_learning(env,
             best_mean_episode_reward = max(
                 best_mean_episode_reward, mean_episode_reward)
         if t % LOG_EVERY_N_STEPS == 0:
-            print("---------------------------------")
-            print("Timestep %d" % (t,))
-            print("learning started? %d" % (t > learning_starts))
-            print("mean reward (10 episodes) %f" % mean_episode_reward)
-            print("best mean reward %f" % best_mean_episode_reward)
-            print("episodes %d" % len(episode_rewards))
-            print("exploration %f" % exploration.value(t))
-            print("learning_rate %f" % optimizer_spec.kwargs['lr'])
-            sys.stdout.flush()
-
+            logging.info("-----------------Stats----------------")
+            logging.info("Timestep %d" % t)
+            logging.info("learning started: %d" % (t > learning_starts))
+            logging.info("mean reward (10 episodes) %f" % mean_episode_reward)
+            logging.info("best mean reward %f" % best_mean_episode_reward)
+            logging.info("episodes %d" % len(episode_rewards))
+            logging.info("exploration %f" % exploration.value(t))
+            logging.info("learning_rate %f" % optimizer_spec.kwargs['lr'])
+            logging.info("--------------------------------------")
