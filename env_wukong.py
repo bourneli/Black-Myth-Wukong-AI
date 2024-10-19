@@ -32,7 +32,7 @@ class Wukong(object):
 
         self.boss_stamina_window = (345, 78, 690, 81)  # 如果后期有格挡条的boss可以用，刀郎没有
         #self.self_stamina_window = (1473, 938, 1510, 1008)  # 棍势条
-        self.self_stamina_window = (1482, 926, 1521, 997)
+        self.self_stamina_window = (180, 979, 304, 986)
         self.boss_blood = 0
         self.self_blood = 0
         self.boss_stamina = 0
@@ -54,7 +54,7 @@ class Wukong(object):
         white_pixel_count = cv2.countNonZero(mask)
         return white_pixel_count
 
-    def self_stamina_count(self, self_stamina_hsv_img):
+    def self_stamina_count(self, self_stamina_hsv_img): # 气力
         lower_white = np.array([0, 0, 180])
         upper_white = np.array([360, 30, 220])
         mask = cv2.inRange(self_stamina_hsv_img, lower_white, upper_white)
