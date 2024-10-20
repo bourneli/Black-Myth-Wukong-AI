@@ -42,6 +42,7 @@ class Wukong(object):
         
     # 用canny边缘检测实现血量识别，不是特别准确，但打刀郎由于血条有特效只能用这个
     def self_blood_count(self, obs_gray): 
+        # 在这里计算自己截取，会更容易维护
         blurred_img = cv2.GaussianBlur(obs_gray, (3, 3), 0) 
         canny_edges = cv2.Canny(blurred_img, 10, 100)
         value = canny_edges.argmax(axis=-1)
@@ -53,6 +54,35 @@ class Wukong(object):
         mask = cv2.inRange(boss_blood_hsv_img, lower_white, upper_white)
         white_pixel_count = cv2.countNonZero(mask)
         return white_pixel_count
+    
+    def boss_blood_count_b2(self, boss_blood_hsv_img):
+        lower_white = np.array([0, 0, 205])
+        upper_white = np.array([179, 5, 218])
+        mask = cv2.inRange(boss_blood_hsv_img, lower_white, upper_white)
+        white_pixel_count = cv2.countNonZero(mask)
+        return white_pixel_count
+    
+    def malo_buring_blood_count(self, boss_blood_hsv_img):
+        lower_white = np.array([0, 20, 205])
+        upper_white = np.array([179, 67, 215])
+        mask = cv2.inRange(boss_blood_hsv_img, lower_white, upper_white)
+        white_pixel_count = cv2.countNonZero(mask)
+        return white_pixel_count
+    
+    def malo_normal_blood_count(self, boss_blood_hsv_img):
+        lower_white = np.array([0, 0, 205])
+        upper_white = np.array([179, 5, 218])
+        mask = cv2.inRange(boss_blood_hsv_img, lower_white, upper_white)
+        white_pixel_count = cv2.countNonZero(mask)
+        return white_pixel_count
+    
+    def malo_blood_count(self, boss_blood_hsv_img):
+        return max(
+            self.malo_buring_blood_count(boss_blood_hsv_img),
+            self.malo_normal_blood_count(boss_blood_hsv_img)
+        )
+
+
 
     def self_stamina_count(self, self_stamina_hsv_img): # 气力
         lower_white = np.array([0, 0, 180])
@@ -190,7 +220,7 @@ class Wukong(object):
         self_blood_hsv_img = cv2.cvtColor(self_blood_img, cv2.COLOR_BGR2HSV)
         # 如果是有血量上的特效的，用self_blood_count，否则boss_blood_count更准确
         # self_blood_gray_img = cv2.cvtColor(self_blood_img, cv2.COLOR_BGR2GRAY)
-        next_self_blood = self.boss_blood_count(self_blood_hsv_img) # 这里Boss的统计方法和自身是一致的
+        next_self_blood = self.self_blood_count(self_blood_hsv_img) # 这里Boss的统计方法和自身是一致的
         # boss血量统计
         boss_blood_img = grab_screen(self.boss_blood_window)
         boss_blood_hsv_img = cv2.cvtColor(boss_blood_img, cv2.COLOR_BGR2HSV)
@@ -247,3 +277,64 @@ class Wukong(object):
         obs_resize = cv2.resize(obs_screen, (self.width, self.height))
         obs = np.array(obs_resize).reshape(-1, self.height, self.width, 4)[0]
         return obs
+
+
+def collect_screenshot():
+    from datetime import datetime
+    ts = datetime.now().strftime("%Y%m%d-%H_%M_%S")
+    image_file = './img/screenshot_%s.jpg' % ts
+
+    env = Wukong(observation_w=175, observation_h=200, action_dim=4)
+    screenshot = grab_screen(env.obs_window)
+    # 显示截取的图像
+    #cv2.imshow("Screenshot", screenshot)
+    cv2.imwrite(image_file, screenshot)
+    print("Save image %s" % image_file)
+    #cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def extract_screenshot_info():
+    env = Wukong(observation_w=175, observation_h=200, action_dim=4)
+    
+
+    # 读取本地的JPG文件
+    #image_path = "./img/screenshot_20241020-14_32_19.jpg" # 正常血条1
+    #image_path = "./img/screenshot_20241020-14_29_06.jpg" # 正常血条2 满血
+    #image_path = "./img/screenshot_20241020-14_33_09.jpg" # 被焚烧，闪烁血条
+    image_path = "./img/screenshot_20241020-14_32_49.jpg" # 被焚烧，闪烁血条
+    print("screen file: %s" % image_path)
+    image = cv2.imread(image_path)
+
+    # 检查图像是否成功读取
+    assert image is not None, "无法读取图像文件 %s" % image_path
+    print("图像形状:", image.shape)
+
+    # 自己裁剪
+    x_start, y_start, x_end, y_end = env.self_blood_window
+    blood_image = image[y_start:y_end, x_start:x_end]
+
+    screenshot_np = np.array(blood_image)
+    cv2.imshow("Screenshot", screenshot_np)
+    cv2.waitKey(0)
+
+    self_blood_hsv_img = cv2.cvtColor(screenshot_np, cv2.COLOR_BGR2HSV)
+    # cv2.imshow("Screenshot", self_blood_hsv_img)
+    # cv2.waitKey(0)
+
+    my_blood = env.malo_normal_blood_count(self_blood_hsv_img)
+    print("正常血条判定B2 %s" % my_blood)
+
+    my_blood = env.malo_buring_blood_count(self_blood_hsv_img)
+    print("燃烧血条判定 %s" % my_blood)
+
+    my_blood = env.malo_blood_count(self_blood_hsv_img)
+    print("综合血条判定 %s" % my_blood)
+
+    # 在线获取图像HSV
+    # https://pinetools.com/image-color-picker
+
+
+if __name__ == '__main__':
+    # collect_screenshot()
+    extract_screenshot_info()
+    

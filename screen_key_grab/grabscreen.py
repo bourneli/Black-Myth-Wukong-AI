@@ -41,3 +41,22 @@ def grab_screen(region=None):
     win32gui.DeleteObject(bmp.GetHandle())
 
     return img
+
+
+if __name__ == "__main__":
+    # 截取整个屏幕
+    screenshot = grab_screen()
+
+    # 显示截取的图像
+    cv2.imshow("Screenshot", screenshot)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+    # 截取指定区域 (left, top, right, bottom)
+    region = (100, 100, 500, 500)
+    screenshot_region = grab_screen(region)
+
+    # 显示截取的区域图像
+    cv2.imshow("Screenshot Region", screenshot_region)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
