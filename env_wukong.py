@@ -81,7 +81,16 @@ class Wukong(object):
             self.malo_buring_blood_count(boss_blood_hsv_img),
             self.malo_normal_blood_count(boss_blood_hsv_img)
         )
+    
+    def malo_blood_count(self):
+        self_blood_img = grab_screen(self.self_blood_window)
+        self_blood_hsv_img = cv2.cvtColor(self_blood_img, cv2.COLOR_BGR2HSV)
 
+        buring_blood = self.malo_buring_blood_count(self_blood_hsv_img)
+        normal_blood = self.malo_normal_blood_count(self_blood_hsv_img)
+        logger.debug("正常血：%s, 焚烧血：%s" % (normal_blood, buring_blood))
+
+        return max( buring_blood, normal_blood)
 
 
     def self_stamina_count(self, self_stamina_hsv_img): # 气力
@@ -216,11 +225,11 @@ class Wukong(object):
         obs_resize = cv2.resize(obs_screen, (self.width, self.height))
         obs = np.array(obs_resize).reshape(-1, self.height, self.width, 4)[0]
         # 血量统计
-        self_blood_img = grab_screen(self.self_blood_window)
-        self_blood_hsv_img = cv2.cvtColor(self_blood_img, cv2.COLOR_BGR2HSV)
-        # 如果是有血量上的特效的，用self_blood_count，否则boss_blood_count更准确
-        # self_blood_gray_img = cv2.cvtColor(self_blood_img, cv2.COLOR_BGR2GRAY)
-        next_self_blood = self.self_blood_count(self_blood_hsv_img) # 这里Boss的统计方法和自身是一致的
+        # self_blood_img = grab_screen(self.self_blood_window)
+        # self_blood_hsv_img = cv2.cvtColor(self_blood_img, cv2.COLOR_BGR2HSV)
+        # next_self_blood = self.self_blood_count(self_blood_hsv_img) # 这里Boss的统计方法和自身是一致的
+        next_self_blood = self.malo_blood_count()
+
         # boss血量统计
         boss_blood_img = grab_screen(self.boss_blood_window)
         boss_blood_hsv_img = cv2.cvtColor(boss_blood_img, cv2.COLOR_BGR2HSV)

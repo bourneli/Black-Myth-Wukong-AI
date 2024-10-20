@@ -55,6 +55,7 @@ if __name__ == "__main__":
     # 截取指定区域 (left, top, right, bottom)
     region = (100, 100, 500, 500)
     screenshot_region = grab_screen(region)
+    print(type(screenshot_region))
 
     # 显示截取的区域图像
     cv2.imshow("Screenshot Region", screenshot_region)
