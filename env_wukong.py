@@ -62,35 +62,38 @@ class Wukong(object):
         white_pixel_count = cv2.countNonZero(mask)
         return white_pixel_count
     
-    def malo_buring_blood_count(self, boss_blood_hsv_img):
-        lower_white = np.array([0, 20, 205])
-        upper_white = np.array([179, 67, 215])
-        mask = cv2.inRange(boss_blood_hsv_img, lower_white, upper_white)
-        white_pixel_count = cv2.countNonZero(mask)
-        return white_pixel_count
+    def _malo_buring_blood_count(self, blood_hsv_img):
+        return self._count_pixels(blood_hsv_img, 
+                                  lower_bound = np.array([0, 20, 205]),
+                                  upper_bound = np.array([179, 67, 215]))
+
+    def _malo_normal_blood_count(self, blood_hsv_img):
+        return self._count_pixels(blood_hsv_img, 
+                                  lower_bound = np.array([0, 0, 205]),
+                                  upper_bound =np.array([179, 5, 218]))
     
-    def malo_normal_blood_count(self, boss_blood_hsv_img):
-        lower_white = np.array([0, 0, 205])
-        upper_white = np.array([179, 5, 218])
-        mask = cv2.inRange(boss_blood_hsv_img, lower_white, upper_white)
-        white_pixel_count = cv2.countNonZero(mask)
-        return white_pixel_count
-    
-    def malo_blood_count(self, boss_blood_hsv_img):
-        return max(
-            self.malo_buring_blood_count(boss_blood_hsv_img),
-            self.malo_normal_blood_count(boss_blood_hsv_img)
-        )
+    def _malo_recover_blood_count(self, blood_hsv_img):
+        return self._count_pixels(blood_hsv_img, 
+                                  lower_bound = np.array([60, 51, 153]), 
+                                  upper_bound =np.array([80, 169, 192]))
+
+    def _count_pixels(self, blood_hsv_img, lower_bound, upper_bound):
+        mask = cv2.inRange(blood_hsv_img, lower_bound, upper_bound)
+        pixel_count = cv2.countNonZero(mask)
+        return pixel_count
+
+    def _malo_blood_count(self, blood_hsv_img):
+        buring_blood = self._malo_buring_blood_count(blood_hsv_img)
+        normal_blood = self._malo_normal_blood_count(blood_hsv_img)
+        recover_blood = self._malo_recover_blood_count(blood_hsv_img)
+        logger.debug("正常血：%s, 焚烧血：%s, 恢复血：%s" % (normal_blood, buring_blood, recover_blood))
+
+        return max(buring_blood, normal_blood, recover_blood)
     
     def malo_blood_count(self):
         self_blood_img = grab_screen(self.self_blood_window)
         self_blood_hsv_img = cv2.cvtColor(self_blood_img, cv2.COLOR_BGR2HSV)
-
-        buring_blood = self.malo_buring_blood_count(self_blood_hsv_img)
-        normal_blood = self.malo_normal_blood_count(self_blood_hsv_img)
-        logger.debug("正常血：%s, 焚烧血：%s" % (normal_blood, buring_blood))
-
-        return max( buring_blood, normal_blood)
+        return self._malo_blood_count(self_blood_hsv_img)
 
 
     def self_stamina_count(self, self_stamina_hsv_img): # 气力
@@ -142,7 +145,7 @@ class Wukong(object):
                    boss_stamina, next_boss_stamina, self_stamina, next_self_stamina,
                    stop, emergence_break, action, boss_attack):
         logger.info( "Self Blood: %d，Boss Blood: %d"  % (next_self_blood, boss_blood))
-        if next_self_blood < 400:     # self dead 用hsv识别则量值大约在400，用canny大约在40
+        if next_self_blood < 100:     # self dead 用hsv识别则量值大约在400，用canny大约在40
             logger.info("快死了，当前血量：%s, 下一个血量：%s" % (self_blood,next_self_blood))
             reward = -6
             done = 1
@@ -309,8 +312,9 @@ def extract_screenshot_info():
     # 读取本地的JPG文件
     #image_path = "./img/screenshot_20241020-14_32_19.jpg" # 正常血条1
     #image_path = "./img/screenshot_20241020-14_29_06.jpg" # 正常血条2 满血
-    #image_path = "./img/screenshot_20241020-14_33_09.jpg" # 被焚烧，闪烁血条
-    image_path = "./img/screenshot_20241020-14_32_49.jpg" # 被焚烧，闪烁血条
+    image_path = "./img/screenshot_20241020-14_33_09.jpg" # 被焚烧，闪烁血条  # 不够精确，需要单元测试来系统测试
+    #image_path = "./img/screenshot_20241020-14_32_49.jpg" # 被焚烧，闪烁血条
+    #image_path = "./img/screenshot_20241021-21_56_12.jpg" # 回血
     print("screen file: %s" % image_path)
     image = cv2.imread(image_path)
 
@@ -330,13 +334,16 @@ def extract_screenshot_info():
     # cv2.imshow("Screenshot", self_blood_hsv_img)
     # cv2.waitKey(0)
 
-    my_blood = env.malo_normal_blood_count(self_blood_hsv_img)
+    my_blood = env._malo_normal_blood_count(self_blood_hsv_img)
     print("正常血条判定B2 %s" % my_blood)
 
-    my_blood = env.malo_buring_blood_count(self_blood_hsv_img)
+    my_blood = env._malo_buring_blood_count(self_blood_hsv_img)
     print("燃烧血条判定 %s" % my_blood)
 
-    my_blood = env.malo_blood_count(self_blood_hsv_img)
+    my_blood = env._malo_recover_blood_count(self_blood_hsv_img)
+    print("回血血条判定 %s" % my_blood)
+
+    my_blood = env._malo_blood_count(self_blood_hsv_img)
     print("综合血条判定 %s" % my_blood)
 
     # 在线获取图像HSV
@@ -344,6 +351,6 @@ def extract_screenshot_info():
 
 
 if __name__ == '__main__':
-    # collect_screenshot()
+    #collect_screenshot()
     extract_screenshot_info()
     
