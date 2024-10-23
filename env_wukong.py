@@ -28,7 +28,7 @@ class Wukong(object):
         self.boss_blood_window = (668, 888, 1018, 900)
 
         #self.self_blood_window = (186, 956, 339, 963)
-        self.self_blood_window = (181, 948, 319,959)
+        self.self_blood_window = (181, 948, 319, 959)
 
         self.boss_stamina_window = (345, 78, 690, 81)  # 如果后期有格挡条的boss可以用，刀郎没有
         #self.self_stamina_window = (1473, 938, 1510, 1008)  # 棍势条
@@ -62,6 +62,9 @@ class Wukong(object):
         white_pixel_count = cv2.countNonZero(mask)
         return white_pixel_count
     
+    def _all_malo_blood_count(self):
+        return (self.self_blood_window[2] - self.self_blood_window[0]) * (self.self_blood_window[3] - self.self_blood_window[1])
+
     def _malo_buring_blood_count(self, blood_hsv_img):
         return self._count_pixels(blood_hsv_img, 
                                   lower_bound = np.array([0, 20, 205]),
@@ -72,10 +75,15 @@ class Wukong(object):
                                   lower_bound = np.array([0, 0, 205]),
                                   upper_bound =np.array([179, 5, 218]))
     
+    
     def _malo_recover_blood_count(self, blood_hsv_img):
         return self._count_pixels(blood_hsv_img, 
                                   lower_bound = np.array([60, 51, 153]), 
                                   upper_bound =np.array([80, 169, 192]))
+    
+    def _malo_blood_rate(self, blood_count):
+        return blood_count / self._all_malo_blood_count()
+
 
     def _count_pixels(self, blood_hsv_img, lower_bound, upper_bound):
         mask = cv2.inRange(blood_hsv_img, lower_bound, upper_bound)
