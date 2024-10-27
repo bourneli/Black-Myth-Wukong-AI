@@ -37,9 +37,9 @@ def detect_health_bar(image_path):
     cv2.imshow('Image', image_zero)
 
     # 剔除毛刺
-    #image = cv2.blur(image,(1,1))
-    image = cv2.medianBlur(image_zero, 15)
-    #image = cv2.GaussianBlur(image_zero, (1, 1), 0)
+    #image = cv2.blur(image_zero,(5,5))
+    #image = cv2.medianBlur(image_zero, 15)
+    image = cv2.GaussianBlur(image_zero, (3, 3), 0)
     cv2.imshow("Blur image", image)
 
     # 转换为灰度图
@@ -71,7 +71,7 @@ def detect_health_bar(image_path):
     x, y, w, h = cv2.boundingRect(max_contour)
     
     # 计算血条含量
-    health_percentage = (w / image.shape[1]) * 100
+    health_percentage = (w / image_zero.shape[1]) * 100
     
     # 在图像上绘制血条轮廓
     cv2.rectangle(image_zero, (x, y), (x + w, y + h), (0, 255, 0), 2)

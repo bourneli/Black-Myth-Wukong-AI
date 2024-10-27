@@ -2264,3 +2264,1384 @@
 2024-10-21 22:27:17,963 - env_wukong - INFO - 快死了，当前血量：0, 下一个血量：0
 2024-10-21 22:27:19,411 - root - INFO - 当前自己的血量=0，下一个自己的血量=0, 当前boss血量=0，下一个boss的血量=0
 2024-10-21 22:27:19,412 - utils.restart - INFO - 死,开始新一轮
+2024-10-27 15:37:08,988 - __main__ - INFO - >>>>>>>>>>>>>>>>>>>>>>>>Trainning Tian Min Ren<<<<<<<<<<<<<<<<<<<<<<<<
+2024-10-27 15:37:09,011 - __main__ - DEBUG - prepare params ---b2
+2024-10-27 15:37:09,011 - __main__ - DEBUG - begin training -- b2
+2024-10-27 15:37:09,011 - dqn - INFO - Running device is [cuda]
+2024-10-27 15:37:09,012 - dqn - INFO - Boss Model Path: E:/rl_learning/Black-Myth-Wukong-AI/models_res/boss_model.pkl
+2024-10-27 15:37:09,012 - dqn - INFO - User Previous Agent Model: Yes
+2024-10-27 15:37:09,012 - dqn - INFO - Agent Model Path: E:/rl_learning/Black-Myth-Wukong-AI/models/wukong_0904_1_0.pth
+2024-10-27 15:37:09,012 - root - INFO - paused--B2
+2024-10-27 15:38:58,335 - root - INFO - start game
+2024-10-27 15:38:59,350 - root - DEBUG - before loading boss model-B2
+2024-10-27 15:39:00,771 - root - DEBUG - after loading boss model-B2
+2024-10-27 15:39:00,814 - root - DEBUG - load agent model success -- B2
+2024-10-27 15:39:01,712 - root - DEBUG - Finish all initializaiton
+2024-10-27 15:39:01,768 - root - INFO - 偷一棍
+2024-10-27 15:39:09,843 - dqn - DEBUG - max_values_boss: tensor([-0.8286], device='cuda:0')
+2024-10-27 15:39:09,843 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:39:09,844 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:39:09,890 - root - INFO - 定！五连绝世！
+2024-10-27 15:41:33,703 - __main__ - INFO - >>>>>>>>>>>>>>>>>>>>>>>>Trainning Tian Min Ren<<<<<<<<<<<<<<<<<<<<<<<<
+2024-10-27 15:41:33,712 - __main__ - DEBUG - prepare params ---b2
+2024-10-27 15:41:33,713 - __main__ - DEBUG - begin training -- b2
+2024-10-27 15:41:33,713 - dqn - INFO - Running device is [cuda]
+2024-10-27 15:41:33,713 - dqn - INFO - Boss Model Path: E:/rl_learning/Black-Myth-Wukong-AI/models_res/boss_model.pkl
+2024-10-27 15:41:33,713 - dqn - INFO - User Previous Agent Model: Yes
+2024-10-27 15:41:33,713 - dqn - INFO - Agent Model Path: E:/rl_learning/Black-Myth-Wukong-AI/models/wukong_0904_1_0.pth
+2024-10-27 15:41:33,713 - root - INFO - paused--B2
+2024-10-27 15:41:52,808 - root - INFO - start game
+2024-10-27 15:41:53,824 - root - DEBUG - before loading boss model-B2
+2024-10-27 15:41:54,996 - root - DEBUG - after loading boss model-B2
+2024-10-27 15:41:55,052 - root - DEBUG - load agent model success -- B2
+2024-10-27 15:41:55,763 - root - DEBUG - Finish all initializaiton
+2024-10-27 15:41:55,813 - root - INFO - 偷一棍
+2024-10-27 15:42:03,868 - dqn - DEBUG - max_values_boss: tensor([-0.6188], device='cuda:0')
+2024-10-27 15:42:03,869 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:42:03,869 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:42:03,905 - root - INFO - 定！五连绝世！
+2024-10-27 15:42:09,294 - env_wukong - INFO - Self Blood: 876，Boss Blood: 0
+2024-10-27 15:42:09,295 - root - INFO - 整体奖励：0.0
+2024-10-27 15:42:09,295 - root - INFO - 当前自己的血量=876，下一个自己的血量=876, 当前boss血量=3245，下一个boss的血量=3245
+2024-10-27 15:42:09,324 - dqn - DEBUG - max_values_boss: tensor([-0.5696], device='cuda:0')
+2024-10-27 15:42:09,324 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:42:09,325 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:42:09,352 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:42:09,927 - env_wukong - INFO - Self Blood: 132，Boss Blood: 3245
+2024-10-27 15:42:09,928 - root - INFO - 掉血惩罚:-75
+2024-10-27 15:42:09,983 - root - INFO - 整体奖励：-60.0
+2024-10-27 15:42:09,983 - root - INFO - 当前自己的血量=132，下一个自己的血量=132, 当前boss血量=3244，下一个boss的血量=3244
+2024-10-27 15:42:10,009 - dqn - DEBUG - max_values_boss: tensor([-0.0471], device='cuda:0')
+2024-10-27 15:42:10,010 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:42:10,010 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:42:10,045 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:42:10,611 - env_wukong - INFO - Self Blood: 1008，Boss Blood: 3244
+2024-10-27 15:42:10,611 - root - INFO - 整体奖励：0.0
+2024-10-27 15:42:10,611 - root - INFO - 当前自己的血量=1008，下一个自己的血量=1008, 当前boss血量=3229，下一个boss的血量=3229
+2024-10-27 15:42:10,639 - dqn - DEBUG - max_values_boss: tensor([-0.4601], device='cuda:0')
+2024-10-27 15:42:10,639 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:42:10,639 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:42:10,672 - root - INFO - 左闪避
+2024-10-27 15:42:11,189 - env_wukong - INFO - Self Blood: 432，Boss Blood: 3229
+2024-10-27 15:42:11,190 - root - INFO - 掉血惩罚:-58
+2024-10-27 15:42:11,255 - root - INFO - 打掉boss血而奖励:20
+2024-10-27 15:42:11,256 - root - INFO - 整体奖励：-22.400000000000006
+2024-10-27 15:42:11,256 - root - INFO - 当前自己的血量=432，下一个自己的血量=432, 当前boss血量=0，下一个boss的血量=0
+2024-10-27 15:42:11,534 - root - DEBUG - optimization took 0.1898946762084961 seconds
+2024-10-27 15:42:11,534 - root - DEBUG - loop took 0.2775394916534424 seconds
+2024-10-27 15:42:11,557 - dqn - DEBUG - max_values_boss: tensor([-0.5629], device='cuda:0')
+2024-10-27 15:42:11,557 - dqn - DEBUG - 预估Boss状态: 扔刀
+2024-10-27 15:42:11,558 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:42:11,583 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:42:12,148 - env_wukong - INFO - Self Blood: 204，Boss Blood: 0
+2024-10-27 15:42:12,148 - root - INFO - 掉血惩罚:-23
+2024-10-27 15:42:12,203 - root - INFO - 整体奖励：-18.400000000000002
+2024-10-27 15:42:12,204 - root - INFO - 当前自己的血量=204，下一个自己的血量=204, 当前boss血量=0，下一个boss的血量=0
+2024-10-27 15:42:12,231 - dqn - DEBUG - max_values_boss: tensor([-0.0872], device='cuda:0')
+2024-10-27 15:42:12,231 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:42:12,232 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:42:12,264 - root - INFO - 左闪避
+2024-10-27 15:42:12,776 - env_wukong - INFO - Self Blood: 96，Boss Blood: 0
+2024-10-27 15:42:12,776 - env_wukong - INFO - 快死了，当前血量：204, 下一个血量：96
+2024-10-27 15:42:14,221 - root - INFO - 当前自己的血量=96，下一个自己的血量=96, 当前boss血量=0，下一个boss的血量=0
+2024-10-27 15:42:14,222 - utils.restart - INFO - 死,开始新一轮
+2024-10-27 15:42:18,695 - root - DEBUG - current episode reward -106
+2024-10-27 15:42:18,719 - dqn - DEBUG - max_values_boss: tensor([-0.4502], device='cuda:0')
+2024-10-27 15:42:18,720 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:42:18,720 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:42:18,743 - root - INFO - 右闪避
+2024-10-27 15:42:19,244 - env_wukong - INFO - Self Blood: 648，Boss Blood: 0
+2024-10-27 15:42:19,245 - root - INFO - 整体奖励：0.0
+2024-10-27 15:42:19,245 - root - INFO - 当前自己的血量=648，下一个自己的血量=648, 当前boss血量=0，下一个boss的血量=0
+2024-10-27 15:42:19,270 - dqn - DEBUG - max_values_boss: tensor([-0.5239], device='cuda:0')
+2024-10-27 15:42:19,270 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:42:19,271 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:42:19,296 - root - INFO - 左闪避
+2024-10-27 15:42:19,800 - env_wukong - INFO - Self Blood: 192，Boss Blood: 0
+2024-10-27 15:42:19,801 - root - INFO - 掉血惩罚:-46
+2024-10-27 15:42:19,852 - root - INFO - 整体奖励：-36.800000000000004
+2024-10-27 15:42:19,852 - root - INFO - 当前自己的血量=192，下一个自己的血量=192, 当前boss血量=0，下一个boss的血量=0
+2024-10-27 15:42:19,906 - root - DEBUG - optimization took 0.03451681137084961 seconds
+2024-10-27 15:42:19,907 - root - DEBUG - loop took 0.05361747741699219 seconds
+2024-10-27 15:42:19,933 - dqn - DEBUG - max_values_boss: tensor([-0.7171], device='cuda:0')
+2024-10-27 15:42:19,933 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:42:19,933 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:42:19,967 - root - INFO - 三连
+2024-10-27 15:45:44,029 - __main__ - INFO - >>>>>>>>>>>>>>>>>>>>>>>>Trainning Tian Min Ren<<<<<<<<<<<<<<<<<<<<<<<<
+2024-10-27 15:45:44,045 - __main__ - DEBUG - prepare params ---b2
+2024-10-27 15:45:44,045 - __main__ - DEBUG - begin training -- b2
+2024-10-27 15:45:44,045 - dqn - INFO - Running device is [cuda]
+2024-10-27 15:45:44,045 - dqn - INFO - Boss Model Path: E:/rl_learning/Black-Myth-Wukong-AI/models_res/boss_model.pkl
+2024-10-27 15:45:44,045 - dqn - INFO - User Previous Agent Model: Yes
+2024-10-27 15:45:44,045 - dqn - INFO - Agent Model Path: E:/rl_learning/Black-Myth-Wukong-AI/models/wukong_0904_1_0.pth
+2024-10-27 15:45:44,045 - root - INFO - paused--B2
+2024-10-27 15:46:09,811 - root - INFO - start game
+2024-10-27 15:46:10,818 - root - DEBUG - before loading boss model-B2
+2024-10-27 15:46:12,314 - root - DEBUG - after loading boss model-B2
+2024-10-27 15:46:12,361 - root - DEBUG - load agent model success -- B2
+2024-10-27 15:46:13,126 - root - DEBUG - Finish all initializaiton
+2024-10-27 15:46:13,175 - root - INFO - 偷一棍
+2024-10-27 15:46:21,225 - dqn - DEBUG - max_values_boss: tensor([-1.2276], device='cuda:0')
+2024-10-27 15:46:21,225 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:46:21,225 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:21,281 - root - INFO - 定！五连绝世！
+2024-10-27 15:46:26,674 - env_wukong - INFO - Self Blood: 1368，Boss Blood: 0
+2024-10-27 15:46:26,674 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:26,674 - root - INFO - 当前自己的血量=1368，下一个自己的血量=1368, 当前boss血量=2631，下一个boss的血量=2631
+2024-10-27 15:46:26,700 - dqn - DEBUG - max_values_boss: tensor([-0.3831], device='cuda:0')
+2024-10-27 15:46:26,700 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:46:26,700 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:26,726 - root - INFO - 左闪避
+2024-10-27 15:46:27,243 - env_wukong - INFO - Self Blood: 1344，Boss Blood: 2631
+2024-10-27 15:46:27,243 - root - INFO - 掉血惩罚:-3
+2024-10-27 15:46:27,306 - root - INFO - 整体奖励：-2.4000000000000004
+2024-10-27 15:46:27,306 - root - INFO - 当前自己的血量=1344，下一个自己的血量=1344, 当前boss血量=2700，下一个boss的血量=2700
+2024-10-27 15:46:27,329 - dqn - DEBUG - max_values_boss: tensor([-0.0028], device='cuda:0')
+2024-10-27 15:46:27,330 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:27,330 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:27,357 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:27,924 - env_wukong - INFO - Self Blood: 1320，Boss Blood: 2700
+2024-10-27 15:46:27,925 - root - INFO - 掉血惩罚:-3
+2024-10-27 15:46:27,989 - root - INFO - 打掉boss血而奖励:12
+2024-10-27 15:46:27,989 - root - INFO - 整体奖励：11.999999999999998
+2024-10-27 15:46:27,989 - root - INFO - 当前自己的血量=1320，下一个自己的血量=1320, 当前boss血量=2640，下一个boss的血量=2640
+2024-10-27 15:46:28,014 - dqn - DEBUG - max_values_boss: tensor([-0.6561], device='cuda:0')
+2024-10-27 15:46:28,015 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:46:28,015 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:28,095 - root - INFO - 右闪避
+2024-10-27 15:46:28,617 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2640
+2024-10-27 15:46:28,617 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:28,617 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2654，下一个boss的血量=2654
+2024-10-27 15:46:28,812 - root - DEBUG - optimization took 0.1181182861328125 seconds
+2024-10-27 15:46:28,813 - root - DEBUG - loop took 0.19524025917053223 seconds
+2024-10-27 15:46:28,837 - dqn - DEBUG - max_values_boss: tensor([-0.3924], device='cuda:0')
+2024-10-27 15:46:28,837 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:28,838 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:28,859 - root - INFO - 左闪避
+2024-10-27 15:46:29,372 - env_wukong - INFO - Self Blood: 1260，Boss Blood: 2654
+2024-10-27 15:46:29,373 - root - INFO - 掉血惩罚:-41
+2024-10-27 15:46:29,434 - root - INFO - 整体奖励：-32.800000000000004
+2024-10-27 15:46:29,435 - root - INFO - 当前自己的血量=1260，下一个自己的血量=1260, 当前boss血量=2744，下一个boss的血量=2744
+2024-10-27 15:46:29,459 - dqn - DEBUG - max_values_boss: tensor([-0.4892], device='cuda:0')
+2024-10-27 15:46:29,460 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:29,460 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:29,493 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:30,074 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2744
+2024-10-27 15:46:30,074 - root - INFO - 打掉boss血而奖励:19
+2024-10-27 15:46:30,075 - root - INFO - 整体奖励：22.8
+2024-10-27 15:46:30,075 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2645，下一个boss的血量=2645
+2024-10-27 15:46:30,102 - dqn - DEBUG - max_values_boss: tensor([-0.0114], device='cuda:0')
+2024-10-27 15:46:30,102 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:30,103 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:30,137 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:30,691 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2645
+2024-10-27 15:46:30,691 - root - INFO - 打掉boss血而奖励:5
+2024-10-27 15:46:30,691 - root - INFO - 整体奖励：6.0
+2024-10-27 15:46:30,692 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2620，下一个boss的血量=2620
+2024-10-27 15:46:30,716 - dqn - DEBUG - max_values_boss: tensor([-0.0909], device='cuda:0')
+2024-10-27 15:46:30,716 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:30,716 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:30,739 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:31,306 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2620
+2024-10-27 15:46:31,307 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:31,307 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2645，下一个boss的血量=2645
+2024-10-27 15:46:31,359 - root - DEBUG - optimization took 0.03523969650268555 seconds
+2024-10-27 15:46:31,360 - root - DEBUG - loop took 0.05174899101257324 seconds
+2024-10-27 15:46:31,383 - dqn - DEBUG - max_values_boss: tensor([-0.4777], device='cuda:0')
+2024-10-27 15:46:31,383 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:31,384 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:31,409 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:31,980 - env_wukong - INFO - Self Blood: 1152，Boss Blood: 2645
+2024-10-27 15:46:31,980 - root - INFO - 掉血惩罚:-52
+2024-10-27 15:46:32,041 - root - INFO - 整体奖励：-41.6
+2024-10-27 15:46:32,041 - root - INFO - 当前自己的血量=1152，下一个自己的血量=1152, 当前boss血量=2661，下一个boss的血量=2661
+2024-10-27 15:46:32,066 - dqn - DEBUG - max_values_boss: tensor([-0.1577], device='cuda:0')
+2024-10-27 15:46:32,066 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:32,067 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:32,101 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:32,662 - env_wukong - INFO - Self Blood: 1128，Boss Blood: 2661
+2024-10-27 15:46:32,663 - root - INFO - 掉血惩罚:-3
+2024-10-27 15:46:32,725 - root - INFO - 打掉boss血而奖励:4
+2024-10-27 15:46:32,725 - root - INFO - 整体奖励：2.3999999999999995
+2024-10-27 15:46:32,726 - root - INFO - 当前自己的血量=1128，下一个自己的血量=1128, 当前boss血量=2640，下一个boss的血量=2640
+2024-10-27 15:46:32,727 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:46:32,727 - root - DEBUG - Timestep 10
+2024-10-27 15:46:32,727 - root - DEBUG - learning started: 1
+2024-10-27 15:46:32,727 - root - DEBUG - mean reward (10 episodes) nan
+2024-10-27 15:46:32,727 - root - DEBUG - best mean reward -inf
+2024-10-27 15:46:32,727 - root - DEBUG - episodes 0
+2024-10-27 15:46:32,727 - root - DEBUG - exploration 0.988125
+2024-10-27 15:46:32,728 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:46:32,728 - root - DEBUG - --------------------------------------
+2024-10-27 15:46:32,750 - dqn - DEBUG - max_values_boss: tensor([-0.1999], device='cuda:0')
+2024-10-27 15:46:32,751 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:32,751 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:32,774 - root - INFO - 左闪避
+2024-10-27 15:46:33,290 - env_wukong - INFO - Self Blood: 1104，Boss Blood: 2640
+2024-10-27 15:46:33,290 - root - INFO - 掉血惩罚:-3
+2024-10-27 15:46:33,346 - root - INFO - 整体奖励：-2.4000000000000004
+2024-10-27 15:46:33,347 - root - INFO - 当前自己的血量=1104，下一个自己的血量=1104, 当前boss血量=2653，下一个boss的血量=2653
+2024-10-27 15:46:33,372 - dqn - DEBUG - max_values_boss: tensor([-0.1731], device='cuda:0')
+2024-10-27 15:46:33,372 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:33,372 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:33,395 - root - INFO - 左闪避
+2024-10-27 15:46:33,908 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2653
+2024-10-27 15:46:33,908 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:33,908 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2649，下一个boss的血量=2649
+2024-10-27 15:46:33,964 - root - DEBUG - optimization took 0.04080057144165039 seconds
+2024-10-27 15:46:33,965 - root - DEBUG - loop took 0.05592656135559082 seconds
+2024-10-27 15:46:33,989 - dqn - DEBUG - max_values_boss: tensor([-0.5796], device='cuda:0')
+2024-10-27 15:46:33,990 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:33,990 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:34,015 - root - INFO - 左闪避
+2024-10-27 15:46:34,540 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2649
+2024-10-27 15:46:34,540 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:46:34,540 - root - INFO - 整体奖励：0.5
+2024-10-27 15:46:34,541 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2635，下一个boss的血量=2635
+2024-10-27 15:46:34,566 - dqn - DEBUG - max_values_boss: tensor([-0.6934], device='cuda:0')
+2024-10-27 15:46:34,566 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:34,566 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:34,588 - root - INFO - 右闪避
+2024-10-27 15:46:35,095 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2635
+2024-10-27 15:46:35,096 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:46:35,096 - root - INFO - 整体奖励：0.5
+2024-10-27 15:46:35,096 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2618，下一个boss的血量=2618
+2024-10-27 15:46:35,120 - dqn - DEBUG - max_values_boss: tensor([-0.5056], device='cuda:0')
+2024-10-27 15:46:35,121 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:35,121 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:35,153 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:35,711 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2618
+2024-10-27 15:46:35,711 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:35,711 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2628，下一个boss的血量=2628
+2024-10-27 15:46:35,736 - dqn - DEBUG - max_values_boss: tensor([-0.2822], device='cuda:0')
+2024-10-27 15:46:35,736 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:35,737 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:35,768 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:36,328 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2628
+2024-10-27 15:46:36,328 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:36,328 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2640，下一个boss的血量=2640
+2024-10-27 15:46:36,380 - root - DEBUG - optimization took 0.03467822074890137 seconds
+2024-10-27 15:46:36,381 - root - DEBUG - loop took 0.05169081687927246 seconds
+2024-10-27 15:46:36,405 - dqn - DEBUG - max_values_boss: tensor([-0.5219], device='cuda:0')
+2024-10-27 15:46:36,406 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:36,406 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:36,438 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:36,994 - env_wukong - INFO - Self Blood: 948，Boss Blood: 2640
+2024-10-27 15:46:36,994 - root - INFO - 掉血惩罚:-72
+2024-10-27 15:46:37,054 - root - INFO - 整体奖励：-57.6
+2024-10-27 15:46:37,055 - root - INFO - 当前自己的血量=948，下一个自己的血量=948, 当前boss血量=2638，下一个boss的血量=2638
+2024-10-27 15:46:37,079 - dqn - DEBUG - max_values_boss: tensor([-0.1476], device='cuda:0')
+2024-10-27 15:46:37,080 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:37,080 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:37,110 - root - INFO - 右闪避
+2024-10-27 15:46:37,641 - env_wukong - INFO - Self Blood: 924，Boss Blood: 2638
+2024-10-27 15:46:37,641 - root - INFO - 掉血惩罚:-3
+2024-10-27 15:46:37,706 - root - INFO - 整体奖励：-2.4000000000000004
+2024-10-27 15:46:37,706 - root - INFO - 当前自己的血量=924，下一个自己的血量=924, 当前boss血量=2636，下一个boss的血量=2636
+2024-10-27 15:46:37,731 - dqn - DEBUG - max_values_boss: tensor([-0.1283], device='cuda:0')
+2024-10-27 15:46:37,732 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:37,732 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:37,756 - root - INFO - 左闪避
+2024-10-27 15:46:38,264 - env_wukong - INFO - Self Blood: 900，Boss Blood: 2636
+2024-10-27 15:46:38,264 - root - INFO - 掉血惩罚:-3
+2024-10-27 15:46:38,327 - root - INFO - 整体奖励：-2.4000000000000004
+2024-10-27 15:46:38,327 - root - INFO - 当前自己的血量=900，下一个自己的血量=900, 当前boss血量=2665，下一个boss的血量=2665
+2024-10-27 15:46:38,354 - dqn - DEBUG - max_values_boss: tensor([-0.6964], device='cuda:0')
+2024-10-27 15:46:38,354 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:38,354 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:38,377 - root - INFO - 左闪避
+2024-10-27 15:46:38,902 - env_wukong - INFO - Self Blood: 876，Boss Blood: 2665
+2024-10-27 15:46:38,902 - root - INFO - 掉血惩罚:-3
+2024-10-27 15:46:38,963 - root - INFO - 整体奖励：-2.4000000000000004
+2024-10-27 15:46:38,964 - root - INFO - 当前自己的血量=876，下一个自己的血量=876, 当前boss血量=2674，下一个boss的血量=2674
+2024-10-27 15:46:39,020 - root - DEBUG - optimization took 0.039762020111083984 seconds
+2024-10-27 15:46:39,021 - root - DEBUG - loop took 0.05639839172363281 seconds
+2024-10-27 15:46:39,021 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:46:39,021 - root - DEBUG - Timestep 20
+2024-10-27 15:46:39,021 - root - DEBUG - learning started: 1
+2024-10-27 15:46:39,021 - root - DEBUG - mean reward (10 episodes) nan
+2024-10-27 15:46:39,021 - root - DEBUG - best mean reward -inf
+2024-10-27 15:46:39,022 - root - DEBUG - episodes 0
+2024-10-27 15:46:39,022 - root - DEBUG - exploration 0.976250
+2024-10-27 15:46:39,022 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:46:39,022 - root - DEBUG - --------------------------------------
+2024-10-27 15:46:39,049 - dqn - DEBUG - max_values_boss: tensor([-0.6738], device='cuda:0')
+2024-10-27 15:46:39,049 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:39,049 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:39,084 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:39,657 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2674
+2024-10-27 15:46:39,657 - root - INFO - 打掉boss血而奖励:7
+2024-10-27 15:46:39,658 - root - INFO - 整体奖励：8.4
+2024-10-27 15:46:39,658 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2637，下一个boss的血量=2637
+2024-10-27 15:46:39,683 - dqn - DEBUG - max_values_boss: tensor([-0.0201], device='cuda:0')
+2024-10-27 15:46:39,683 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:46:39,683 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:46:39,725 - root - INFO - 右闪避
+2024-10-27 15:46:40,257 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2637
+2024-10-27 15:46:40,258 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:40,258 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2636，下一个boss的血量=2636
+2024-10-27 15:46:40,283 - dqn - DEBUG - max_values_boss: tensor([-0.0545], device='cuda:0')
+2024-10-27 15:46:40,284 - dqn - DEBUG - 预估Boss状态: 大荒星陨
+2024-10-27 15:46:40,284 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:40,324 - root - INFO - 左闪避
+2024-10-27 15:46:40,846 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2636
+2024-10-27 15:46:40,847 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:46:40,847 - root - INFO - 整体奖励：0.5
+2024-10-27 15:46:40,847 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2648，下一个boss的血量=2648
+2024-10-27 15:46:40,872 - dqn - DEBUG - max_values_boss: tensor([-0.5682], device='cuda:0')
+2024-10-27 15:46:40,873 - dqn - DEBUG - 预估Boss状态: 扔刀
+2024-10-27 15:46:40,873 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:40,899 - root - INFO - 右闪避
+2024-10-27 15:46:41,425 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2648
+2024-10-27 15:46:41,425 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:46:41,425 - root - INFO - 整体奖励：0.5
+2024-10-27 15:46:41,425 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2631，下一个boss的血量=2631
+2024-10-27 15:46:41,477 - root - DEBUG - optimization took 0.03601551055908203 seconds
+2024-10-27 15:46:41,477 - root - DEBUG - loop took 0.051026105880737305 seconds
+2024-10-27 15:46:41,502 - dqn - DEBUG - max_values_boss: tensor([-0.0325], device='cuda:0')
+2024-10-27 15:46:41,502 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:41,502 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:41,537 - root - INFO - 右闪避
+2024-10-27 15:46:42,075 - env_wukong - INFO - Self Blood: 444，Boss Blood: 2631
+2024-10-27 15:46:42,075 - root - INFO - 掉血惩罚:-123
+2024-10-27 15:46:42,132 - root - INFO - 整体奖励：-98.4
+2024-10-27 15:46:42,133 - root - INFO - 当前自己的血量=444，下一个自己的血量=444, 当前boss血量=2648，下一个boss的血量=2648
+2024-10-27 15:46:42,159 - dqn - DEBUG - max_values_boss: tensor([-0.1001], device='cuda:0')
+2024-10-27 15:46:42,159 - dqn - DEBUG - 预估Boss状态: 旋转飞
+2024-10-27 15:46:42,159 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:42,194 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:42,758 - env_wukong - INFO - Self Blood: 1440，Boss Blood: 2648
+2024-10-27 15:46:42,759 - root - INFO - 打掉boss血而奖励:5
+2024-10-27 15:46:42,759 - root - INFO - 整体奖励：6.0
+2024-10-27 15:46:42,759 - root - INFO - 当前自己的血量=1440，下一个自己的血量=1440, 当前boss血量=2623，下一个boss的血量=2623
+2024-10-27 15:46:42,784 - dqn - DEBUG - max_values_boss: tensor([-0.1541], device='cuda:0')
+2024-10-27 15:46:42,785 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:42,785 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:42,819 - root - INFO - 右闪避
+2024-10-27 15:46:43,320 - env_wukong - INFO - Self Blood: 1236，Boss Blood: 2623
+2024-10-27 15:46:43,321 - root - INFO - 掉血惩罚:-21
+2024-10-27 15:46:43,373 - root - INFO - 打掉boss血而奖励:4
+2024-10-27 15:46:43,374 - root - INFO - 整体奖励：-12.0
+2024-10-27 15:46:43,374 - root - INFO - 当前自己的血量=1236，下一个自己的血量=1236, 当前boss血量=2603，下一个boss的血量=2603
+2024-10-27 15:46:43,399 - dqn - DEBUG - max_values_boss: tensor([-0.1821], device='cuda:0')
+2024-10-27 15:46:43,399 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:46:43,399 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:46:43,425 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:43,992 - env_wukong - INFO - Self Blood: 1224，Boss Blood: 2603
+2024-10-27 15:46:43,992 - root - INFO - 掉血惩罚:-2
+2024-10-27 15:46:44,057 - root - INFO - 整体奖励：-1.6
+2024-10-27 15:46:44,058 - root - INFO - 当前自己的血量=1224，下一个自己的血量=1224, 当前boss血量=2609，下一个boss的血量=2609
+2024-10-27 15:46:44,113 - root - DEBUG - optimization took 0.03751802444458008 seconds
+2024-10-27 15:46:44,113 - root - DEBUG - loop took 0.05402851104736328 seconds
+2024-10-27 15:46:44,136 - dqn - DEBUG - max_values_boss: tensor([-0.2688], device='cuda:0')
+2024-10-27 15:46:44,137 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:44,137 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:44,169 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:44,728 - env_wukong - INFO - Self Blood: 1392，Boss Blood: 2609
+2024-10-27 15:46:44,729 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:44,729 - root - INFO - 当前自己的血量=1392，下一个自己的血量=1392, 当前boss血量=2616，下一个boss的血量=2616
+2024-10-27 15:46:44,754 - dqn - DEBUG - max_values_boss: tensor([-0.0034], device='cuda:0')
+2024-10-27 15:46:44,754 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:44,755 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:44,779 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:45,328 - env_wukong - INFO - Self Blood: 1392，Boss Blood: 2616
+2024-10-27 15:46:45,329 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:45,329 - root - INFO - 当前自己的血量=1392，下一个自己的血量=1392, 当前boss血量=2616，下一个boss的血量=2616
+2024-10-27 15:46:45,330 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:46:45,330 - root - DEBUG - Timestep 30
+2024-10-27 15:46:45,330 - root - DEBUG - learning started: 1
+2024-10-27 15:46:45,330 - root - DEBUG - mean reward (10 episodes) nan
+2024-10-27 15:46:45,331 - root - DEBUG - best mean reward -inf
+2024-10-27 15:46:45,331 - root - DEBUG - episodes 0
+2024-10-27 15:46:45,331 - root - DEBUG - exploration 0.964375
+2024-10-27 15:46:45,331 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:46:45,331 - root - DEBUG - --------------------------------------
+2024-10-27 15:46:45,354 - dqn - DEBUG - max_values_boss: tensor([-0.7665], device='cuda:0')
+2024-10-27 15:46:45,355 - dqn - DEBUG - 预估Boss状态: 扔刀
+2024-10-27 15:46:45,355 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:45,388 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:45,947 - env_wukong - INFO - Self Blood: 1308，Boss Blood: 2616
+2024-10-27 15:46:45,948 - root - INFO - 掉血惩罚:-9
+2024-10-27 15:46:46,012 - root - INFO - 整体奖励：-7.2
+2024-10-27 15:46:46,012 - root - INFO - 当前自己的血量=1308，下一个自己的血量=1308, 当前boss血量=2620，下一个boss的血量=2620
+2024-10-27 15:46:46,037 - dqn - DEBUG - max_values_boss: tensor([-0.0003], device='cuda:0')
+2024-10-27 15:46:46,037 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:46,037 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:46,072 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:46,642 - env_wukong - INFO - Self Blood: 72，Boss Blood: 2620
+2024-10-27 15:46:46,643 - env_wukong - INFO - 快死了，当前血量：1308, 下一个血量：72
+2024-10-27 15:46:48,078 - root - INFO - 当前自己的血量=72，下一个自己的血量=72, 当前boss血量=2617，下一个boss的血量=2617
+2024-10-27 15:46:48,079 - utils.restart - INFO - 死,开始新一轮
+2024-10-27 15:46:52,559 - root - DEBUG - current episode reward -209
+2024-10-27 15:46:52,616 - root - DEBUG - optimization took 0.04112553596496582 seconds
+2024-10-27 15:46:52,616 - root - DEBUG - loop took 0.057137489318847656 seconds
+2024-10-27 15:46:52,640 - dqn - DEBUG - max_values_boss: tensor([-0.6605], device='cuda:0')
+2024-10-27 15:46:52,640 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:52,641 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:52,677 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:53,234 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2617
+2024-10-27 15:46:53,235 - root - INFO - 打掉boss血而奖励:6
+2024-10-27 15:46:53,235 - root - INFO - 整体奖励：7.199999999999999
+2024-10-27 15:46:53,235 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2584，下一个boss的血量=2584
+2024-10-27 15:46:53,260 - dqn - DEBUG - max_values_boss: tensor([-0.1683], device='cuda:0')
+2024-10-27 15:46:53,260 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:46:53,261 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:46:53,297 - root - INFO - 左闪避
+2024-10-27 15:46:53,819 - env_wukong - INFO - Self Blood: 1188，Boss Blood: 2584
+2024-10-27 15:46:53,820 - root - INFO - 掉血惩罚:-48
+2024-10-27 15:46:53,871 - root - INFO - 整体奖励：-38.400000000000006
+2024-10-27 15:46:53,872 - root - INFO - 当前自己的血量=1188，下一个自己的血量=1188, 当前boss血量=2587，下一个boss的血量=2587
+2024-10-27 15:46:53,899 - dqn - DEBUG - max_values_boss: tensor([-6.0556e-05], device='cuda:0')
+2024-10-27 15:46:53,899 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:53,899 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:53,929 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:54,490 - env_wukong - INFO - Self Blood: 1584，Boss Blood: 2587
+2024-10-27 15:46:54,491 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:54,491 - root - INFO - 当前自己的血量=1584，下一个自己的血量=1584, 当前boss血量=2583，下一个boss的血量=2583
+2024-10-27 15:46:54,516 - dqn - DEBUG - max_values_boss: tensor([-0.0323], device='cuda:0')
+2024-10-27 15:46:54,516 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:46:54,517 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:46:54,542 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:55,109 - env_wukong - INFO - Self Blood: 168，Boss Blood: 2583
+2024-10-27 15:46:55,109 - root - INFO - 掉血惩罚:-142
+2024-10-27 15:46:55,173 - root - INFO - 整体奖励：-113.60000000000001
+2024-10-27 15:46:55,174 - root - INFO - 当前自己的血量=168，下一个自己的血量=168, 当前boss血量=2579，下一个boss的血量=2579
+2024-10-27 15:46:55,229 - root - DEBUG - optimization took 0.03970909118652344 seconds
+2024-10-27 15:46:55,230 - root - DEBUG - loop took 0.05521535873413086 seconds
+2024-10-27 15:46:55,255 - dqn - DEBUG - max_values_boss: tensor([-0.0005], device='cuda:0')
+2024-10-27 15:46:55,255 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:46:55,256 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:55,292 - root - INFO - 左闪避
+2024-10-27 15:46:55,813 - env_wukong - INFO - Self Blood: 1392，Boss Blood: 2579
+2024-10-27 15:46:55,814 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:55,814 - root - INFO - 当前自己的血量=1392，下一个自己的血量=1392, 当前boss血量=2607，下一个boss的血量=2607
+2024-10-27 15:46:55,839 - dqn - DEBUG - max_values_boss: tensor([-0.0652], device='cuda:0')
+2024-10-27 15:46:55,839 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:55,839 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:55,866 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:56,413 - env_wukong - INFO - Self Blood: 1296，Boss Blood: 2607
+2024-10-27 15:46:56,413 - root - INFO - 掉血惩罚:-10
+2024-10-27 15:46:56,479 - root - INFO - 打掉boss血而奖励:5
+2024-10-27 15:46:56,479 - root - INFO - 整体奖励：-2.0
+2024-10-27 15:46:56,479 - root - INFO - 当前自己的血量=1296，下一个自己的血量=1296, 当前boss血量=2582，下一个boss的血量=2582
+2024-10-27 15:46:56,502 - dqn - DEBUG - max_values_boss: tensor([-0.3571], device='cuda:0')
+2024-10-27 15:46:56,502 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:46:56,503 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:46:56,542 - root - INFO - 右闪避
+2024-10-27 15:46:57,054 - env_wukong - INFO - Self Blood: 1116，Boss Blood: 2582
+2024-10-27 15:46:57,054 - root - INFO - 掉血惩罚:-18
+2024-10-27 15:46:57,116 - root - INFO - 整体奖励：-14.4
+2024-10-27 15:46:57,116 - root - INFO - 当前自己的血量=1116，下一个自己的血量=1116, 当前boss血量=2582，下一个boss的血量=2582
+2024-10-27 15:46:57,143 - dqn - DEBUG - max_values_boss: tensor([-0.5471], device='cuda:0')
+2024-10-27 15:46:57,143 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:57,144 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:57,177 - root - INFO - 左闪避
+2024-10-27 15:46:57,689 - env_wukong - INFO - Self Blood: 1284，Boss Blood: 2582
+2024-10-27 15:46:57,690 - root - INFO - 整体奖励：0.0
+2024-10-27 15:46:57,690 - root - INFO - 当前自己的血量=1284，下一个自己的血量=1284, 当前boss血量=2595，下一个boss的血量=2595
+2024-10-27 15:46:57,743 - root - DEBUG - optimization took 0.038518428802490234 seconds
+2024-10-27 15:46:57,744 - root - DEBUG - loop took 0.053023338317871094 seconds
+2024-10-27 15:46:57,744 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:46:57,744 - root - DEBUG - Timestep 40
+2024-10-27 15:46:57,744 - root - DEBUG - learning started: 1
+2024-10-27 15:46:57,744 - root - DEBUG - mean reward (10 episodes) -209.600000
+2024-10-27 15:46:57,745 - root - DEBUG - best mean reward -209.600000
+2024-10-27 15:46:57,745 - root - DEBUG - episodes 1
+2024-10-27 15:46:57,745 - root - DEBUG - exploration 0.952500
+2024-10-27 15:46:57,745 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:46:57,745 - root - DEBUG - --------------------------------------
+2024-10-27 15:46:57,769 - dqn - DEBUG - max_values_boss: tensor([-0.0307], device='cuda:0')
+2024-10-27 15:46:57,769 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:46:57,769 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:46:57,803 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:46:58,374 - env_wukong - INFO - Self Blood: 1284，Boss Blood: 2595
+2024-10-27 15:46:58,375 - root - INFO - 打掉boss血而奖励:4
+2024-10-27 15:46:58,375 - root - INFO - 整体奖励：4.8
+2024-10-27 15:46:58,375 - root - INFO - 当前自己的血量=1284，下一个自己的血量=1284, 当前boss血量=2574，下一个boss的血量=2574
+2024-10-27 15:46:58,403 - dqn - DEBUG - max_values_boss: tensor([-0.9305], device='cuda:0')
+2024-10-27 15:46:58,403 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:46:58,404 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:58,435 - root - INFO - 右闪避
+2024-10-27 15:46:58,947 - env_wukong - INFO - Self Blood: 1284，Boss Blood: 2574
+2024-10-27 15:46:58,948 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:46:58,948 - root - INFO - 整体奖励：0.5
+2024-10-27 15:46:58,948 - root - INFO - 当前自己的血量=1284，下一个自己的血量=1284, 当前boss血量=2599，下一个boss的血量=2599
+2024-10-27 15:46:58,975 - dqn - DEBUG - max_values_boss: tensor([-0.1019], device='cuda:0')
+2024-10-27 15:46:58,976 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:46:58,976 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:46:59,012 - root - INFO - 右闪避
+2024-10-27 15:46:59,533 - env_wukong - INFO - Self Blood: 1284，Boss Blood: 2599
+2024-10-27 15:46:59,533 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:46:59,533 - root - INFO - 整体奖励：0.5
+2024-10-27 15:46:59,533 - root - INFO - 当前自己的血量=1284，下一个自己的血量=1284, 当前boss血量=2584，下一个boss的血量=2584
+2024-10-27 15:46:59,560 - dqn - DEBUG - max_values_boss: tensor([-0.1382], device='cuda:0')
+2024-10-27 15:46:59,560 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:46:59,561 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:46:59,594 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:00,141 - env_wukong - INFO - Self Blood: 1284，Boss Blood: 2584
+2024-10-27 15:47:00,142 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:00,142 - root - INFO - 当前自己的血量=1284，下一个自己的血量=1284, 当前boss血量=2586，下一个boss的血量=2586
+2024-10-27 15:47:00,198 - root - DEBUG - optimization took 0.04052543640136719 seconds
+2024-10-27 15:47:00,199 - root - DEBUG - loop took 0.0560307502746582 seconds
+2024-10-27 15:47:00,226 - dqn - DEBUG - max_values_boss: tensor([-0.0489], device='cuda:0')
+2024-10-27 15:47:00,226 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:00,226 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:00,259 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:00,813 - env_wukong - INFO - Self Blood: 1284，Boss Blood: 2586
+2024-10-27 15:47:00,813 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:00,813 - root - INFO - 当前自己的血量=1284，下一个自己的血量=1284, 当前boss血量=2583，下一个boss的血量=2583
+2024-10-27 15:47:00,840 - dqn - DEBUG - max_values_boss: tensor([-0.0874], device='cuda:0')
+2024-10-27 15:47:00,840 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:00,841 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:00,878 - root - INFO - 左闪避
+2024-10-27 15:47:01,393 - env_wukong - INFO - Self Blood: 1284，Boss Blood: 2583
+2024-10-27 15:47:01,393 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:01,393 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:01,394 - root - INFO - 当前自己的血量=1284，下一个自己的血量=1284, 当前boss血量=2610，下一个boss的血量=2610
+2024-10-27 15:47:01,418 - dqn - DEBUG - max_values_boss: tensor([-0.0010], device='cuda:0')
+2024-10-27 15:47:01,418 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:01,419 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:01,458 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:02,025 - env_wukong - INFO - Self Blood: 1284，Boss Blood: 2610
+2024-10-27 15:47:02,026 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:02,026 - root - INFO - 当前自己的血量=1284，下一个自己的血量=1284, 当前boss血量=2666，下一个boss的血量=2666
+2024-10-27 15:47:02,053 - dqn - DEBUG - max_values_boss: tensor([-0.2531], device='cuda:0')
+2024-10-27 15:47:02,053 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:02,054 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:02,088 - root - INFO - 右闪避
+2024-10-27 15:47:02,601 - env_wukong - INFO - Self Blood: 1284，Boss Blood: 2666
+2024-10-27 15:47:02,602 - root - INFO - 打掉boss血而奖励:10
+2024-10-27 15:47:02,602 - root - INFO - 整体奖励：12.0
+2024-10-27 15:47:02,602 - root - INFO - 当前自己的血量=1284，下一个自己的血量=1284, 当前boss血量=2612，下一个boss的血量=2612
+2024-10-27 15:47:02,654 - root - DEBUG - optimization took 0.03710508346557617 seconds
+2024-10-27 15:47:02,654 - root - DEBUG - loop took 0.051108360290527344 seconds
+2024-10-27 15:47:02,679 - dqn - DEBUG - max_values_boss: tensor([-0.1581], device='cuda:0')
+2024-10-27 15:47:02,679 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:02,679 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:02,722 - root - INFO - 右闪避
+2024-10-27 15:47:03,226 - env_wukong - INFO - Self Blood: 1284，Boss Blood: 2612
+2024-10-27 15:47:03,226 - root - INFO - 打掉boss血而奖励:6
+2024-10-27 15:47:03,227 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:03,227 - root - INFO - 整体奖励：7.699999999999999
+2024-10-27 15:47:03,227 - root - INFO - 当前自己的血量=1284，下一个自己的血量=1284, 当前boss血量=2578，下一个boss的血量=2578
+2024-10-27 15:47:03,253 - dqn - DEBUG - max_values_boss: tensor([-0.0307], device='cuda:0')
+2024-10-27 15:47:03,254 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:03,254 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:03,290 - root - INFO - 右闪避
+2024-10-27 15:47:03,819 - env_wukong - INFO - Self Blood: 1284，Boss Blood: 2578
+2024-10-27 15:47:03,820 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:03,820 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:03,820 - root - INFO - 当前自己的血量=1284，下一个自己的血量=1284, 当前boss血量=2579，下一个boss的血量=2579
+2024-10-27 15:47:03,821 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:47:03,822 - root - DEBUG - Timestep 50
+2024-10-27 15:47:03,822 - root - DEBUG - learning started: 1
+2024-10-27 15:47:03,822 - root - DEBUG - mean reward (10 episodes) -209.600000
+2024-10-27 15:47:03,822 - root - DEBUG - best mean reward -209.600000
+2024-10-27 15:47:03,822 - root - DEBUG - episodes 1
+2024-10-27 15:47:03,822 - root - DEBUG - exploration 0.940625
+2024-10-27 15:47:03,822 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:47:03,823 - root - DEBUG - --------------------------------------
+2024-10-27 15:47:03,844 - dqn - DEBUG - max_values_boss: tensor([-0.0010], device='cuda:0')
+2024-10-27 15:47:03,845 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:03,845 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:03,878 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:04,441 - env_wukong - INFO - Self Blood: 864，Boss Blood: 2579
+2024-10-27 15:47:04,442 - root - INFO - 掉血惩罚:-42
+2024-10-27 15:47:04,492 - root - INFO - 整体奖励：-33.6
+2024-10-27 15:47:04,492 - root - INFO - 当前自己的血量=864，下一个自己的血量=864, 当前boss血量=2614，下一个boss的血量=2614
+2024-10-27 15:47:04,520 - dqn - DEBUG - max_values_boss: tensor([-0.0004], device='cuda:0')
+2024-10-27 15:47:04,520 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:04,521 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:04,561 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:05,125 - env_wukong - INFO - Self Blood: 1020，Boss Blood: 2614
+2024-10-27 15:47:05,125 - root - INFO - 打掉boss血而奖励:5
+2024-10-27 15:47:05,125 - root - INFO - 整体奖励：6.0
+2024-10-27 15:47:05,125 - root - INFO - 当前自己的血量=1020，下一个自己的血量=1020, 当前boss血量=2589，下一个boss的血量=2589
+2024-10-27 15:47:05,180 - root - DEBUG - optimization took 0.03616213798522949 seconds
+2024-10-27 15:47:05,180 - root - DEBUG - loop took 0.05417370796203613 seconds
+2024-10-27 15:47:05,208 - dqn - DEBUG - max_values_boss: tensor([-0.3350], device='cuda:0')
+2024-10-27 15:47:05,209 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:05,209 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:05,260 - root - INFO - 右闪避
+2024-10-27 15:47:05,767 - env_wukong - INFO - Self Blood: 732，Boss Blood: 2589
+2024-10-27 15:47:05,767 - root - INFO - 掉血惩罚:-29
+2024-10-27 15:47:05,826 - root - INFO - 整体奖励：-23.200000000000003
+2024-10-27 15:47:05,827 - root - INFO - 当前自己的血量=732，下一个自己的血量=732, 当前boss血量=2577，下一个boss的血量=2577
+2024-10-27 15:47:05,850 - dqn - DEBUG - max_values_boss: tensor([-0.6043], device='cuda:0')
+2024-10-27 15:47:05,851 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:05,851 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:05,885 - root - INFO - 右闪避
+2024-10-27 15:47:06,396 - env_wukong - INFO - Self Blood: 636，Boss Blood: 2577
+2024-10-27 15:47:06,396 - root - INFO - 掉血惩罚:-10
+2024-10-27 15:47:06,461 - root - INFO - 整体奖励：-8.0
+2024-10-27 15:47:06,462 - root - INFO - 当前自己的血量=636，下一个自己的血量=636, 当前boss血量=2578，下一个boss的血量=2578
+2024-10-27 15:47:06,489 - dqn - DEBUG - max_values_boss: tensor([-0.9308], device='cuda:0')
+2024-10-27 15:47:06,489 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:06,490 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:06,523 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:07,092 - env_wukong - INFO - Self Blood: 672，Boss Blood: 2578
+2024-10-27 15:47:07,092 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:07,092 - root - INFO - 当前自己的血量=672，下一个自己的血量=672, 当前boss血量=2603，下一个boss的血量=2603
+2024-10-27 15:47:07,119 - dqn - DEBUG - max_values_boss: tensor([-0.5798], device='cuda:0')
+2024-10-27 15:47:07,119 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:07,119 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:07,159 - root - INFO - 左闪避
+2024-10-27 15:47:07,664 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2603
+2024-10-27 15:47:07,664 - root - INFO - 掉血惩罚:-5
+2024-10-27 15:47:07,716 - root - INFO - 打掉boss血而奖励:4
+2024-10-27 15:47:07,717 - root - INFO - 整体奖励：0.7999999999999998
+2024-10-27 15:47:07,717 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2583，下一个boss的血量=2583
+2024-10-27 15:47:07,769 - root - DEBUG - optimization took 0.03601360321044922 seconds
+2024-10-27 15:47:07,769 - root - DEBUG - loop took 0.0510249137878418 seconds
+2024-10-27 15:47:07,795 - dqn - DEBUG - max_values_boss: tensor([-0.3804], device='cuda:0')
+2024-10-27 15:47:07,796 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:07,796 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:07,843 - root - INFO - 右闪避
+2024-10-27 15:47:08,347 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2583
+2024-10-27 15:47:08,347 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:08,347 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2579，下一个boss的血量=2579
+2024-10-27 15:47:08,372 - dqn - DEBUG - max_values_boss: tensor([-0.2495], device='cuda:0')
+2024-10-27 15:47:08,373 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:08,373 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:08,400 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:08,974 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2579
+2024-10-27 15:47:08,975 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:08,975 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2567，下一个boss的血量=2567
+2024-10-27 15:47:09,002 - dqn - DEBUG - max_values_boss: tensor([-0.2898], device='cuda:0')
+2024-10-27 15:47:09,002 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:09,002 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:09,038 - root - INFO - 左闪避
+2024-10-27 15:47:09,546 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2567
+2024-10-27 15:47:09,547 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:09,547 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:09,547 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2569，下一个boss的血量=2569
+2024-10-27 15:47:09,569 - dqn - DEBUG - max_values_boss: tensor([-0.0044], device='cuda:0')
+2024-10-27 15:47:09,570 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:09,571 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:09,606 - root - INFO - 左闪避
+2024-10-27 15:47:10,123 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2569
+2024-10-27 15:47:10,124 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:10,124 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:10,124 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2561，下一个boss的血量=2561
+2024-10-27 15:47:10,175 - root - DEBUG - optimization took 0.03601551055908203 seconds
+2024-10-27 15:47:10,176 - root - DEBUG - loop took 0.0505220890045166 seconds
+2024-10-27 15:47:10,176 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:47:10,176 - root - DEBUG - Timestep 60
+2024-10-27 15:47:10,176 - root - DEBUG - learning started: 1
+2024-10-27 15:47:10,176 - root - DEBUG - mean reward (10 episodes) -209.600000
+2024-10-27 15:47:10,176 - root - DEBUG - best mean reward -209.600000
+2024-10-27 15:47:10,177 - root - DEBUG - episodes 1
+2024-10-27 15:47:10,177 - root - DEBUG - exploration 0.928750
+2024-10-27 15:47:10,177 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:47:10,177 - root - DEBUG - --------------------------------------
+2024-10-27 15:47:10,201 - dqn - DEBUG - max_values_boss: tensor([-0.3270], device='cuda:0')
+2024-10-27 15:47:10,201 - dqn - DEBUG - 预估Boss状态: 旋转飞
+2024-10-27 15:47:10,201 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:10,228 - root - INFO - 左闪避
+2024-10-27 15:47:10,742 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2561
+2024-10-27 15:47:10,743 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:10,743 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:10,743 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2553，下一个boss的血量=2553
+2024-10-27 15:47:10,769 - dqn - DEBUG - max_values_boss: tensor([-0.3821], device='cuda:0')
+2024-10-27 15:47:10,769 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:10,769 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:10,798 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:11,347 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2553
+2024-10-27 15:47:11,348 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:11,348 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2549，下一个boss的血量=2549
+2024-10-27 15:47:11,373 - dqn - DEBUG - max_values_boss: tensor([-0.0462], device='cuda:0')
+2024-10-27 15:47:11,374 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:11,374 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:11,411 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:11,981 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2549
+2024-10-27 15:47:11,981 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:11,982 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2554，下一个boss的血量=2554
+2024-10-27 15:47:12,006 - dqn - DEBUG - max_values_boss: tensor([-0.6597], device='cuda:0')
+2024-10-27 15:47:12,007 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:12,007 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:12,034 - root - INFO - 定！五连绝世！
+2024-10-27 15:47:17,435 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2554
+2024-10-27 15:47:17,436 - root - INFO - 打掉boss血而奖励:20
+2024-10-27 15:47:17,436 - root - INFO - 整体奖励：24.0
+2024-10-27 15:47:17,436 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2016，下一个boss的血量=2016
+2024-10-27 15:47:17,494 - root - DEBUG - optimization took 0.03916001319885254 seconds
+2024-10-27 15:47:17,494 - root - DEBUG - loop took 0.057213544845581055 seconds
+2024-10-27 15:47:17,520 - dqn - DEBUG - max_values_boss: tensor([-0.0003], device='cuda:0')
+2024-10-27 15:47:17,521 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:17,521 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:17,545 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:18,098 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2016
+2024-10-27 15:47:18,099 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:18,099 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2027，下一个boss的血量=2027
+2024-10-27 15:47:18,123 - dqn - DEBUG - max_values_boss: tensor([-0.5114], device='cuda:0')
+2024-10-27 15:47:18,124 - dqn - DEBUG - 预估Boss状态: 大荒星陨
+2024-10-27 15:47:18,124 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:18,160 - root - INFO - 右闪避
+2024-10-27 15:47:18,673 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2027
+2024-10-27 15:47:18,674 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:18,674 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:18,674 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2030，下一个boss的血量=2030
+2024-10-27 15:47:18,699 - dqn - DEBUG - max_values_boss: tensor([-0.0816], device='cuda:0')
+2024-10-27 15:47:18,699 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:18,699 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:18,728 - root - INFO - 右闪避
+2024-10-27 15:47:19,235 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2030
+2024-10-27 15:47:19,236 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:19,236 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:19,236 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2034，下一个boss的血量=2034
+2024-10-27 15:47:19,261 - dqn - DEBUG - max_values_boss: tensor([-0.7138], device='cuda:0')
+2024-10-27 15:47:19,262 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:19,262 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:19,294 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:19,859 - env_wukong - INFO - Self Blood: 624，Boss Blood: 2034
+2024-10-27 15:47:19,861 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:19,861 - root - INFO - 当前自己的血量=624，下一个自己的血量=624, 当前boss血量=2036，下一个boss的血量=2036
+2024-10-27 15:47:19,918 - root - DEBUG - optimization took 0.04102158546447754 seconds
+2024-10-27 15:47:19,919 - root - DEBUG - loop took 0.05753040313720703 seconds
+2024-10-27 15:47:19,943 - dqn - DEBUG - max_values_boss: tensor([-0.0145], device='cuda:0')
+2024-10-27 15:47:19,944 - dqn - DEBUG - 预估Boss状态: 锄地起飞
+2024-10-27 15:47:19,944 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:19,979 - root - INFO - 左闪避
+2024-10-27 15:47:20,499 - env_wukong - INFO - Self Blood: 780，Boss Blood: 2036
+2024-10-27 15:47:20,499 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:20,499 - root - INFO - 当前自己的血量=780，下一个自己的血量=780, 当前boss血量=2035，下一个boss的血量=2035
+2024-10-27 15:47:20,526 - dqn - DEBUG - max_values_boss: tensor([-0.0931], device='cuda:0')
+2024-10-27 15:47:20,527 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:20,527 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:20,561 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:21,118 - env_wukong - INFO - Self Blood: 396，Boss Blood: 2035
+2024-10-27 15:47:21,118 - root - INFO - 掉血惩罚:-39
+2024-10-27 15:47:21,176 - root - INFO - 整体奖励：-31.200000000000003
+2024-10-27 15:47:21,176 - root - INFO - 当前自己的血量=396，下一个自己的血量=396, 当前boss血量=2036，下一个boss的血量=2036
+2024-10-27 15:47:21,177 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:47:21,177 - root - DEBUG - Timestep 70
+2024-10-27 15:47:21,177 - root - DEBUG - learning started: 1
+2024-10-27 15:47:21,178 - root - DEBUG - mean reward (10 episodes) -209.600000
+2024-10-27 15:47:21,178 - root - DEBUG - best mean reward -209.600000
+2024-10-27 15:47:21,178 - root - DEBUG - episodes 1
+2024-10-27 15:47:21,178 - root - DEBUG - exploration 0.916875
+2024-10-27 15:47:21,178 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:47:21,178 - root - DEBUG - --------------------------------------
+2024-10-27 15:47:21,203 - dqn - DEBUG - max_values_boss: tensor([-0.5511], device='cuda:0')
+2024-10-27 15:47:21,203 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:21,204 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:21,231 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:21,811 - env_wukong - INFO - Self Blood: 330，Boss Blood: 2036
+2024-10-27 15:47:21,811 - root - INFO - 掉血惩罚:-7
+2024-10-27 15:47:21,872 - root - INFO - 整体奖励：-5.6000000000000005
+2024-10-27 15:47:21,873 - root - INFO - 当前自己的血量=330，下一个自己的血量=330, 当前boss血量=2032，下一个boss的血量=2032
+2024-10-27 15:47:21,895 - dqn - DEBUG - max_values_boss: tensor([-0.0079], device='cuda:0')
+2024-10-27 15:47:21,896 - dqn - DEBUG - 预估Boss状态: 扔刀
+2024-10-27 15:47:21,896 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:21,932 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:22,500 - env_wukong - INFO - Self Blood: 408，Boss Blood: 2032
+2024-10-27 15:47:22,500 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:22,501 - root - INFO - 当前自己的血量=408，下一个自己的血量=408, 当前boss血量=2029，下一个boss的血量=2029
+2024-10-27 15:47:22,555 - root - DEBUG - optimization took 0.03766059875488281 seconds
+2024-10-27 15:47:22,555 - root - DEBUG - loop took 0.05415987968444824 seconds
+2024-10-27 15:47:22,579 - dqn - DEBUG - max_values_boss: tensor([-0.1593], device='cuda:0')
+2024-10-27 15:47:22,579 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:22,579 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:22,612 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:23,165 - env_wukong - INFO - Self Blood: 276，Boss Blood: 2029
+2024-10-27 15:47:23,165 - root - INFO - 掉血惩罚:-14
+2024-10-27 15:47:23,224 - root - INFO - 整体奖励：-11.200000000000001
+2024-10-27 15:47:23,224 - root - INFO - 当前自己的血量=276，下一个自己的血量=276, 当前boss血量=2028，下一个boss的血量=2028
+2024-10-27 15:47:23,249 - dqn - DEBUG - max_values_boss: tensor([-0.5834], device='cuda:0')
+2024-10-27 15:47:23,250 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:23,250 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:23,289 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:23,847 - env_wukong - INFO - Self Blood: 936，Boss Blood: 2028
+2024-10-27 15:47:23,848 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:23,848 - root - INFO - 当前自己的血量=936，下一个自己的血量=936, 当前boss血量=2025，下一个boss的血量=2025
+2024-10-27 15:47:23,874 - dqn - DEBUG - max_values_boss: tensor([-0.0002], device='cuda:0')
+2024-10-27 15:47:23,874 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:47:23,875 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:23,901 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:24,446 - env_wukong - INFO - Self Blood: 781，Boss Blood: 2025
+2024-10-27 15:47:24,446 - root - INFO - 掉血惩罚:-16
+2024-10-27 15:47:24,511 - root - INFO - 整体奖励：-12.8
+2024-10-27 15:47:24,512 - root - INFO - 当前自己的血量=781，下一个自己的血量=781, 当前boss血量=2019，下一个boss的血量=2019
+2024-10-27 15:47:24,537 - dqn - DEBUG - max_values_boss: tensor([-0.1236], device='cuda:0')
+2024-10-27 15:47:24,537 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:47:24,537 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:24,573 - root - INFO - 左闪避
+2024-10-27 15:47:25,089 - env_wukong - INFO - Self Blood: 120，Boss Blood: 2019
+2024-10-27 15:47:25,089 - root - INFO - 掉血惩罚:-67
+2024-10-27 15:47:25,147 - root - INFO - 整体奖励：-53.6
+2024-10-27 15:47:25,147 - root - INFO - 当前自己的血量=120，下一个自己的血量=120, 当前boss血量=2019，下一个boss的血量=2019
+2024-10-27 15:47:25,201 - root - DEBUG - optimization took 0.03907179832458496 seconds
+2024-10-27 15:47:25,201 - root - DEBUG - loop took 0.05357933044433594 seconds
+2024-10-27 15:47:25,228 - dqn - DEBUG - max_values_boss: tensor([-0.0246], device='cuda:0')
+2024-10-27 15:47:25,228 - dqn - DEBUG - 预估Boss状态: 冲刺砍
+2024-10-27 15:47:25,228 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:25,275 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:25,843 - env_wukong - INFO - Self Blood: 1308，Boss Blood: 2019
+2024-10-27 15:47:25,844 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:25,844 - root - INFO - 当前自己的血量=1308，下一个自己的血量=1308, 当前boss血量=2017，下一个boss的血量=2017
+2024-10-27 15:47:25,871 - dqn - DEBUG - max_values_boss: tensor([-0.0814], device='cuda:0')
+2024-10-27 15:47:25,872 - dqn - DEBUG - 预估Boss状态: 扔刀
+2024-10-27 15:47:25,872 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:25,901 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:26,461 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2017
+2024-10-27 15:47:26,462 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:26,462 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2020，下一个boss的血量=2020
+2024-10-27 15:47:26,491 - dqn - DEBUG - max_values_boss: tensor([-0.0201], device='cuda:0')
+2024-10-27 15:47:26,491 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:26,492 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:26,529 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:27,105 - env_wukong - INFO - Self Blood: 420，Boss Blood: 2020
+2024-10-27 15:47:27,105 - root - INFO - 掉血惩罚:-125
+2024-10-27 15:47:27,168 - root - INFO - 整体奖励：-100.0
+2024-10-27 15:47:27,169 - root - INFO - 当前自己的血量=420，下一个自己的血量=420, 当前boss血量=2017，下一个boss的血量=2017
+2024-10-27 15:47:27,194 - dqn - DEBUG - max_values_boss: tensor([-0.0578], device='cuda:0')
+2024-10-27 15:47:27,194 - dqn - DEBUG - 预估Boss状态: 旋转飞
+2024-10-27 15:47:27,194 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:27,229 - root - INFO - 左闪避
+2024-10-27 15:47:27,743 - env_wukong - INFO - Self Blood: 1440，Boss Blood: 2017
+2024-10-27 15:47:27,743 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:27,744 - root - INFO - 当前自己的血量=1440，下一个自己的血量=1440, 当前boss血量=2022，下一个boss的血量=2022
+2024-10-27 15:47:27,799 - root - DEBUG - optimization took 0.03957986831665039 seconds
+2024-10-27 15:47:27,800 - root - DEBUG - loop took 0.055085182189941406 seconds
+2024-10-27 15:47:27,800 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:47:27,800 - root - DEBUG - Timestep 80
+2024-10-27 15:47:27,800 - root - DEBUG - learning started: 1
+2024-10-27 15:47:27,800 - root - DEBUG - mean reward (10 episodes) -209.600000
+2024-10-27 15:47:27,801 - root - DEBUG - best mean reward -209.600000
+2024-10-27 15:47:27,801 - root - DEBUG - episodes 1
+2024-10-27 15:47:27,801 - root - DEBUG - exploration 0.905000
+2024-10-27 15:47:27,801 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:47:27,801 - root - DEBUG - --------------------------------------
+2024-10-27 15:47:27,828 - dqn - DEBUG - max_values_boss: tensor([-0.5501], device='cuda:0')
+2024-10-27 15:47:27,829 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:27,829 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:27,862 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:28,417 - env_wukong - INFO - Self Blood: 468，Boss Blood: 2022
+2024-10-27 15:47:28,417 - root - INFO - 掉血惩罚:-98
+2024-10-27 15:47:28,474 - root - INFO - 整体奖励：-78.4
+2024-10-27 15:47:28,474 - root - INFO - 当前自己的血量=468，下一个自己的血量=468, 当前boss血量=2017，下一个boss的血量=2017
+2024-10-27 15:47:28,500 - dqn - DEBUG - max_values_boss: tensor([-0.0039], device='cuda:0')
+2024-10-27 15:47:28,501 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:28,501 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:28,527 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:29,093 - env_wukong - INFO - Self Blood: 1212，Boss Blood: 2017
+2024-10-27 15:47:29,094 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:29,094 - root - INFO - 当前自己的血量=1212，下一个自己的血量=1212, 当前boss血量=2026，下一个boss的血量=2026
+2024-10-27 15:47:29,120 - dqn - DEBUG - max_values_boss: tensor([-0.0018], device='cuda:0')
+2024-10-27 15:47:29,121 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:29,121 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:29,168 - root - INFO - 右闪避
+2024-10-27 15:47:29,692 - env_wukong - INFO - Self Blood: 1224，Boss Blood: 2026
+2024-10-27 15:47:29,692 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:29,693 - root - INFO - 当前自己的血量=1224，下一个自己的血量=1224, 当前boss血量=2034，下一个boss的血量=2034
+2024-10-27 15:47:29,716 - dqn - DEBUG - max_values_boss: tensor([-0.0002], device='cuda:0')
+2024-10-27 15:47:29,716 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:29,717 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:29,746 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:30,300 - env_wukong - INFO - Self Blood: 1056，Boss Blood: 2034
+2024-10-27 15:47:30,301 - root - INFO - 掉血惩罚:-17
+2024-10-27 15:47:30,352 - root - INFO - 整体奖励：-13.600000000000001
+2024-10-27 15:47:30,353 - root - INFO - 当前自己的血量=1056，下一个自己的血量=1056, 当前boss血量=2022，下一个boss的血量=2022
+2024-10-27 15:47:30,408 - root - DEBUG - optimization took 0.03750944137573242 seconds
+2024-10-27 15:47:30,408 - root - DEBUG - loop took 0.05501723289489746 seconds
+2024-10-27 15:47:30,436 - dqn - DEBUG - max_values_boss: tensor([-0.1186], device='cuda:0')
+2024-10-27 15:47:30,437 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:47:30,437 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:30,468 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:31,015 - env_wukong - INFO - Self Blood: 996，Boss Blood: 2022
+2024-10-27 15:47:31,015 - root - INFO - 掉血惩罚:-6
+2024-10-27 15:47:31,066 - root - INFO - 整体奖励：-4.800000000000001
+2024-10-27 15:47:31,066 - root - INFO - 当前自己的血量=996，下一个自己的血量=996, 当前boss血量=2019，下一个boss的血量=2019
+2024-10-27 15:47:31,089 - dqn - DEBUG - max_values_boss: tensor([-0.0150], device='cuda:0')
+2024-10-27 15:47:31,089 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:31,090 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:31,129 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:31,711 - env_wukong - INFO - Self Blood: 984，Boss Blood: 2019
+2024-10-27 15:47:31,711 - root - INFO - 掉血惩罚:-2
+2024-10-27 15:47:31,766 - root - INFO - 整体奖励：-1.6
+2024-10-27 15:47:31,766 - root - INFO - 当前自己的血量=984，下一个自己的血量=984, 当前boss血量=2019，下一个boss的血量=2019
+2024-10-27 15:47:31,789 - dqn - DEBUG - max_values_boss: tensor([-0.0082], device='cuda:0')
+2024-10-27 15:47:31,789 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:31,790 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:31,813 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:32,365 - env_wukong - INFO - Self Blood: 984，Boss Blood: 2019
+2024-10-27 15:47:32,366 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:32,366 - root - INFO - 当前自己的血量=984，下一个自己的血量=984, 当前boss血量=2008，下一个boss的血量=2008
+2024-10-27 15:47:32,389 - dqn - DEBUG - max_values_boss: tensor([-0.2672], device='cuda:0')
+2024-10-27 15:47:32,389 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:32,389 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:32,421 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:32,993 - env_wukong - INFO - Self Blood: 984，Boss Blood: 2008
+2024-10-27 15:47:32,993 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:32,993 - root - INFO - 当前自己的血量=984，下一个自己的血量=984, 当前boss血量=2011，下一个boss的血量=2011
+2024-10-27 15:47:33,046 - root - DEBUG - optimization took 0.03663945198059082 seconds
+2024-10-27 15:47:33,046 - root - DEBUG - loop took 0.05214262008666992 seconds
+2024-10-27 15:47:33,069 - dqn - DEBUG - max_values_boss: tensor([-0.2796], device='cuda:0')
+2024-10-27 15:47:33,069 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:33,070 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:33,096 - root - INFO - 左闪避
+2024-10-27 15:47:33,614 - env_wukong - INFO - Self Blood: 984，Boss Blood: 2011
+2024-10-27 15:47:33,614 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:33,615 - root - INFO - 当前自己的血量=984，下一个自己的血量=984, 当前boss血量=2012，下一个boss的血量=2012
+2024-10-27 15:47:33,639 - dqn - DEBUG - max_values_boss: tensor([-0.2054], device='cuda:0')
+2024-10-27 15:47:33,639 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:33,639 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:33,665 - root - INFO - 左闪避
+2024-10-27 15:47:34,194 - env_wukong - INFO - Self Blood: 984，Boss Blood: 2012
+2024-10-27 15:47:34,195 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:34,195 - root - INFO - 当前自己的血量=984，下一个自己的血量=984, 当前boss血量=2023，下一个boss的血量=2023
+2024-10-27 15:47:34,196 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:47:34,196 - root - DEBUG - Timestep 90
+2024-10-27 15:47:34,196 - root - DEBUG - learning started: 1
+2024-10-27 15:47:34,196 - root - DEBUG - mean reward (10 episodes) -209.600000
+2024-10-27 15:47:34,197 - root - DEBUG - best mean reward -209.600000
+2024-10-27 15:47:34,197 - root - DEBUG - episodes 1
+2024-10-27 15:47:34,197 - root - DEBUG - exploration 0.893125
+2024-10-27 15:47:34,197 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:47:34,197 - root - DEBUG - --------------------------------------
+2024-10-27 15:47:34,220 - dqn - DEBUG - max_values_boss: tensor([-0.1467], device='cuda:0')
+2024-10-27 15:47:34,221 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:34,221 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:34,255 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:34,827 - env_wukong - INFO - Self Blood: 996，Boss Blood: 2023
+2024-10-27 15:47:34,827 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:34,828 - root - INFO - 当前自己的血量=996，下一个自己的血量=996, 当前boss血量=2020，下一个boss的血量=2020
+2024-10-27 15:47:34,852 - dqn - DEBUG - max_values_boss: tensor([-0.2585], device='cuda:0')
+2024-10-27 15:47:34,853 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:47:34,853 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:34,887 - root - INFO - 右闪避
+2024-10-27 15:47:35,403 - env_wukong - INFO - Self Blood: 984，Boss Blood: 2020
+2024-10-27 15:47:35,404 - root - INFO - 掉血惩罚:-2
+2024-10-27 15:47:35,465 - root - INFO - 整体奖励：-1.6
+2024-10-27 15:47:35,465 - root - INFO - 当前自己的血量=984，下一个自己的血量=984, 当前boss血量=2025，下一个boss的血量=2025
+2024-10-27 15:47:35,521 - root - DEBUG - optimization took 0.040013790130615234 seconds
+2024-10-27 15:47:35,522 - root - DEBUG - loop took 0.05561327934265137 seconds
+2024-10-27 15:47:35,545 - dqn - DEBUG - max_values_boss: tensor([-0.1022], device='cuda:0')
+2024-10-27 15:47:35,545 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:35,546 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:35,590 - root - INFO - 右闪避
+2024-10-27 15:47:36,106 - env_wukong - INFO - Self Blood: 1488，Boss Blood: 2025
+2024-10-27 15:47:36,106 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:36,106 - root - INFO - 当前自己的血量=1488，下一个自己的血量=1488, 当前boss血量=2034，下一个boss的血量=2034
+2024-10-27 15:47:36,132 - dqn - DEBUG - max_values_boss: tensor([-0.0162], device='cuda:0')
+2024-10-27 15:47:36,133 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:36,133 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:36,164 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:36,716 - env_wukong - INFO - Self Blood: 984，Boss Blood: 2034
+2024-10-27 15:47:36,717 - root - INFO - 掉血惩罚:-51
+2024-10-27 15:47:36,770 - root - INFO - 打掉boss血而奖励:4
+2024-10-27 15:47:36,771 - root - INFO - 整体奖励：-36.00000000000001
+2024-10-27 15:47:36,771 - root - INFO - 当前自己的血量=984，下一个自己的血量=984, 当前boss血量=2010，下一个boss的血量=2010
+2024-10-27 15:47:36,797 - dqn - DEBUG - max_values_boss: tensor([-0.6433], device='cuda:0')
+2024-10-27 15:47:36,798 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:36,798 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:36,829 - root - INFO - 右闪避
+2024-10-27 15:47:37,353 - env_wukong - INFO - Self Blood: 984，Boss Blood: 2010
+2024-10-27 15:47:37,354 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:37,354 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:37,354 - root - INFO - 当前自己的血量=984，下一个自己的血量=984, 当前boss血量=2010，下一个boss的血量=2010
+2024-10-27 15:47:37,379 - dqn - DEBUG - max_values_boss: tensor([-0.4478], device='cuda:0')
+2024-10-27 15:47:37,380 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:37,380 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:37,412 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:37,977 - env_wukong - INFO - Self Blood: 996，Boss Blood: 2010
+2024-10-27 15:47:37,978 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:37,978 - root - INFO - 当前自己的血量=996，下一个自己的血量=996, 当前boss血量=2012，下一个boss的血量=2012
+2024-10-27 15:47:38,031 - root - DEBUG - optimization took 0.037520408630371094 seconds
+2024-10-27 15:47:38,032 - root - DEBUG - loop took 0.05302929878234863 seconds
+2024-10-27 15:47:38,056 - dqn - DEBUG - max_values_boss: tensor([-0.5002], device='cuda:0')
+2024-10-27 15:47:38,056 - dqn - DEBUG - 预估Boss状态: 大荒星陨
+2024-10-27 15:47:38,056 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:38,089 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:38,661 - env_wukong - INFO - Self Blood: 564，Boss Blood: 2012
+2024-10-27 15:47:38,661 - root - INFO - 掉血惩罚:-44
+2024-10-27 15:47:38,712 - root - INFO - 整体奖励：-35.2
+2024-10-27 15:47:38,713 - root - INFO - 当前自己的血量=564，下一个自己的血量=564, 当前boss血量=2006，下一个boss的血量=2006
+2024-10-27 15:47:38,738 - dqn - DEBUG - max_values_boss: tensor([-0.0010], device='cuda:0')
+2024-10-27 15:47:38,739 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:38,739 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:38,763 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:39,314 - env_wukong - INFO - Self Blood: 144，Boss Blood: 2006
+2024-10-27 15:47:39,315 - root - INFO - 掉血惩罚:-42
+2024-10-27 15:47:39,365 - root - INFO - 整体奖励：-33.6
+2024-10-27 15:47:39,365 - root - INFO - 当前自己的血量=144，下一个自己的血量=144, 当前boss血量=2083，下一个boss的血量=2083
+2024-10-27 15:47:39,387 - dqn - DEBUG - max_values_boss: tensor([-0.2715], device='cuda:0')
+2024-10-27 15:47:39,388 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:39,388 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:39,426 - root - INFO - 左闪避
+2024-10-27 15:47:39,961 - env_wukong - INFO - Self Blood: 864，Boss Blood: 2083
+2024-10-27 15:47:39,961 - root - INFO - 打掉boss血而奖励:12
+2024-10-27 15:47:39,961 - root - INFO - 整体奖励：14.399999999999999
+2024-10-27 15:47:39,962 - root - INFO - 当前自己的血量=864，下一个自己的血量=864, 当前boss血量=2021，下一个boss的血量=2021
+2024-10-27 15:47:39,988 - dqn - DEBUG - max_values_boss: tensor([-0.1051], device='cuda:0')
+2024-10-27 15:47:39,988 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:39,988 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:40,022 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:40,575 - env_wukong - INFO - Self Blood: 816，Boss Blood: 2021
+2024-10-27 15:47:40,576 - root - INFO - 掉血惩罚:-5
+2024-10-27 15:47:40,639 - root - INFO - 整体奖励：-4.0
+2024-10-27 15:47:40,639 - root - INFO - 当前自己的血量=816，下一个自己的血量=816, 当前boss血量=2009，下一个boss的血量=2009
+2024-10-27 15:47:40,695 - root - DEBUG - optimization took 0.03766584396362305 seconds
+2024-10-27 15:47:40,696 - root - DEBUG - loop took 0.055173397064208984 seconds
+2024-10-27 15:47:40,700 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:47:40,700 - root - DEBUG - Timestep 100
+2024-10-27 15:47:40,700 - root - DEBUG - learning started: 1
+2024-10-27 15:47:40,700 - root - DEBUG - mean reward (10 episodes) -209.600000
+2024-10-27 15:47:40,700 - root - DEBUG - best mean reward -209.600000
+2024-10-27 15:47:40,700 - root - DEBUG - episodes 1
+2024-10-27 15:47:40,700 - root - DEBUG - exploration 0.881250
+2024-10-27 15:47:40,701 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:47:40,701 - root - DEBUG - --------------------------------------
+2024-10-27 15:47:40,723 - dqn - DEBUG - max_values_boss: tensor([-0.4557], device='cuda:0')
+2024-10-27 15:47:40,724 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:40,724 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:40,754 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:41,328 - env_wukong - INFO - Self Blood: 792，Boss Blood: 2009
+2024-10-27 15:47:41,328 - root - INFO - 掉血惩罚:-3
+2024-10-27 15:47:41,385 - root - INFO - 整体奖励：-2.4000000000000004
+2024-10-27 15:47:41,385 - root - INFO - 当前自己的血量=792，下一个自己的血量=792, 当前boss血量=2015，下一个boss的血量=2015
+2024-10-27 15:47:41,409 - dqn - DEBUG - max_values_boss: tensor([-0.2492], device='cuda:0')
+2024-10-27 15:47:41,409 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:41,410 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:41,445 - root - INFO - 右闪避
+2024-10-27 15:47:41,978 - env_wukong - INFO - Self Blood: 840，Boss Blood: 2015
+2024-10-27 15:47:41,979 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:41,979 - root - INFO - 当前自己的血量=840，下一个自己的血量=840, 当前boss血量=2026，下一个boss的血量=2026
+2024-10-27 15:47:42,007 - dqn - DEBUG - max_values_boss: tensor([-0.1438], device='cuda:0')
+2024-10-27 15:47:42,007 - dqn - DEBUG - 预估Boss状态: 扔刀
+2024-10-27 15:47:42,008 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:42,033 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:42,586 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2026
+2024-10-27 15:47:42,587 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:42,587 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2019，下一个boss的血量=2019
+2024-10-27 15:47:42,611 - dqn - DEBUG - max_values_boss: tensor([-0.1038], device='cuda:0')
+2024-10-27 15:47:42,612 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:42,612 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:42,645 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:43,200 - env_wukong - INFO - Self Blood: 1560，Boss Blood: 2019
+2024-10-27 15:47:43,201 - root - INFO - 掉血惩罚:-11
+2024-10-27 15:47:43,266 - root - INFO - 整体奖励：-8.8
+2024-10-27 15:47:43,266 - root - INFO - 当前自己的血量=1560，下一个自己的血量=1560, 当前boss血量=2014，下一个boss的血量=2014
+2024-10-27 15:47:43,323 - root - DEBUG - optimization took 0.03951621055603027 seconds
+2024-10-27 15:47:43,323 - root - DEBUG - loop took 0.056528329849243164 seconds
+2024-10-27 15:47:43,348 - dqn - DEBUG - max_values_boss: tensor([-0.7020], device='cuda:0')
+2024-10-27 15:47:43,348 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:43,348 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:43,394 - root - INFO - 左闪避
+2024-10-27 15:47:43,898 - env_wukong - INFO - Self Blood: 1068，Boss Blood: 2014
+2024-10-27 15:47:43,898 - root - INFO - 掉血惩罚:-50
+2024-10-27 15:47:43,950 - root - INFO - 整体奖励：-40.0
+2024-10-27 15:47:43,951 - root - INFO - 当前自己的血量=1068，下一个自己的血量=1068, 当前boss血量=2007，下一个boss的血量=2007
+2024-10-27 15:47:43,975 - dqn - DEBUG - max_values_boss: tensor([-0.2033], device='cuda:0')
+2024-10-27 15:47:43,975 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:43,975 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:44,013 - root - INFO - 右闪避
+2024-10-27 15:47:44,544 - env_wukong - INFO - Self Blood: 1104，Boss Blood: 2007
+2024-10-27 15:47:44,545 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:44,545 - root - INFO - 当前自己的血量=1104，下一个自己的血量=1104, 当前boss血量=2010，下一个boss的血量=2010
+2024-10-27 15:47:44,571 - dqn - DEBUG - max_values_boss: tensor([-0.0196], device='cuda:0')
+2024-10-27 15:47:44,571 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:44,572 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:44,609 - root - INFO - 左闪避
+2024-10-27 15:47:45,122 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2010
+2024-10-27 15:47:45,122 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:45,122 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2044，下一个boss的血量=2044
+2024-10-27 15:47:45,147 - dqn - DEBUG - max_values_boss: tensor([-0.3879], device='cuda:0')
+2024-10-27 15:47:45,148 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:45,148 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:45,185 - root - INFO - 左闪避
+2024-10-27 15:47:45,712 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2044
+2024-10-27 15:47:45,712 - root - INFO - 打掉boss血而奖励:6
+2024-10-27 15:47:45,712 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:45,712 - root - INFO - 整体奖励：7.699999999999999
+2024-10-27 15:47:45,713 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2013，下一个boss的血量=2013
+2024-10-27 15:47:45,766 - root - DEBUG - optimization took 0.03801918029785156 seconds
+2024-10-27 15:47:45,766 - root - DEBUG - loop took 0.053086280822753906 seconds
+2024-10-27 15:47:45,790 - dqn - DEBUG - max_values_boss: tensor([-0.0685], device='cuda:0')
+2024-10-27 15:47:45,790 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:45,791 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:45,822 - root - INFO - 左闪避
+2024-10-27 15:47:46,335 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2013
+2024-10-27 15:47:46,335 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:46,336 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2022，下一个boss的血量=2022
+2024-10-27 15:47:46,361 - dqn - DEBUG - max_values_boss: tensor([-0.5480], device='cuda:0')
+2024-10-27 15:47:46,361 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:46,362 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:46,386 - root - INFO - 左闪避
+2024-10-27 15:47:46,894 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2022
+2024-10-27 15:47:46,894 - root - INFO - 打掉boss血而奖励:3
+2024-10-27 15:47:46,894 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:46,895 - root - INFO - 整体奖励：4.1
+2024-10-27 15:47:46,895 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2003，下一个boss的血量=2003
+2024-10-27 15:47:46,896 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:47:46,896 - root - DEBUG - Timestep 110
+2024-10-27 15:47:46,896 - root - DEBUG - learning started: 1
+2024-10-27 15:47:46,896 - root - DEBUG - mean reward (10 episodes) -209.600000
+2024-10-27 15:47:46,897 - root - DEBUG - best mean reward -209.600000
+2024-10-27 15:47:46,897 - root - DEBUG - episodes 1
+2024-10-27 15:47:46,897 - root - DEBUG - exploration 0.869375
+2024-10-27 15:47:46,897 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:47:46,897 - root - DEBUG - --------------------------------------
+2024-10-27 15:47:46,922 - dqn - DEBUG - max_values_boss: tensor([-0.8687], device='cuda:0')
+2024-10-27 15:47:46,923 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:46,923 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:46,946 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:47,509 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2003
+2024-10-27 15:47:47,510 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:47,510 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2013，下一个boss的血量=2013
+2024-10-27 15:47:47,534 - dqn - DEBUG - max_values_boss: tensor([-0.0181], device='cuda:0')
+2024-10-27 15:47:47,534 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:47,534 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:47,564 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:48,116 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2013
+2024-10-27 15:47:48,116 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:48,117 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2013，下一个boss的血量=2013
+2024-10-27 15:47:48,174 - root - DEBUG - optimization took 0.04100942611694336 seconds
+2024-10-27 15:47:48,175 - root - DEBUG - loop took 0.05751824378967285 seconds
+2024-10-27 15:47:48,200 - dqn - DEBUG - max_values_boss: tensor([-0.1628], device='cuda:0')
+2024-10-27 15:47:48,201 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:47:48,201 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:48,230 - root - INFO - 右闪避
+2024-10-27 15:47:48,755 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2013
+2024-10-27 15:47:48,756 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:48,756 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:48,756 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2101，下一个boss的血量=2101
+2024-10-27 15:47:48,782 - dqn - DEBUG - max_values_boss: tensor([-0.8464], device='cuda:0')
+2024-10-27 15:47:48,782 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:48,783 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:48,813 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:49,378 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2101
+2024-10-27 15:47:49,378 - root - INFO - 打掉boss血而奖励:13
+2024-10-27 15:47:49,378 - root - INFO - 整体奖励：15.6
+2024-10-27 15:47:49,379 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2032，下一个boss的血量=2032
+2024-10-27 15:47:49,404 - dqn - DEBUG - max_values_boss: tensor([-0.3142], device='cuda:0')
+2024-10-27 15:47:49,405 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:49,405 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:49,439 - root - INFO - 左闪避
+2024-10-27 15:47:49,951 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2032
+2024-10-27 15:47:49,951 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:49,951 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:49,951 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2032，下一个boss的血量=2032
+2024-10-27 15:47:49,976 - dqn - DEBUG - max_values_boss: tensor([-0.5435], device='cuda:0')
+2024-10-27 15:47:49,976 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:49,976 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:50,003 - root - INFO - 左闪避
+2024-10-27 15:47:50,527 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2032
+2024-10-27 15:47:50,528 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:50,528 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:50,528 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2035，下一个boss的血量=2035
+2024-10-27 15:47:50,585 - root - DEBUG - optimization took 0.04202413558959961 seconds
+2024-10-27 15:47:50,585 - root - DEBUG - loop took 0.05553698539733887 seconds
+2024-10-27 15:47:50,609 - dqn - DEBUG - max_values_boss: tensor([-0.0061], device='cuda:0')
+2024-10-27 15:47:50,610 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:50,610 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:50,635 - root - INFO - 右闪避
+2024-10-27 15:47:51,144 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2035
+2024-10-27 15:47:51,145 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:51,145 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:51,145 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2029，下一个boss的血量=2029
+2024-10-27 15:47:51,173 - dqn - DEBUG - max_values_boss: tensor([-0.0012], device='cuda:0')
+2024-10-27 15:47:51,174 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:51,174 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:51,202 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:51,778 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2029
+2024-10-27 15:47:51,778 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:51,779 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2024，下一个boss的血量=2024
+2024-10-27 15:47:51,804 - dqn - DEBUG - max_values_boss: tensor([-0.0013], device='cuda:0')
+2024-10-27 15:47:51,805 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:51,805 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:51,833 - root - INFO - 左闪避
+2024-10-27 15:47:52,345 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2024
+2024-10-27 15:47:52,345 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:52,346 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:52,346 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2031，下一个boss的血量=2031
+2024-10-27 15:47:52,371 - dqn - DEBUG - max_values_boss: tensor([-0.0092], device='cuda:0')
+2024-10-27 15:47:52,371 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:52,372 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:52,407 - root - INFO - 左闪避
+2024-10-27 15:47:52,910 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2031
+2024-10-27 15:47:52,910 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:52,911 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:52,911 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2018，下一个boss的血量=2018
+2024-10-27 15:47:52,966 - root - DEBUG - optimization took 0.04103207588195801 seconds
+2024-10-27 15:47:52,967 - root - DEBUG - loop took 0.054544687271118164 seconds
+2024-10-27 15:47:52,967 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:47:52,967 - root - DEBUG - Timestep 120
+2024-10-27 15:47:52,967 - root - DEBUG - learning started: 1
+2024-10-27 15:47:52,967 - root - DEBUG - mean reward (10 episodes) -209.600000
+2024-10-27 15:47:52,967 - root - DEBUG - best mean reward -209.600000
+2024-10-27 15:47:52,967 - root - DEBUG - episodes 1
+2024-10-27 15:47:52,967 - root - DEBUG - exploration 0.857500
+2024-10-27 15:47:52,968 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:47:52,968 - root - DEBUG - --------------------------------------
+2024-10-27 15:47:52,989 - dqn - DEBUG - max_values_boss: tensor([-0.2319], device='cuda:0')
+2024-10-27 15:47:52,990 - dqn - DEBUG - 预估Boss状态: 普攻
+2024-10-27 15:47:52,990 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:53,028 - root - INFO - 右闪避
+2024-10-27 15:47:53,528 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2018
+2024-10-27 15:47:53,529 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:53,529 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:53,529 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2019，下一个boss的血量=2019
+2024-10-27 15:47:53,554 - dqn - DEBUG - max_values_boss: tensor([-0.1960], device='cuda:0')
+2024-10-27 15:47:53,555 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:47:53,555 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:53,588 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:54,144 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2019
+2024-10-27 15:47:54,145 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:54,145 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2017，下一个boss的血量=2017
+2024-10-27 15:47:54,169 - dqn - DEBUG - max_values_boss: tensor([-0.4699], device='cuda:0')
+2024-10-27 15:47:54,170 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:47:54,171 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:47:54,206 - root - INFO - 右闪避
+2024-10-27 15:47:54,728 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2017
+2024-10-27 15:47:54,728 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:54,728 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2024，下一个boss的血量=2024
+2024-10-27 15:47:54,752 - dqn - DEBUG - max_values_boss: tensor([-0.1279], device='cuda:0')
+2024-10-27 15:47:54,752 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:54,753 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:54,784 - root - INFO - 右闪避
+2024-10-27 15:47:55,285 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2024
+2024-10-27 15:47:55,286 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:55,286 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:55,286 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2022，下一个boss的血量=2022
+2024-10-27 15:47:55,345 - root - DEBUG - optimization took 0.04452371597290039 seconds
+2024-10-27 15:47:55,345 - root - DEBUG - loop took 0.05853128433227539 seconds
+2024-10-27 15:47:55,369 - dqn - DEBUG - max_values_boss: tensor([-0.0066], device='cuda:0')
+2024-10-27 15:47:55,369 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:55,369 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:55,396 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:55,958 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2022
+2024-10-27 15:47:55,959 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:55,959 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2026，下一个boss的血量=2026
+2024-10-27 15:47:55,985 - dqn - DEBUG - max_values_boss: tensor([-0.0119], device='cuda:0')
+2024-10-27 15:47:55,986 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:55,986 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:56,024 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:56,578 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2026
+2024-10-27 15:47:56,578 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:56,579 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2024，下一个boss的血量=2024
+2024-10-27 15:47:56,606 - dqn - DEBUG - max_values_boss: tensor([-0.1989], device='cuda:0')
+2024-10-27 15:47:56,606 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:56,606 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:56,639 - root - INFO - 左闪避
+2024-10-27 15:47:57,162 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2024
+2024-10-27 15:47:57,162 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:57,162 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:57,162 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2024，下一个boss的血量=2024
+2024-10-27 15:47:57,187 - dqn - DEBUG - max_values_boss: tensor([-0.0562], device='cuda:0')
+2024-10-27 15:47:57,188 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:57,188 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:57,221 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:57,778 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2024
+2024-10-27 15:47:57,779 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:57,779 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2022，下一个boss的血量=2022
+2024-10-27 15:47:57,835 - root - DEBUG - optimization took 0.03965044021606445 seconds
+2024-10-27 15:47:57,835 - root - DEBUG - loop took 0.05566215515136719 seconds
+2024-10-27 15:47:57,861 - dqn - DEBUG - max_values_boss: tensor([-0.0260], device='cuda:0')
+2024-10-27 15:47:57,862 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:57,863 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:57,896 - root - INFO - 右闪避
+2024-10-27 15:47:58,412 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2022
+2024-10-27 15:47:58,413 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:58,413 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:58,413 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2015，下一个boss的血量=2015
+2024-10-27 15:47:58,439 - dqn - DEBUG - max_values_boss: tensor([-0.0108], device='cuda:0')
+2024-10-27 15:47:58,440 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:58,440 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:58,474 - root - INFO - 右闪避
+2024-10-27 15:47:58,991 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2015
+2024-10-27 15:47:58,991 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:47:58,991 - root - INFO - 整体奖励：0.5
+2024-10-27 15:47:58,992 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2023，下一个boss的血量=2023
+2024-10-27 15:47:58,993 - root - DEBUG - -----------------Stats----------------
+2024-10-27 15:47:58,993 - root - DEBUG - Timestep 130
+2024-10-27 15:47:58,993 - root - DEBUG - learning started: 1
+2024-10-27 15:47:58,993 - root - DEBUG - mean reward (10 episodes) -209.600000
+2024-10-27 15:47:58,993 - root - DEBUG - best mean reward -209.600000
+2024-10-27 15:47:58,993 - root - DEBUG - episodes 1
+2024-10-27 15:47:58,993 - root - DEBUG - exploration 0.845625
+2024-10-27 15:47:58,993 - root - DEBUG - learning_rate 0.001000
+2024-10-27 15:47:58,994 - root - DEBUG - --------------------------------------
+2024-10-27 15:47:59,018 - dqn - DEBUG - max_values_boss: tensor([-0.5224], device='cuda:0')
+2024-10-27 15:47:59,018 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:47:59,018 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:59,058 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:47:59,629 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2023
+2024-10-27 15:47:59,629 - root - INFO - 整体奖励：0.0
+2024-10-27 15:47:59,629 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2019，下一个boss的血量=2019
+2024-10-27 15:47:59,652 - dqn - DEBUG - max_values_boss: tensor([-0.0162], device='cuda:0')
+2024-10-27 15:47:59,653 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:47:59,654 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:47:59,695 - root - INFO - 右闪避
+2024-10-27 15:48:00,209 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2019
+2024-10-27 15:48:00,209 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:48:00,209 - root - INFO - 整体奖励：0.5
+2024-10-27 15:48:00,209 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2030，下一个boss的血量=2030
+2024-10-27 15:48:00,262 - root - DEBUG - optimization took 0.03751087188720703 seconds
+2024-10-27 15:48:00,262 - root - DEBUG - loop took 0.052018165588378906 seconds
+2024-10-27 15:48:00,286 - dqn - DEBUG - max_values_boss: tensor([-0.0931], device='cuda:0')
+2024-10-27 15:48:00,286 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:48:00,286 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:48:00,325 - root - INFO - 气力不足，歇脚一歇
+2024-10-27 15:48:00,896 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2030
+2024-10-27 15:48:00,896 - root - INFO - 整体奖励：0.0
+2024-10-27 15:48:00,896 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2038，下一个boss的血量=2038
+2024-10-27 15:48:00,922 - dqn - DEBUG - max_values_boss: tensor([-0.0061], device='cuda:0')
+2024-10-27 15:48:00,922 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:48:00,922 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:48:00,951 - root - INFO - 右闪避
+2024-10-27 15:48:01,472 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2038
+2024-10-27 15:48:01,472 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:48:01,472 - root - INFO - 整体奖励：0.5
+2024-10-27 15:48:01,473 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2033，下一个boss的血量=2033
+2024-10-27 15:48:01,498 - dqn - DEBUG - max_values_boss: tensor([-0.3312], device='cuda:0')
+2024-10-27 15:48:01,499 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:48:01,499 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:48:01,529 - root - INFO - 左闪避
+2024-10-27 15:48:02,051 - env_wukong - INFO - Self Blood: 1668，Boss Blood: 2033
+2024-10-27 15:48:02,051 - root - INFO - 成功闪避奖励：0.5
+2024-10-27 15:48:02,051 - root - INFO - 整体奖励：0.5
+2024-10-27 15:48:02,051 - root - INFO - 当前自己的血量=1668，下一个自己的血量=1668, 当前boss血量=2051，下一个boss的血量=2051
+2024-10-27 15:48:02,079 - dqn - DEBUG - max_values_boss: tensor([-0.6568], device='cuda:0')
+2024-10-27 15:48:02,079 - dqn - DEBUG - 预估Boss状态: 飞雷神
+2024-10-27 15:48:02,079 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:48:02,114 - root - INFO - 定！五连绝世！
+2024-10-27 15:48:07,510 - env_wukong - INFO - Self Blood: 720，Boss Blood: 2051
+2024-10-27 15:48:07,510 - root - INFO - 掉血惩罚:-95
+2024-10-27 15:48:07,575 - root - INFO - 整体奖励：-76.0
+2024-10-27 15:48:07,575 - root - INFO - 当前自己的血量=720，下一个自己的血量=720, 当前boss血量=2045，下一个boss的血量=2045
+2024-10-27 15:48:07,630 - root - DEBUG - optimization took 0.04010748863220215 seconds
+2024-10-27 15:48:07,631 - root - DEBUG - loop took 0.054111480712890625 seconds
+2024-10-27 15:48:07,654 - dqn - DEBUG - max_values_boss: tensor([-0.0089], device='cuda:0')
+2024-10-27 15:48:07,654 - dqn - DEBUG - 预估Boss状态: 锄地
+2024-10-27 15:48:07,655 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:48:07,695 - root - INFO - 定！五连绝世！
+2024-10-27 15:48:13,096 - env_wukong - INFO - Self Blood: 100，Boss Blood: 2045
+2024-10-27 15:48:13,097 - root - INFO - 掉血惩罚:-62
+2024-10-27 15:48:13,153 - root - INFO - 打掉boss血而奖励:20
+2024-10-27 15:48:13,154 - root - INFO - 整体奖励：-25.6
+2024-10-27 15:48:13,154 - root - INFO - 当前自己的血量=100，下一个自己的血量=100, 当前boss血量=0，下一个boss的血量=0
+2024-10-27 15:48:13,176 - dqn - DEBUG - max_values_boss: tensor([-0.0691], device='cuda:0')
+2024-10-27 15:48:13,177 - dqn - DEBUG - 预估Boss状态: 扔刀
+2024-10-27 15:48:13,177 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:48:13,214 - root - INFO - 右闪避
+2024-10-27 15:48:13,733 - env_wukong - INFO - Self Blood: 2，Boss Blood: 0
+2024-10-27 15:48:13,733 - env_wukong - INFO - 快死了，当前血量：100, 下一个血量：2
+2024-10-27 15:48:15,171 - root - INFO - 当前自己的血量=2，下一个自己的血量=2, 当前boss血量=0，下一个boss的血量=0
+2024-10-27 15:48:15,172 - utils.restart - INFO - 死,开始新一轮
+2024-10-27 15:48:19,666 - root - DEBUG - current episode reward -698
+2024-10-27 15:48:19,690 - dqn - DEBUG - max_values_boss: tensor([-0.6895], device='cuda:0')
+2024-10-27 15:48:19,691 - dqn - DEBUG - 预估Boss状态: 扔刀
+2024-10-27 15:48:19,691 - dqn - DEBUG - Boss攻击--->
+2024-10-27 15:48:19,715 - root - INFO - 一连
+2024-10-27 15:48:20,479 - env_wukong - INFO - Self Blood: 0，Boss Blood: 0
+2024-10-27 15:48:20,479 - env_wukong - INFO - 快死了，当前血量：2, 下一个血量：0
+2024-10-27 15:48:21,926 - root - INFO - 当前自己的血量=0，下一个自己的血量=0, 当前boss血量=0，下一个boss的血量=0
+2024-10-27 15:48:21,927 - utils.restart - INFO - 死,开始新一轮
+2024-10-27 15:48:26,408 - root - DEBUG - current episode reward -6
+2024-10-27 15:48:26,422 - dqn - DEBUG - max_values_boss: tensor([-0.1488], device='cuda:0')
+2024-10-27 15:48:26,422 - dqn - DEBUG - 预估Boss状态: 观察
+2024-10-27 15:48:26,422 - dqn - DEBUG - Boss防守<<<<
+2024-10-27 15:48:26,481 - root - INFO - 左闪避
+2024-10-27 15:48:27,029 - env_wukong - INFO - Self Blood: 0，Boss Blood: 0
+2024-10-27 15:48:27,029 - env_wukong - INFO - 快死了，当前血量：0, 下一个血量：0

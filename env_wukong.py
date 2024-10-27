@@ -99,9 +99,43 @@ class Wukong(object):
         return max(buring_blood, normal_blood, recover_blood)
     
     def malo_blood_count(self):
-        self_blood_img = grab_screen(self.self_blood_window)
-        self_blood_hsv_img = cv2.cvtColor(self_blood_img, cv2.COLOR_BGR2HSV)
-        return self._malo_blood_count(self_blood_hsv_img)
+        # self_blood_img = grab_screen(self.self_blood_window)
+        # self_blood_hsv_img = cv2.cvtColor(self_blood_img, cv2.COLOR_BGR2HSV)
+        # return self._malo_blood_count(self_blood_hsv_img)
+        malo_blood_image = grab_screen(self.self_blood_window)
+        return self._detect_health_bar(malo_blood_image, percentage=False)
+            
+    def _detect_health_bar(self, image_zero, percentage = False):
+
+        image = cv2.GaussianBlur(image_zero, (3, 3), 0) # 剔除毛刺
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # 转换为灰度图
+        
+        # 计算梯度
+        grad_x = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=3)
+        grad_y = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=3)
+        
+        # 计算梯度的绝对值
+        abs_grad_x = cv2.convertScaleAbs(grad_x)
+        abs_grad_y = cv2.convertScaleAbs(grad_y)
+        
+        grad = cv2.addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0) # 合并梯度
+        _, thresh = cv2.threshold(grad, 5, 255, cv2.THRESH_BINARY) # 二值化处理
+        contours, _ = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)  # 查找轮廓
+        
+        if not contours: # 不存在轮廓
+            return 0
+
+        # 假设血条是梯度变化最大的轮廓
+        max_contour = max(contours, key=cv2.contourArea)
+        
+        # 计算血条参数
+        _, _, w, h = cv2.boundingRect(max_contour)
+        
+        # 计算血条含量
+        blood_value = (w / image_zero.shape[1]) * 100 if percentage else w * h
+        
+        return blood_value    
+
 
 
     def self_stamina_count(self, self_stamina_hsv_img): # 气力
@@ -241,10 +275,12 @@ class Wukong(object):
         # next_self_blood = self.self_blood_count(self_blood_hsv_img) # 这里Boss的统计方法和自身是一致的
         next_self_blood = self.malo_blood_count()
 
+
         # boss血量统计
         boss_blood_img = grab_screen(self.boss_blood_window)
         boss_blood_hsv_img = cv2.cvtColor(boss_blood_img, cv2.COLOR_BGR2HSV)
         next_boss_blood = self.boss_blood_count(boss_blood_hsv_img)
+
         # 棍势统计
         self_stamina_img = grab_screen(self.self_stamina_window)
         self_stamina_hsv_img = cv2.cvtColor(
