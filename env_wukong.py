@@ -27,11 +27,12 @@ class Wukong(object):
         self.boss_blood_window = (668, 888, 1018, 900) # boss血条
         self.endurance_window = (183, 979, 305, 985) # 天命人体力
         self.self_blood_window = (181, 948, 319, 959) # 天命人血条
-        self.boss_stamina_window = (345, 78, 690, 81)  # 如果后期有格挡条的boss可以用，刀郎没有, 这里不需要
-        self.self_stamina_window = (180, 979, 304, 986)
+
+        # self.self_stamina_window = (180, 979, 304, 986) # 这就是体力
+        
+        
         self.boss_blood = 0
         self.self_blood = 0
-        self.boss_stamina = 0
         self.self_stamina = 0
         self.stop = 0
         self.emergence_break = 0
@@ -42,7 +43,10 @@ class Wukong(object):
         hsv_value = hsv_img[0,0]
         return hsv_value[2] >= 130
 
-    def boss_blood_count(self, boss_blood_hsv_img):
+    def boss_blood_count(self):
+        boss_blood_img = grab_screen(self.boss_blood_window)
+        boss_blood_hsv_img = cv2.cvtColor(boss_blood_img, cv2.COLOR_BGR2HSV)
+
         lower_white = np.array([0, 0, 180])
         upper_white = np.array([360, 30, 220])
         mask = cv2.inRange(boss_blood_hsv_img, lower_white, upper_white)
@@ -101,12 +105,6 @@ class Wukong(object):
         white_pixel_count = cv2.countNonZero(mask)
         return white_pixel_count
 
-    # def _endurance_count(self, obs_gray): # 天命人气力条
-    #     blurred_img = cv2.GaussianBlur(obs_gray, (3,3), 0)
-    #     canny_edges = cv2.Canny(blurred_img, 10, 100)
-    #     value = canny_edges.argmax(axis=-1)
-    #     return np.max(value)
-
     def take_action(self, action):
         if action == 0:  # j
             directkeys.light_attack()
@@ -125,8 +123,10 @@ class Wukong(object):
         elif action == 7:
             directkeys.kan_po()
 
-    def get_reward(self, boss_blood, next_boss_blood, self_blood, next_self_blood,
-                   boss_stamina, next_boss_stamina, self_stamina, next_self_stamina,
+    def get_reward(self, 
+                   boss_blood, next_boss_blood, 
+                   self_blood, next_self_blood,
+                   self_stamina, next_self_stamina,
                    stop, emergence_break, action, boss_attack):
         logger.info( "Self Blood: %d，Boss Blood: %d"  % (next_self_blood, boss_blood))
         if next_self_blood < 100:     # self dead 用hsv识别则量值大约在400，用canny大约在40
@@ -159,7 +159,7 @@ class Wukong(object):
                 boss_blood_reward = min(boss_blood_reward, 20)
                 logging.info("打掉boss血而奖励:%s" % boss_blood_reward)
 
-            if (action == 1 or action == 3) and boss_attack == True and next_self_stamina - self_stamina >= 7 and next_self_blood-self_blood == 0:
+            if (action == 1 or action == 3) and boss_attack == True and next_self_stamina - self_stamina >= 7 and next_self_blood-self_blood == 0: # 存疑
                 self_stamina_reward += 2
                 logging.info("完美闪避奖励: %s" % self_stamina_reward)
             elif (action == 1 or action == 3) and boss_attack == True and next_self_blood-self_blood == 0:
@@ -195,35 +195,20 @@ class Wukong(object):
         obs_screen = grab_screen(self.obs_window)
         obs_resize = cv2.resize(obs_screen, (self.width, self.height))
         obs = np.array(obs_resize).reshape(-1, self.height, self.width, 4)[0]
-        # 血量统计
-        # self_blood_img = grab_screen(self.self_blood_window)
-        # self_blood_hsv_img = cv2.cvtColor(self_blood_img, cv2.COLOR_BGR2HSV)
-        # next_self_blood = self.self_blood_count(self_blood_hsv_img) # 这里Boss的统计方法和自身是一致的
+        # 状态统计
         next_self_blood = self.malo_blood_count()
+        next_boss_blood = self.boss_blood_count()
+        next_self_stamina = self.malo_endurence_count()
 
 
-        # boss血量统计
-        boss_blood_img = grab_screen(self.boss_blood_window)
-        boss_blood_hsv_img = cv2.cvtColor(boss_blood_img, cv2.COLOR_BGR2HSV)
-        next_boss_blood = self.boss_blood_count(boss_blood_hsv_img)
-
-        # 棍势统计
-        self_stamina_img = grab_screen(self.self_stamina_window)
-        self_stamina_hsv_img = cv2.cvtColor(
-            self_stamina_img, cv2.COLOR_BGR2HSV)
-        next_self_stamina = self.self_stamina_count(self_stamina_hsv_img)
-        # boss架势条统计
-        boss_stamina_img = grab_screen(self.boss_stamina_window)
-        boss_stamina_hsv_img = cv2.cvtColor(
-            boss_stamina_img, cv2.COLOR_BGR2HSV)
-        next_boss_stamina = self.self_stamina_count(boss_stamina_hsv_img)
-        reward, done, stop, emergence_break = self.get_reward(self.boss_blood, next_boss_blood, self.self_blood, next_self_blood,
-                                                              self.boss_stamina, next_boss_stamina, self.self_stamina, next_self_stamina,
-                                                              self.stop, self.emergence_break, action, boss_attack)
+        reward, done, stop, emergence_break = self.get_reward(self.boss_blood, next_boss_blood, 
+                                                              self.self_blood, next_self_blood,
+                                                              self.self_stamina, next_self_stamina,
+                                                              self.stop, self.emergence_break, 
+                                                              action, boss_attack)
         self.self_blood = next_self_blood
         self.boss_blood = next_boss_blood
         self.self_stamina = next_self_stamina
-        self.boss_stamina = next_boss_stamina
         logging.info("当前自己的血量=%s，下一个自己的血量=%s, 当前boss血量=%s，下一个boss的血量=%s" % (self.self_blood, next_self_blood, self.boss_blood, next_boss_blood))
         return (obs, reward, done, stop, emergence_break)
 

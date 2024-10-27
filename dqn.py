@@ -191,46 +191,13 @@ def dqn_learning(env,
         '''-----------------------------------------------'''
         
         '''--------------------手动约束部分-----------------'''
-        selected_num = random.choice([1, 3]) # 1,3分别是左翻滚和右翻滚
-        # if indices_boss.item() == 4 or indices_boss.item() == 9:  # 锄地
-        #     action = torch.tensor([selected_num])
-        # elif indices_boss.item() == 5 or indices_boss.item() == 1 or indices_boss.item() == 2:  # 锄地起飞
-        #     action = torch.tensor([selected_num])
-        # elif indices_boss.item() == 7:  # 普攻
-        #     action = torch.tensor([selected_num])
-        # elif indices_boss.item() == 6:  # 受到攻击
-        #     action = torch.tensor([2])
-        # elif indices_boss.item() == 3: # 飞雷神
-        #     action = torch.tensor([selected_num])
-        # elif indices_boss.item() == 0:  # 冲刺砍或扔刀
-        #     if self_power > 100:
-        #         action = torch.tensor([4])
-        # elif indices_boss.item() == 8:  # 观察
-        #     if self_power > 100:
-        #         action = torch.tensor([4])
-        #     else:
-        #         action = torch.tensor([0])
         if action != 3 and action != 1 and self_endurance < 30 and self_endurance != 0: # 攻击但是没有耐力了
             action = torch.tensor([5])
-        # if indices_boss.item() == 1 and self_power > 50: # 可识破
-        #     action = torch.tensor([7])
-        # for state in state_list:
-        #     if state != 6 and state != 8:
-        #         action = torch.tensor([selected_num])
         if ding_shen_available == True:
             action = torch.tensor([6])
-            
-        # # 额外判断是否倒地，倒地则必须翻滚
-        # res,embed = model_resnet_malo(tensor_malo)
-        # max_values_boss, indices_self = torch.max(res, dim=1)
-        # if indices_self.item() == 0: # 猴倒地
-        #     print("倒地了，翻滚")
-        #     action = torch.tensor([selected_num])
-        
         '''----------------约束结束----------------------'''
-        # state_list.append(indices_boss.item()) # 维护boss状态
-        # print(state_list)
-        obs, reward, done, stop, emergence_break = env.step(action, boss_attack)
+
+        obs, reward, done, _, _ = env.step(action, boss_attack)
         if action == 4:  # 把重棍处理成三连棍
             action = 2
         elif action == 5: # 把歇脚回气力处理成轻棍
