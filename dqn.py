@@ -185,33 +185,8 @@ def dqn_learning(env,
                 
 
         '''---------------自身状态提取--------------'''
-        
-        self_power_window = (1566,971,1599,1008) # 棍势点
-        self_power_img = grab_screen(self_power_window)
-        self_power_hsv = cv2.cvtColor(self_power_img, cv2.COLOR_BGR2HSV)
-        self_power = env.self_power_count(self_power_hsv)  # >50一段 >100第二段
-        
-        #self_endurance_window = (186,987,311,995) # 耐力条
-        self_endurance_window = (181,979, 305, 985)
-        self_endurance_img = grab_screen(self_endurance_window)
-        endurance_gray = cv2.cvtColor(self_endurance_img,cv2.COLOR_BGR2GRAY)
-        self_endurance = env.self_endurance_count(endurance_gray) # 为0是满或空 中间是准确的
-        
-        ding_shen_window = (1458,851,1459,852)
-        ding_shen_img = grab_screen(ding_shen_window)
-        hsv_img = cv2.cvtColor(ding_shen_img, cv2.COLOR_BGR2HSV)
-        hsv_value = hsv_img[0,0]
-        
-        ding_shen_available = False
-        if hsv_value[2] >= 130:
-            ding_shen_available = True
-        
-        self_window = (548,770,1100,1035) # 倒地位置
-        self_img = grab_screen(self_window)
-        screen_reshape = cv2.resize(self_img,(175,200))[20:180,5:165,:3]
-        screen_reshape = screen_reshape.transpose(2,0,1)
-        screen_reshape = screen_reshape.reshape(1,3,160,160)
-        tensor_malo = torch.from_numpy(screen_reshape).type(dtype = torch.float32)
+        self_endurance = env.malo_endurence_count()
+        ding_shen_available = env.dingshen_available()
 
         '''-----------------------------------------------'''
         

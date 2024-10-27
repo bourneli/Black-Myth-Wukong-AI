@@ -21,17 +21,13 @@ class Wukong(object):
         self.death_cnt = 0
         self.action_dim = action_dim
         
-        #self.obs_window = (336,135,1395,795)
         self.obs_window = (0,0,1677,1087)
-        
-        #self.boss_blood_window = (597, 894, 1104, 906)
-        self.boss_blood_window = (668, 888, 1018, 900)
 
-        #self.self_blood_window = (186, 956, 339, 963)
-        self.self_blood_window = (181, 948, 319, 959)
-
-        self.boss_stamina_window = (345, 78, 690, 81)  # 如果后期有格挡条的boss可以用，刀郎没有
-        #self.self_stamina_window = (1473, 938, 1510, 1008)  # 棍势条
+        self.ding_shen_window = (1458, 851, 1459, 852) # 定身技能图标
+        self.boss_blood_window = (668, 888, 1018, 900) # boss血条
+        self.endurance_window = (183, 979, 305, 985) # 天命人体力
+        self.self_blood_window = (181, 948, 319, 959) # 天命人血条
+        self.boss_stamina_window = (345, 78, 690, 81)  # 如果后期有格挡条的boss可以用，刀郎没有, 这里不需要
         self.self_stamina_window = (180, 979, 304, 986)
         self.boss_blood = 0
         self.self_blood = 0
@@ -39,14 +35,12 @@ class Wukong(object):
         self.self_stamina = 0
         self.stop = 0
         self.emergence_break = 0
-        
-    # 用canny边缘检测实现血量识别，不是特别准确，但打刀郎由于血条有特效只能用这个
-    def self_blood_count(self, obs_gray): 
-        # 在这里计算自己截取，会更容易维护
-        blurred_img = cv2.GaussianBlur(obs_gray, (3, 3), 0) 
-        canny_edges = cv2.Canny(blurred_img, 10, 100)
-        value = canny_edges.argmax(axis=-1)
-        return np.max(value)
+
+    def dingshen_available(self):
+        ding_shen_img = grab_screen(self.ding_shen_window)
+        hsv_img = cv2.cvtColor(ding_shen_img, cv2.COLOR_BGR2HSV)
+        hsv_value = hsv_img[0,0]
+        return hsv_value[2] >= 130
 
     def boss_blood_count(self, boss_blood_hsv_img):
         lower_white = np.array([0, 0, 180])
@@ -55,56 +49,20 @@ class Wukong(object):
         white_pixel_count = cv2.countNonZero(mask)
         return white_pixel_count
     
-    def boss_blood_count_b2(self, boss_blood_hsv_img):
-        lower_white = np.array([0, 0, 205])
-        upper_white = np.array([179, 5, 218])
-        mask = cv2.inRange(boss_blood_hsv_img, lower_white, upper_white)
-        white_pixel_count = cv2.countNonZero(mask)
-        return white_pixel_count
-    
-    def _all_malo_blood_count(self):
-        return (self.self_blood_window[2] - self.self_blood_window[0]) * (self.self_blood_window[3] - self.self_blood_window[1])
+    def malo_endurence_count(self):
+        self_endurance_img = grab_screen(self.endurance_window)
+        endurance_gray = cv2.cvtColor(self_endurance_img,cv2.COLOR_BGR2GRAY)
 
-    def _malo_buring_blood_count(self, blood_hsv_img):
-        return self._count_pixels(blood_hsv_img, 
-                                  lower_bound = np.array([0, 20, 205]),
-                                  upper_bound = np.array([179, 67, 215]))
+        blurred_img = cv2.GaussianBlur(endurance_gray, (3,3), 0)
+        canny_edges = cv2.Canny(blurred_img, 10, 100)
+        value = canny_edges.argmax(axis=-1)
+        return np.max(value)
 
-    def _malo_normal_blood_count(self, blood_hsv_img):
-        return self._count_pixels(blood_hsv_img, 
-                                  lower_bound = np.array([0, 0, 205]),
-                                  upper_bound =np.array([179, 5, 218]))
-    
-    
-    def _malo_recover_blood_count(self, blood_hsv_img):
-        return self._count_pixels(blood_hsv_img, 
-                                  lower_bound = np.array([60, 51, 153]), 
-                                  upper_bound =np.array([80, 169, 192]))
-    
-    def _malo_blood_rate(self, blood_count):
-        return blood_count / self._all_malo_blood_count()
-
-
-    def _count_pixels(self, blood_hsv_img, lower_bound, upper_bound):
-        mask = cv2.inRange(blood_hsv_img, lower_bound, upper_bound)
-        pixel_count = cv2.countNonZero(mask)
-        return pixel_count
-
-    def _malo_blood_count(self, blood_hsv_img):
-        buring_blood = self._malo_buring_blood_count(blood_hsv_img)
-        normal_blood = self._malo_normal_blood_count(blood_hsv_img)
-        recover_blood = self._malo_recover_blood_count(blood_hsv_img)
-        logger.debug("正常血：%s, 焚烧血：%s, 恢复血：%s" % (normal_blood, buring_blood, recover_blood))
-
-        return max(buring_blood, normal_blood, recover_blood)
-    
     def malo_blood_count(self):
-        # self_blood_img = grab_screen(self.self_blood_window)
-        # self_blood_hsv_img = cv2.cvtColor(self_blood_img, cv2.COLOR_BGR2HSV)
-        # return self._malo_blood_count(self_blood_hsv_img)
         malo_blood_image = grab_screen(self.self_blood_window)
         return self._detect_health_bar(malo_blood_image, percentage=False)
-            
+        
+    # 利用血条梯度变化，检测血条含量
     def _detect_health_bar(self, image_zero, percentage = False):
 
         image = cv2.GaussianBlur(image_zero, (3, 3), 0) # 剔除毛刺
@@ -136,8 +94,6 @@ class Wukong(object):
         
         return blood_value    
 
-
-
     def self_stamina_count(self, self_stamina_hsv_img): # 气力
         lower_white = np.array([0, 0, 180])
         upper_white = np.array([360, 30, 220])
@@ -145,25 +101,11 @@ class Wukong(object):
         white_pixel_count = cv2.countNonZero(mask)
         return white_pixel_count
 
-    def boss_stamina_count(self, boss_stamina_hsv_img): # 目前刀郎没有架势条（格挡条）
-        lower_white = np.array([0, 0, 180])
-        upper_white = np.array([360, 30, 220])
-        mask = cv2.inRange(boss_stamina_hsv_img, lower_white, upper_white)
-        white_pixel_count = cv2.countNonZero(mask)
-        return white_pixel_count
-    
-    def self_power_count(self,self_power_hsv_img): # 天命人棍势条（斜的棍势条，不包含棍势点）
-        lower_white = np.array([0, 0, 220])
-        upper_white = np.array([360, 45, 256])
-        mask = cv2.inRange(self_power_hsv_img, lower_white, upper_white)
-        white_pixel_count = cv2.countNonZero(mask)
-        return white_pixel_count
-
-    def self_endurance_count(self,obs_gray): # 天命人气力条
-        blurred_img = cv2.GaussianBlur(obs_gray, (3,3), 0)
-        canny_edges = cv2.Canny(blurred_img, 10, 100)
-        value = canny_edges.argmax(axis=-1)
-        return np.max(value)
+    # def _endurance_count(self, obs_gray): # 天命人气力条
+    #     blurred_img = cv2.GaussianBlur(obs_gray, (3,3), 0)
+    #     canny_edges = cv2.Canny(blurred_img, 10, 100)
+    #     value = canny_edges.argmax(axis=-1)
+    #     return np.max(value)
 
     def take_action(self, action):
         if action == 0:  # j
@@ -193,22 +135,6 @@ class Wukong(object):
             done = 1
             stop = 0
             emergence_break += 1
-            # if self.death_cnt <= 2:
-            #     self.death_cnt += 1
-            #     print("后跳并喝血")
-            #     pyautogui.keyDown('S')
-            #     directkeys.dodge()
-            #     directkeys.dodge()
-            #     directkeys.dodge()
-            #     time.sleep(0.2)
-            #     pyautogui.press('R')
-            #     time.sleep(1)
-            #     pyautogui.press('R')
-            #     pyautogui.press('R')
-            #     pyautogui.keyUp('S')
-            #     time.sleep(1)
-            # else:
-            #     pass
             
             # 用风灵月影增加训练效率
             pyautogui.keyDown('num2')
