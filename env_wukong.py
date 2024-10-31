@@ -4,7 +4,7 @@ import time
 import matplotlib.pyplot as plt
 import utils.directkeys as directkeys
 import numpy as np
-from screen_key_grab.grabscreen import grab_screen
+from screen_key_grab.grabscreen import grab_screen, crop_screen
 from screen_key_grab.getkeys import key_check
 from utils.restart import restart
 import logging
@@ -37,14 +37,14 @@ class Wukong(object):
         self.stop = 0
         self.emergence_break = 0
 
-    def dingshen_available(self):
-        ding_shen_img = grab_screen(self.ding_shen_window)
+    def dingshen_available(self, current_screen):
+        ding_shen_img = crop_screen(current_screen, self.ding_shen_window)
         hsv_img = cv2.cvtColor(ding_shen_img, cv2.COLOR_BGR2HSV)
         hsv_value = hsv_img[0,0]
         return hsv_value[2] >= 130
 
-    def boss_blood_count(self):
-        boss_blood_img = grab_screen(self.boss_blood_window)
+    def boss_blood_count(self, current_screen):
+        boss_blood_img = crop_screen(current_screen, self.boss_blood_window)
         boss_blood_hsv_img = cv2.cvtColor(boss_blood_img, cv2.COLOR_BGR2HSV)
 
         lower_white = np.array([0, 0, 180])
@@ -53,8 +53,8 @@ class Wukong(object):
         white_pixel_count = cv2.countNonZero(mask)
         return white_pixel_count
     
-    def malo_endurence_count(self):
-        self_endurance_img = grab_screen(self.endurance_window)
+    def malo_endurence_count(self, current_screen):
+        self_endurance_img = crop_screen(current_screen, self.endurance_window)
         endurance_gray = cv2.cvtColor(self_endurance_img,cv2.COLOR_BGR2GRAY)
 
         blurred_img = cv2.GaussianBlur(endurance_gray, (3,3), 0)
@@ -62,9 +62,12 @@ class Wukong(object):
         value = canny_edges.argmax(axis=-1)
         return np.max(value)
 
-    def malo_blood_count(self):
-        malo_blood_image = grab_screen(self.self_blood_window)
+    def malo_blood_count(self, current_screen):
+        malo_blood_image = crop_screen(current_screen, self.self_blood_window)
         return self._detect_health_bar(malo_blood_image, percentage=False)
+    
+    
+
         
     # 利用血条梯度变化，检测血条含量
     def _detect_health_bar(self, image_zero, percentage = False):
@@ -144,34 +147,33 @@ class Wukong(object):
             pyautogui.keyUp('num2') 
             return reward, done, stop, emergence_break
 
-        else:
-            reward = 0
-            self_blood_reward = 0
-            boss_blood_reward = 0
-            self_stamina_reward = 0
-            if next_self_blood - self_blood < -5:
-                self_blood_reward = (next_self_blood - self_blood) // 10
-                logging.info("掉血惩罚:%s" % self_blood_reward)
-                time.sleep(0.05)
-                # 防止连续取帧时一直计算掉血
-            if next_boss_blood - boss_blood <= -18:
-                boss_blood_reward = (boss_blood - next_boss_blood) // 5
-                boss_blood_reward = min(boss_blood_reward, 20)
-                logging.info("打掉boss血而奖励:%s" % boss_blood_reward)
+        reward = 0
+        self_blood_reward = 0
+        boss_blood_reward = 0
+        self_stamina_reward = 0
+        if next_self_blood - self_blood < -5:
+            self_blood_reward = (next_self_blood - self_blood) // 10
+            logging.info("掉血惩罚:%s" % self_blood_reward)
+            time.sleep(0.05)
+            # 防止连续取帧时一直计算掉血
+        if next_boss_blood - boss_blood <= -18:
+            boss_blood_reward = (boss_blood - next_boss_blood) // 5
+            boss_blood_reward = min(boss_blood_reward, 20)
+            logging.info("打掉boss血而奖励:%s" % boss_blood_reward)
 
-            if (action == 1 or action == 3) and boss_attack == True and next_self_stamina - self_stamina >= 7 and next_self_blood-self_blood == 0: # 存疑
-                self_stamina_reward += 2
-                logging.info("完美闪避奖励: %s" % self_stamina_reward)
-            elif (action == 1 or action == 3) and boss_attack == True and next_self_blood-self_blood == 0:
-                self_stamina_reward += 0.5
-                logging.info("成功闪避奖励：%s" % self_stamina_reward)
+        if (action == 1 or action == 3) and boss_attack == True and next_self_stamina - self_stamina >= 7 and next_self_blood-self_blood == 0: # 存疑
+            self_stamina_reward += 2
+            logging.info("完美闪避奖励: %s" % self_stamina_reward)
+        elif (action == 1 or action == 3) and boss_attack == True and next_self_blood-self_blood == 0:
+            self_stamina_reward += 0.5
+            logging.info("成功闪避奖励：%s" % self_stamina_reward)
 
-            reward = reward + self_blood_reward * 0.8 + \
-                boss_blood_reward * 1.2 + self_stamina_reward * 1.0
-            logging.info("整体奖励：%s" % reward)
-            done = 0
-            emergence_break = 0
-            return reward, done, stop, emergence_break
+        reward = reward + self_blood_reward * 0.8 + \
+            boss_blood_reward * 1.2 + self_stamina_reward * 1.0
+        logging.info("整体奖励：%s" % reward)
+        done = 0
+        emergence_break = 0
+        return reward, done, stop, emergence_break
 
     def step(self, action, boss_attack):
         if (action == 0):
@@ -193,14 +195,17 @@ class Wukong(object):
         self.take_action(action)
 
         obs_screen = grab_screen(self.obs_window)
+
+        
+
+        # agent学习的输入
         obs_resize = cv2.resize(obs_screen, (self.width, self.height))
         obs = np.array(obs_resize).reshape(-1, self.height, self.width, 4)[0]
-        # 状态统计
-        next_self_blood = self.malo_blood_count()
-        next_boss_blood = self.boss_blood_count()
-        next_self_stamina = self.malo_endurence_count()
 
-
+        # 状态统计，用于计算奖励
+        next_self_blood = self.malo_blood_count(obs_screen)
+        next_boss_blood = self.boss_blood_count(obs_screen)
+        next_self_stamina = self.malo_endurence_count(obs_screen)
         reward, done, stop, emergence_break = self.get_reward(self.boss_blood, next_boss_blood, 
                                                               self.self_blood, next_self_blood,
                                                               self.self_stamina, next_self_stamina,
@@ -246,6 +251,11 @@ class Wukong(object):
         return obs
 
 
+def sub_screen(region, screen_np):
+    x_start, y_start, x_end, y_end = region
+    # todo: 添加assert
+    return screen_np[y_start:y_end, x_start:x_end]
+
 def collect_screenshot():
     from datetime import datetime
     ts = datetime.now().strftime("%Y%m%d-%H_%M_%S")
@@ -253,11 +263,24 @@ def collect_screenshot():
 
     env = Wukong(observation_w=175, observation_h=200, action_dim=4)
     screenshot = grab_screen(env.obs_window)
+
+    
+
     # 显示截取的图像
-    #cv2.imshow("Screenshot", screenshot)
+    cv2.imshow("Screenshot", screenshot)
     cv2.imwrite(image_file, screenshot)
     print("Save image %s" % image_file)
-    #cv2.waitKey(0)
+    cv2.waitKey(0)
+
+    region = (0, 100, 500, 1000)
+    # x_start, y_start, x_end, y_end = region
+    # screenshot = screenshot[y_start:y_end, x_start:x_end]
+
+    screenshot = crop_screen(screenshot, region)
+
+    cv2.imshow("Sub Screen", screenshot)
+    cv2.waitKey(0)
+
     cv2.destroyAllWindows()
 
 def extract_screenshot_info():
@@ -306,6 +329,6 @@ def extract_screenshot_info():
 
 
 if __name__ == '__main__':
-    #collect_screenshot()
-    extract_screenshot_info()
+    collect_screenshot()
+    #extract_screenshot_info()
     

@@ -43,6 +43,24 @@ def grab_screen(region=None):
     return img
 
 
+def crop_screen(screen_np, region):
+    # 转换索引
+    x_start, y_start, x_end, y_end = region
+
+    # 添加assert
+    assert screen_np.ndim >= 2, "screen_np.shape  is %s" % str(screen_np.shape)
+    
+    assert 0 <= x_start
+    assert x_start <= x_end
+    assert x_end <= screen_np.shape[1]
+    
+    assert 0 <= y_start
+    assert y_start <= y_end
+    assert y_end <= screen_np.shape[0]
+
+    return screen_np[y_start:y_end, x_start:x_end]
+
+
 if __name__ == "__main__":
     # 截取整个屏幕
     screenshot = grab_screen()

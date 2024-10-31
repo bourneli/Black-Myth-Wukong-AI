@@ -185,8 +185,9 @@ def dqn_learning(env,
                 
 
         '''---------------自身状态提取--------------'''
-        self_endurance = env.malo_endurence_count()
-        ding_shen_available = env.dingshen_available()
+        current_screen = grab_screen()
+        self_endurance = env.malo_endurence_count(current_screen)
+        ding_shen_available = env.dingshen_available(current_screen)
 
         '''-----------------------------------------------'''
         
