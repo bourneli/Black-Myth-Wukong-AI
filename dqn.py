@@ -207,15 +207,12 @@ def dqn_learning(env,
             action = 2
         elif action == 7: # 识破处理成重棍
             action = 2
+
+        reward_10 += reward 
+        reward_cnt += 1
         if reward_cnt % 30 == 0:
-            reward_10 += reward
-            writer.add_scalars(
-                "reward", {"reward_10":  reward_10}, (reward_cnt) / 30)
+            writer.add_scalars("reward", {"reward_10":reward_10}, reward_cnt/30)
             reward_10 = 0
-            reward_cnt += 1
-        else:
-            reward_10 += reward
-            reward_cnt += 1
         episode_reward += reward
         replay_buffer.store_effect(last_stored_frame_idx, action, reward, done)
         if done:
@@ -250,8 +247,7 @@ def dqn_learning(env,
             # input batches to networks
             # get the Q values for current observations (Q(s,a, theta_i))
             output_boss_, intermediate_results_boss = model_resnet_boss(obs_t)
-            output_boss_, intermediate_results_boss_tp1 = model_resnet_boss(
-                obs_tp1)
+            output_boss_, intermediate_results_boss_tp1 = model_resnet_boss(obs_tp1)
             q_values = Q(intermediate_results_boss)
             q_s_a = q_values.gather(1, act_t.unsqueeze(1))
             q_s_a = q_s_a.squeeze()
