@@ -30,22 +30,22 @@ class BlackMythWukongEnv(gym.Env):
         
     def reset(self):
         self._move_to_boss()
-        self._current_state = self._capture_game_screen()
+        _, self._current_state = self._capture_game_screen()
         return self._current_state
 
     def step(self, action):
         self._take_action(action) # 执行一个动作，并更新环境状态
-        self._current_state = self._capture_game_screen() # 获取新状态（截图）
-        reward = self._calculate_reward(self._current_state) # 计算奖励，例如根据图片中的信息判断奖励
-        done = self._check_done(self._current_state) # 检查是否完成  
-        info = {}# 返回状态、奖励、是否结束以及额外信息
+        original_screen, self._current_state = self._capture_game_screen() # 获取新状态（截图）
+        reward = self._calculate_reward(original_screen) # 计算奖励，例如根据图片中的信息判断奖励
+        done = self._check_done(original_screen) # 检查是否完成  
+        info = {}# 返回状态、奖励、是否结束以及额外信息，可能需要将额外信息放在info里面，后面用来回溯扣血等信息。
         return self._current_state, reward, done, info
 
     def _capture_game_screen(self):        
         screenshot = np.array(pyautogui.screenshot(region=self._game_region)) # 截图作为状态输入
         assert len(self.observation_space.shape) >= 2, "Observation space shape must have at least two dimensions."
         resized_screenshot = cv2.resize(screenshot, self.observation_space.shape[0:2]) # 调整大小以符合observation_space的定义
-        return resized_screenshot
+        return (screenshot, resized_screenshot)
 
     def _take_action(self, action):
         # 执行动作，根据action的值选择游戏操作，例如模拟按键
@@ -63,7 +63,7 @@ class BlackMythWukongEnv(gym.Env):
         # 3.锁定boss
         pass
 
-    def _calculate_reward(self, state):
+    def _calculate_reward(self, original_screent):
         # 分析状态（图片）并计算奖励，可以在这里添加图像分析逻辑
         reward = 0
         # 示例：简单返回一个固定奖励
