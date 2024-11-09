@@ -7,6 +7,7 @@ import keyboard # 执行会和人类相同，pyautogui执行键盘较慢。
 import time
 from screen_key_grab.grabscreen import crop_screen
 from paddleocr import PaddleOCR
+from collections import deque
 
 def execute_keyboard(key, delay):
     keyboard.press(key)
@@ -36,14 +37,16 @@ class BlackMythWukongEnv(gym.Env):
         self._game_height = right_bottom_y - game_left_top_y
         self._malo_blood_window = (round(self._game_width*0.110), self._game_height(self._game_height*0.867), 
                                    round(self._game_width*0.265) , round(self._game_height*0.878)) 
-        self._boos_blood_window = (round(self._game_width*0.357), self._game_height(self._game_height*0.810), 
+        self._boss_blood_window = (round(self._game_width*0.357), self._game_height(self._game_height*0.810), 
                                    round(self._game_width*0.657), round(self._game_height* 0.820)) 
         self._boss_defeated_window = (round(self._game_width*0.455), self._game_height(self._game_height*0.461) , 
                                       round(self._game_width*0.548) , round(self._game_height*0.497)) 
         # 动作延迟，模拟人类操作，单位：秒
         self._action_delay = 0.08 
+        # 目前没有gpu加速，如果有需要，可以配置本地环境
+        self._ocr = PaddleOCR(lang='ch',use_angle_cls=False, use_gpu=False)  
 
-        self._ocr = PaddleOCR(lang='ch',use_angle_cls=False, use_gpu=False)  # 设置语言为中文，目前没有gpu加速，如果有需要，可以配置本地环境
+        self._history = deque(maxlen=100) # 存储malo和boss状态，用于计算reward
         
     def render(self, mode='human', close=False):
         """
@@ -80,7 +83,12 @@ class BlackMythWukongEnv(gym.Env):
 
         screen_image = self._capture_game_screen() # 获取新状态（截图）
         next_state = self._covert_screenshot_to_state(screen_image)
-        reward = self._calculate_reward(screen_image) # 计算奖励，例如根据图片中的信息判断奖励
+
+        malo_blood = self._calculate_malo_blood(screen_image)
+        boss_blood = self._calculate_boss_blood(screen_image)
+        self._history.append((malo_blood,boss_blood))
+
+        reward = self._calculate_reward() # 计算奖励，例如根据图片中的信息判断奖励
         done = self._check_done(screen_image) # 检查是否完成  
         info = {}# 返回状态、奖励、是否结束以及额外信息，可能需要将额外信息放在info里面，后面用来回溯扣血等信息。
         
@@ -117,11 +125,20 @@ class BlackMythWukongEnv(gym.Env):
         execute_keyboard("W", delay=10 ) # 走到boss面前
 
 
-    def _calculate_reward(self, original_screent):
-        # 分析状态（图片）并计算奖励，可以在这里添加图像分析逻辑
+    def _calculate_reward(self):
+        lastest_state = self._history[-10:0] # 10个差不多有1s
         reward = 0
-        # 示例：简单返回一个固定奖励
-        # 实际情况可能是检测敌人数量、主角生命值等
+        if lastest_state is None: # 没有历史数据
+            return reward 
+
+        # 这个地方取队列有问题，后面需要修改
+        newest_malo_blood, newest_boss_blood = lastest_state[0]
+        oldest_malo_blood, oldest_boss_blood = lastest_state[-1]            
+
+        if newest_malo_blood - oldest_malo_blood < 0: # malo掉血，减分
+            reward -= 10
+        if newest_boss_blood - oldest_boss_blood < 0: # boss掉血，加分
+            reward += 3
         return reward
 
     def _check_done(self, original_screen):
@@ -151,6 +168,10 @@ class BlackMythWukongEnv(gym.Env):
     def _calculate_malo_blood(self, original_screen, percentage=False):
         malo_blood_image = crop_screen(original_screen, self._malo_blood_window)
         return self._detect_health_bar(malo_blood_image, percentage=percentage)
+    
+    def _calculate_boss_blood(self, original_screen, percentage=False):
+        bloss_blood_image = crop_screen(original_screen, self._boss_blood_window)
+        return self._detect_health_bar(bloss_blood_image, percentage=percentage)
 
     # 利用血条梯度变化，检测血条含量
     def _detect_health_bar(self, image_zero, percentage = False):
