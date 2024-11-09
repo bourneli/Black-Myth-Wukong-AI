@@ -107,7 +107,7 @@ class BlackMythWukongEnv(gym.Env):
         # 执行动作，根据action的值选择游戏操作，例如模拟按键
         action_map = {
              0:"W", 1:"A", 2:"S", 3:"D", # 方向
-             4:"O", 5:"K", 6:"ctrl", 7:"space", 8:"J", 9:"M" # 行为
+             4:"O", 5:"K", 6:"ctrl", 7:"space", 8:"J", 9:"M" # 行为，加血也是需要的，后面要写进去
         }
         assert action in action_map, "action = %d is not supported" % action 
         execute_keyboard(action_map[action], self._action_delay)
