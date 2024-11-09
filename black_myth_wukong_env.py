@@ -6,9 +6,17 @@ import pyautogui  # 用于截图等操作
 import keyboard # 执行会和人类相同，pyautogui执行键盘较慢。
 import time
 from screen_key_grab.grabscreen import crop_screen
+from paddleocr import PaddleOCR
+
+def execute_keyboard(key, delay):
+    keyboard.press(key)
+    time.sleep(delay)
+    keyboard.release(key)
 
 class BlackMythWukongEnv(gym.Env):
-    def __init__(self):
+    def __init__(self, 
+                 game_left_top_x=0, game_left_top_y=40,
+                 right_bottom_x=1680, right_bottom_y=1090):
         super(BlackMythWukongEnv, self).__init__()
         
         ##############################
@@ -23,25 +31,60 @@ class BlackMythWukongEnv(gym.Env):
         # 自定义特征
         ##############################
         # 游戏画面所在区域
-        self._game_region = (0, 40, 1680, 1090) # 游戏画面区域
-        self._malo_blood_window = (181, 908, 319, 959) # 天命人血条，相对于游戏画面
+        self._game_region = (game_left_top_x, game_left_top_y, right_bottom_x, right_bottom_y) # 游戏画面区域
+        self._game_width = right_bottom_x - game_left_top_x
+        self._game_height = right_bottom_y - game_left_top_y
+        self._malo_blood_window = (round(self._game_width*0.110), self._game_height(self._game_height*0.867), 
+                                   round(self._game_width*0.265) , round(self._game_height*0.878)) 
+        self._boos_blood_window = (round(self._game_width*0.357), self._game_height(self._game_height*0.810), 
+                                   round(self._game_width*0.657), round(self._game_height* 0.820)) 
+        self._boss_defeated_window = (round(self._game_width*0.455), self._game_height(self._game_height*0.461) , 
+                                      round(self._game_width*0.548) , round(self._game_height*0.497)) 
         # 动作延迟，模拟人类操作，单位：秒
         self._action_delay = 0.08 
+
+        self._ocr = PaddleOCR(lang='ch',use_angle_cls=False, use_gpu=False)  # 设置语言为中文，目前没有gpu加速，如果有需要，可以配置本地环境
         
+    def render(self, mode='human', close=False):
+        """
+        渲染环境，可在控制台或图形界面中显示状态活日志
+        """
+        pass
+
     def reset(self):
+        """
+        重置环境状态，并返回初始状态。
+        
+        返回:
+            state (int): 重置后的初始状态
+        """
         self._move_to_boss()
         original_screenshot = self._capture_game_screen()
         current_state = self._covert_screenshot_to_state(original_screenshot)
         return current_state
 
     def step(self, action):
+        """
+        执行给定的动作，并返回新的状态、奖励、是否终止和其他信息。
+        
+        参数:
+            action (int): 智能体选择的动作
+        
+        返回:
+            state (int): 新的状态
+            reward (float): 当前步的奖励
+            done (bool): 表示是否达到终止条件
+            info (dict): 额外的诊断信息
+        """
         self._take_action(action) # 执行一个动作，并更新环境状态
-        original_screen = self._capture_game_screen() # 获取新状态（截图）
-        reward = self._calculate_reward(original_screen) # 计算奖励，例如根据图片中的信息判断奖励
-        done = self._check_done(original_screen) # 检查是否完成  
-        current_state = self._covert_screenshot_to_state(original_screen)
+
+        screen_image = self._capture_game_screen() # 获取新状态（截图）
+        next_state = self._covert_screenshot_to_state(screen_image)
+        reward = self._calculate_reward(screen_image) # 计算奖励，例如根据图片中的信息判断奖励
+        done = self._check_done(screen_image) # 检查是否完成  
         info = {}# 返回状态、奖励、是否结束以及额外信息，可能需要将额外信息放在info里面，后面用来回溯扣血等信息。
-        return current_state, reward, done, info
+        
+        return next_state, reward, done, info
 
     def _capture_game_screen(self): 
         # 如果截屏性能存在瓶颈，可以考虑win32 API来截取
@@ -52,7 +95,6 @@ class BlackMythWukongEnv(gym.Env):
         resized_screenshot = cv2.resize(screenshot, self.observation_space.shape[0:2]) # 调整大小以符合observation_space的定义
         return resized_screenshot
 
-
     def _take_action(self, action):
         # 执行动作，根据action的值选择游戏操作，例如模拟按键
         action_map = {
@@ -60,14 +102,20 @@ class BlackMythWukongEnv(gym.Env):
              4:"O", 5:"K", 6:"ctrl", 7:"space", 8:"J", 9:"M" # 行为
         }
         assert action in action_map, "action = %d is not supported" % action 
-        execute_action(action_map[action],  delay=self._action_delay)
+        execute_keyboard(action_map[action], self._action_delay)
         
     def _move_to_boss(self):
-        # 这里需要寻路，大圣残躯寻路最简单，广智有点难
-        # 1.等待加载和重生
-        # 2.寻路到boss附近   
-        # 3.锁定boss
-        pass
+        # 等待加载和重生
+        while True:
+            time.sleep(2) # 控制节奏，不用很频繁
+            original_screen = self._capture_game_screen() # 获取新状态（截图）
+            malo_blood_rate = self._calculate_malo_blood(original_screen, percentage=True)
+            if malo_blood_rate > 0.975: # 理论上是100%，但是CV提取存在误差，所以没有设置100%
+                break
+
+        execute_keyboard("L", self._action_delay) # 锁定boss
+        execute_keyboard("W", delay=10 ) # 走到boss面前
+
 
     def _calculate_reward(self, original_screent):
         # 分析状态（图片）并计算奖励，可以在这里添加图像分析逻辑
@@ -81,13 +129,24 @@ class BlackMythWukongEnv(gym.Env):
         malo_blood = self._calculate_malo_blood(original_screen, percentage=True)
         if malo_blood < 0.01: # 检测malo的血量
             done = True
-        if self._has_won(original_screen):    # 检测“得胜”字样
+        if self._has_won(original_screen):
             done = True
 
         return done
     
     def _has_won(self, origin_screen):
-        return False
+        boss_state_img = crop_screen(origin_screen, self._boss_defeated_window)
+        result = self._ocr.ocr(boss_state_img, cls=False) 
+        boss_defeated = False
+        for line in result:
+            for box in line:
+                text = box[1][0]
+                if "击败" in text:
+                    boss_defeated = True
+                    break
+            if boss_defeated:
+                break
+        return boss_defeated
 
     def _calculate_malo_blood(self, original_screen, percentage=False):
         malo_blood_image = crop_screen(original_screen, self._malo_blood_window)
@@ -123,29 +182,8 @@ class BlackMythWukongEnv(gym.Env):
         # 计算血条含量
         blood_value = (w / image_zero.shape[1]) * 100 if percentage else w * h
         
-        return blood_value    
-    
-def execute_action(action_key, delay = 0.05):
-    keyboard.press(action_key)
-    time.sleep(delay)
-    keyboard.release(action_key)
+        return blood_value   
 
 
 if __name__ == '__main__':
-    from PIL import Image
-    import pytesseract
-
-    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
-
-    # 加载图片
-    image_path = './img/win_screenshot/win2.jpg'
-    image = Image.open(image_path)
-
-    # 使用 OCR 识别图片中的文字
-    text = pytesseract.image_to_string(image, lang='chi_tra')  # 使用繁体中文识别
-
-    # 检查是否包含“得勝”字样
-    if "得勝" in text:
-        print("图片中包含'得勝'字样。")
-    else:
-        print("图片中不包含'得勝'字样。")
+    pass
