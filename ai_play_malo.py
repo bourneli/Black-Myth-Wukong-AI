@@ -61,21 +61,15 @@ def AIPlayMalo(env: gym.Env, total_timesteps: int = 100000, model_save_path: str
 # 主函数
 def main():
     # 创建环境，使用DummyVecEnv包装环境以兼容Stable-Baselines3
-    env = DummyVecEnv([lambda: BlackMythWukongEnv()])
+    env = DummyVecEnv([lambda: BlackMythWukongEnv( 
+        game_left_top_x=0, game_left_top_y=40,
+        right_bottom_x=1680, right_bottom_y=1090)])
     
     # 调用AIPlayMalo进行训练，并指定模型保存路径
     print("开始训练...")
     model = AIPlayMalo(env, total_timesteps=100000, model_save_path="./models/")
-    print("训练完成！")
+    print("训练完成！%s" % model)
 
-    # 测试训练后的模型
-    obs = env.reset()
-    for _ in range(1000):
-        action, _states = model.predict(obs, deterministic=True)
-        obs, reward, done, info = env.step(action)
-        env.render()
-        if done:
-            obs = env.reset()
 
 # 运行主函数
 if __name__ == "__main__":

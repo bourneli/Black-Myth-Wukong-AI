@@ -9,10 +9,24 @@ from screen_key_grab.grabscreen import crop_screen
 from paddleocr import PaddleOCR
 from collections import deque
 
+# TODO： 添加日志
+
 def execute_keyboard(key, delay):
     keyboard.press(key)
     time.sleep(delay)
     keyboard.release(key)
+
+def get_latest_elements_from_deque(dq, num_elements):
+    """
+    使用迭代器获取 dq 中最近的 num_elements 个元素。
+    
+    :param dq: 包含元素的 deque 实例
+    :param num_elements: 要获取的最新元素数量
+    :return: 包含最新元素的迭代器
+    """
+    from itertools import islice
+    num_elements = min(len(dq), num_elements)   # 确保 num_elements 不大于 dq 的长度
+    return islice(dq, len(dq) - num_elements, len(dq))  # 通过 islice 获取队列尾部的迭代器
 
 class BlackMythWukongEnv(gym.Env):
     def __init__(self, 
@@ -41,11 +55,9 @@ class BlackMythWukongEnv(gym.Env):
                                    round(self._game_width*0.657), round(self._game_height* 0.820)) 
         self._boss_defeated_window = (round(self._game_width*0.455), self._game_height(self._game_height*0.461) , 
                                       round(self._game_width*0.548) , round(self._game_height*0.497)) 
-        # 动作延迟，模拟人类操作，单位：秒
-        self._action_delay = 0.08 
-        # 目前没有gpu加速，如果有需要，可以配置本地环境
-        self._ocr = PaddleOCR(lang='ch',use_angle_cls=False, use_gpu=False)  
-
+        
+        self._action_delay = 0.08 # 动作延迟，模拟人类操作，单位：秒
+        self._ocr = PaddleOCR(lang='ch',use_angle_cls=False, use_gpu=False)  # 目前没有gpu加速，如果有需要，可以配置本地环境
         self._history = deque(maxlen=100) # 存储malo和boss状态，用于计算reward
         
     def render(self, mode='human', close=False):
@@ -61,7 +73,7 @@ class BlackMythWukongEnv(gym.Env):
         返回:
             state (int): 重置后的初始状态
         """
-        self._move_to_boss()
+        self._reloading_and_move_to_boss()
         original_screenshot = self._capture_game_screen()
         current_state = self._covert_screenshot_to_state(original_screenshot)
         return current_state
@@ -84,13 +96,13 @@ class BlackMythWukongEnv(gym.Env):
         screen_image = self._capture_game_screen() # 获取新状态（截图）
         next_state = self._covert_screenshot_to_state(screen_image)
 
+        # 获取动作执行后，核心状态
         malo_blood = self._calculate_malo_blood(screen_image)
         boss_blood = self._calculate_boss_blood(screen_image)
-        self._history.append((malo_blood,boss_blood))
-
+        self._history.append((malo_blood, boss_blood))
         reward = self._calculate_reward() # 计算奖励，例如根据图片中的信息判断奖励
         done = self._check_done(screen_image) # 检查是否完成  
-        info = {}# 返回状态、奖励、是否结束以及额外信息，可能需要将额外信息放在info里面，后面用来回溯扣血等信息。
+        info = {"malo_blood":malo_blood, "boss_blood":boss_blood}# 返回状态、奖励、是否结束以及额外信息，可能需要将额外信息放在info里面，后面用来回溯扣血等信息。
         
         return next_state, reward, done, info
 
@@ -112,7 +124,7 @@ class BlackMythWukongEnv(gym.Env):
         assert action in action_map, "action = %d is not supported" % action 
         execute_keyboard(action_map[action], self._action_delay)
         
-    def _move_to_boss(self):
+    def _reloading_and_move_to_boss(self):
         # 等待加载和重生
         while True:
             time.sleep(2) # 控制节奏，不用很频繁
@@ -126,14 +138,12 @@ class BlackMythWukongEnv(gym.Env):
 
 
     def _calculate_reward(self):
-        lastest_state = self._history[-10:0] # 10个差不多有1s
+        lastest_state = get_latest_elements_from_deque(self._history, 10)# 10个差不多有1s
         reward = 0
         if lastest_state is None: # 没有历史数据
             return reward 
-
-        # 这个地方取队列有问题，后面需要修改
-        newest_malo_blood, newest_boss_blood = lastest_state[0]
-        oldest_malo_blood, oldest_boss_blood = lastest_state[-1]            
+        newest_malo_blood, newest_boss_blood = lastest_state[-1]
+        oldest_malo_blood, oldest_boss_blood = lastest_state[0]            
 
         if newest_malo_blood - oldest_malo_blood < 0: # malo掉血，减分
             reward -= 10
@@ -144,7 +154,7 @@ class BlackMythWukongEnv(gym.Env):
     def _check_done(self, original_screen):
         done = False
         malo_blood = self._calculate_malo_blood(original_screen, percentage=True)
-        if malo_blood < 0.01: # 检测malo的血量
+        if malo_blood < 0.03: # 检测malo的血量
             done = True
         if self._has_won(original_screen):
             done = True
@@ -169,7 +179,7 @@ class BlackMythWukongEnv(gym.Env):
         malo_blood_image = crop_screen(original_screen, self._malo_blood_window)
         return self._detect_health_bar(malo_blood_image, percentage=percentage)
     
-    def _calculate_boss_blood(self, original_screen, percentage=False):
+    def _calculate_boss_blood(self, original_screen, percentage=False): # TODO: 可以简化
         bloss_blood_image = crop_screen(original_screen, self._boss_blood_window)
         return self._detect_health_bar(bloss_blood_image, percentage=percentage)
 
