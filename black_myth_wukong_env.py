@@ -1,5 +1,5 @@
-import gym
-from gym import spaces
+import gymnasium as gym
+from gymnasium  import spaces
 import numpy as np
 import cv2  # 用于处理图像
 import pyautogui  # 用于截图等操作
@@ -29,6 +29,8 @@ def get_latest_elements_from_deque(dq, num_elements):
     return islice(dq, len(dq) - num_elements, len(dq))  # 通过 islice 获取队列尾部的迭代器
 
 class BlackMythWukongEnv(gym.Env):
+    metadata = {'description': 'This environment does not support rendering.'}
+
     def __init__(self, 
                  game_left_top_x=0, game_left_top_y=40,
                  right_bottom_x=1680, right_bottom_y=1090):
@@ -49,11 +51,11 @@ class BlackMythWukongEnv(gym.Env):
         self._game_region = (game_left_top_x, game_left_top_y, right_bottom_x, right_bottom_y) # 游戏画面区域
         self._game_width = right_bottom_x - game_left_top_x
         self._game_height = right_bottom_y - game_left_top_y
-        self._malo_blood_window = (round(self._game_width*0.110), self._game_height(self._game_height*0.867), 
+        self._malo_blood_window = (round(self._game_width*0.110), round(self._game_height*0.867), 
                                    round(self._game_width*0.265) , round(self._game_height*0.878)) 
-        self._boss_blood_window = (round(self._game_width*0.357), self._game_height(self._game_height*0.810), 
-                                   round(self._game_width*0.657), round(self._game_height* 0.820)) 
-        self._boss_defeated_window = (round(self._game_width*0.455), self._game_height(self._game_height*0.461) , 
+        self._boss_blood_window = (round(self._game_width*0.357), round(self._game_height*0.810), 
+                                   round(self._game_width*0.657), round(self._game_height*0.820)) 
+        self._boss_defeated_window = (round(self._game_width*0.455), round(self._game_height*0.461) , 
                                       round(self._game_width*0.548) , round(self._game_height*0.497)) 
         
         self._action_delay = 0.08 # 动作延迟，模拟人类操作，单位：秒

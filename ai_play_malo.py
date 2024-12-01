@@ -1,76 +1,55 @@
-import gym
-import numpy as np
-import torch as th
+import gymnasium as gym
 import torch.nn as nn
+import torchvision.models as models
 from stable_baselines3 import DQN
 from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
-from stable_baselines3.common.envs import DummyVecEnv
-from torchvision.models import resnet18
-from gym import spaces
-
-from black_myth_wukong_env import BlackMythWukongEnv
-
-# 自定义特征提取器，包含ResNet18并允许其权重随训练更新
+from stable_baselines3.common.policies import ActorCriticCnnPolicy
+import register_env
+    
 class ResNetFeatureExtractor(BaseFeaturesExtractor):
-    def __init__(self, observation_space: spaces.Box, features_dim: int = 512):
+    def __init__(self, observation_space, features_dim=256):
         super(ResNetFeatureExtractor, self).__init__(observation_space, features_dim)
         
-        # 使用预训练的ResNet18并删除最后的分类层
-        self.resnet = resnet18(pretrained=True)
-        self.resnet.fc = nn.Identity()  # 删除最后一层，保留特征向量
-        self.flatten = nn.Flatten()
-    
-    def forward(self, observations: th.Tensor) -> th.Tensor:
-        # 直接通过ResNet前向传播得到特征
-        features = self.resnet(observations)
-        return self.flatten(features)
+        # 加载预训练的ResNet模型
+        resnet = models.resnet18(pretrained=True)
+        
+        # 冻结ResNet的前几层，仅解冻最后一个block和fc层
+        for name, param in resnet.named_parameters():
+            if "layer4" not in name and "fc" not in name:
+                param.requires_grad = False
+        
+        # 保留特征提取层
+        self.resnet = nn.Sequential(*list(resnet.children())[:-1])
+        
+        # 定义输出层，将ResNet的输出展平成features_dim的向量
+        self.linear = nn.Linear(resnet.fc.in_features, features_dim)
+        
+    def forward(self, observations):
+        # 将输入图像传递给ResNet模型，得到特征
+        x = self.resnet(observations)
+        x = x.view(x.size(0), -1)
+        return self.linear(x)
 
-# 定义训练函数AIPlayMalo
-def AIPlayMalo(env: gym.Env, total_timesteps: int = 100000, model_save_path: str = "dqn_black_myth_model"):
-    # 定义DQN的policy参数，使用自定义的ResNet特征提取器
-    policy_kwargs = dict(
-        features_extractor_class=ResNetFeatureExtractor,
-        features_extractor_kwargs=dict(features_dim=512),  # ResNet输出特征维度
-        net_arch=[256, 128, 64]  # DQN的全连接层结构
-    )
-    
-    # 初始化DQN模型
-    model = DQN(
-        "CnnPolicy",
-        env,
-        policy_kwargs=policy_kwargs,
-        verbose=1,
-        learning_rate=1e-4,
-        buffer_size=10000,
-        batch_size=32,
-        target_update_interval=1000,
-        train_freq=4,
-        gradient_steps=1,
-        gamma=0.99
-    )
-    
-    # 开始训练
-    model.learn(total_timesteps=total_timesteps)
-    
-    # 保存模型到本地
-    model.save(model_save_path)
-    print(f"模型已保存到 {model_save_path}.zip")
-    
-    return model
-
-# 主函数
-def main():
-    # 创建环境，使用DummyVecEnv包装环境以兼容Stable-Baselines3
-    env = DummyVecEnv([lambda: BlackMythWukongEnv( 
-        game_left_top_x=0, game_left_top_y=40,
-        right_bottom_x=1680, right_bottom_y=1090)])
-    
-    # 调用AIPlayMalo进行训练，并指定模型保存路径
-    print("开始训练...")
-    model = AIPlayMalo(env, total_timesteps=100000, model_save_path="./models/")
-    print("训练完成！%s" % model)
+# 自定义DQN网络结构，增加更多层
+class CustomDQNPolicy(ActorCriticCnnPolicy):
+    def __init__(self, *args, **kwargs):
+        super(CustomDQNPolicy, self).__init__(
+            *args,
+            features_extractor_class=ResNetFeatureExtractor,
+            features_extractor_kwargs=dict(features_dim=256),
+            net_arch=[512, 256, 128],
+            **kwargs
+        )
 
 
 # 运行主函数
 if __name__ == "__main__":
-    main()
+    # 创建自定义环境实例
+    env = gym.make("BlackMythWukong-v0")
+
+    # 创建DQN模型，使用自定义网络结构
+    model = DQN(CustomDQNPolicy, env, verbose=1)
+    # 训练模型
+    model.learn(total_timesteps=10000)
+    # 保存模型
+    model.save("./model/dqn_resnet_blackmyth_custom")
